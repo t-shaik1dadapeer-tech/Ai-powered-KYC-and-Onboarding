@@ -1,0 +1,31 @@
+Phase 9 CI/CD — Validation
+============================
+Date: 2026-06-16T18:17:00Z
+
+Workflow file: .github/workflows/ci.yml
+Jobs: lint, test-onboarding-api, test-intelligence, test-node-cli,
+       test-rust-analyzer, test-e2e, docker-build, ci-summary
+
+Local CI (scripts/ci-local.sh):
+  ruff onboarding-api        PASS
+  ruff intelligence          PASS
+  node lint                  PASS
+  rust fmt + clippy          PASS
+  onboarding-api pytest      PASS (21 tests, 98% cov)
+  intelligence pytest        PASS (18 tests)
+  node-cli tests             PASS (17 tests)
+  rust-analyzer cargo test   PASS (10 tests)
+  platform e2e               PASS (4 tests)
+  docker compose build       SKIP (no docker daemon)
+
+TOTAL: 9 passed, 0 failed
+
+Artifacts (GitHub Actions):
+  - onboarding-api-coverage (coverage.xml, 14d)
+  - intelligence-coverage (coverage.xml, 14d)
+  - rust-analyzer-release (binary, 7d)
+  - docker-build-evidence (build log + compose resolved, 14d)
+
+Failure replay: docs/ci/failure-examples.md (7 scenarios)
+
+VALIDATION: PASS

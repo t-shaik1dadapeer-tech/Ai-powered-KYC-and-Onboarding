@@ -1,0 +1,32 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.ruff_cache/
+
+# Node
+node_modules/
+clients/node-cli/.test-output/
+
+# Rust
+target/
+
+# Local data
+*.db
+.env
+.env.local
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Git worktree checkouts (linked working directories)
+.worktrees/
+
+# Large generated coverage HTML (XML summaries kept in evidence/)
+evidence/test-results/*-coverage-html/

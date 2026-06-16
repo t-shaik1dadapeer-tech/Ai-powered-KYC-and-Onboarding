@@ -1,0 +1,12 @@
+sequenceDiagram
+    autonumber
+    actor Client
+    participant Controller
+    participant Service
+    participant Repository
+    participant Database
+    Client->>+Controller: router.get_customer [GET /customer/{customer_id}]
+    Controller->>+Service: CustomerService.get_customer
+    Service->>+Repository: CustomerRepository.get_by_id
+    Repository->>+Database: table:customers [SELECT]
+    Database-->>-Client: GET /customer/{customer_id} response

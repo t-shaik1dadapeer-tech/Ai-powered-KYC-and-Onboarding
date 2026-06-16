@@ -1,0 +1,156 @@
+Platform Test Run — 2026-06-16T18:06:01Z
+========================================
+
+▶ onboarding-api pytest + coverage
+.....................                                                    [100%]
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.9.6-final-0 ________________
+
+Name                                              Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------
+app/__init__.py                                       0      0   100%
+app/core/config.py                                   14      0   100%
+app/core/database.py                                 13      0   100%
+app/core/exceptions.py                               22      1    95%   25
+app/core/logging.py                                  10      0   100%
+app/core/metrics.py                                   5      0   100%
+app/main.py                                          46      0   100%
+app/models/base.py                                   14      1    93%   27
+app/models/customer.py                               16      0   100%
+app/models/kyc.py                                    36      0   100%
+app/models/risk.py                                   16      0   100%
+app/repositories/customer_repository.py              34      3    91%   26-28
+app/repositories/document_repository.py              13      0   100%
+app/repositories/kyc_repository.py                   48      4    92%   46-49
+app/routers/__init__.py                               0      0   100%
+app/routers/customer_read.py                         10      0   100%
+app/routers/customers.py                              9      0   100%
+app/routers/health.py                                11      0   100%
+app/routers/kyc.py                                   13      0   100%
+app/routers/risk.py                                   9      0   100%
+app/routers/verification.py                          12      0   100%
+app/schemas/customer.py                              23      0   100%
+app/schemas/kyc.py                                   43      3    93%   24, 32, 40
+app/schemas/risk.py                                  13      0   100%
+app/schemas/validators.py                             3      0   100%
+app/schemas/verification.py                          32      2    94%   17, 37
+app/services/bank_verification_service.py            13      0   100%
+app/services/customer_service.py                     20      0   100%
+app/services/kyc_service.py                          43      0   100%
+app/services/pan_verification_service.py             16      0   100%
+app/services/risk_score_service.py                   48      1    98%   24
+app/services/standalone_verification_service.py      18      0   100%
+-------------------------------------------------------------------------------
+TOTAL                                               623     15    98%
+Coverage HTML written to dir /Users/shaikdadapeer/agent development/evidence/test-results/onboarding-api-coverage-html
+Coverage XML written to file /Users/shaikdadapeer/agent development/evidence/test-results/onboarding-api-coverage.xml
+21 passed in 1.14s
+  ✅ PASS: onboarding-api pytest + coverage
+
+▶ intelligence pytest + coverage
+..................                                                       [100%]
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.9.6-final-0 ________________
+
+Name                                         Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------
+src/intelligence/__init__.py                     0      0   100%
+src/intelligence/analyzer.py                    38      4    89%   59-62
+src/intelligence/cli.py                         25     25     0%   1-55
+src/intelligence/detectors/__init__.py           0      0   100%
+src/intelligence/detectors/base.py              27      2    93%   23, 40
+src/intelligence/detectors/fastapi.py           29      0   100%
+src/intelligence/detectors/nodejs.py            32      2    94%   35-36
+src/intelligence/detectors/spring_boot.py       26      0   100%
+src/intelligence/extractors/__init__.py         22      6    73%   16-21, 41
+src/intelligence/extractors/fastapi.py          91      4    96%   110, 118, 126, 135
+src/intelligence/extractors/nodejs.py           41      2    95%   45, 62
+src/intelligence/extractors/spring_boot.py      73      8    89%   79-89, 104
+src/intelligence/extractors/utils.py            66     13    80%   24, 54-67, 75, 78-79, 89
+src/intelligence/generators/__init__.py          0      0   100%
+src/intelligence/generators/api_map.py          16      1    94%   25
+src/intelligence/generators/er_diagram.py       30      5    83%   12-16
+src/intelligence/generators/flow_trace.py       83      3    96%   18-19, 79
+src/intelligence/generators/markdown.py         46      3    93%   12-13, 41
+src/intelligence/models.py                      57      0   100%
+src/intelligence/rust_bridge/__init__.py         0      0   100%
+src/intelligence/rust_bridge/cli.py             33      5    85%   28, 34, 46, 54-55
+src/intelligence/tracing/__init__.py            21     12    43%   15-17, 21-41
+src/intelligence/tracing/fastapi_tracer.py     138     21    85%   44-45, 72-73, 77-78, 82-88, 172-174, 178-190, 228-230
+src/intelligence/tracing/index.py              112      5    96%   85-86, 101, 121, 125
+src/intelligence/tracing/sequence.py            24      1    96%   18
+src/intelligence/walker.py                      43     10    77%   30-33, 46, 55, 59, 61, 70-71
+--------------------------------------------------------------------------
+TOTAL                                         1073    132    88%
+Coverage HTML written to dir /Users/shaikdadapeer/agent development/evidence/test-results/intelligence-coverage-html
+Coverage XML written to file /Users/shaikdadapeer/agent development/evidence/test-results/intelligence-coverage.xml
+18 passed in 2.06s
+  ✅ PASS: intelligence pytest + coverage
+
+▶ node-cli tests
+▶ ApiClient
+  ✔ creates customer via POST /customers (1.3755ms)
+  ✔ throws ApiError on HTTP error response (0.514708ms)
+  ✔ throws ApiError on network failure (0.3035ms)
+✔ ApiClient (3.190875ms)
+▶ commands
+  ✔ customer-create validates before API call (1.020792ms)
+  ✔ customer-create calls API with validated payload (0.478833ms)
+  ✔ submit-kyc validates PAN and IFSC (0.21425ms)
+  ✔ submit-kyc submits to API (0.331209ms)
+✔ commands (3.049625ms)
+▶ generate-report command
+  ✔ runs intelligence analyzer on onboarding-api (413.367459ms)
+✔ generate-report command (414.583292ms)
+▶ validators
+  ✔ validates PAN format (0.77475ms)
+  ✔ rejects invalid PAN (0.3185ms)
+  ✔ validates IFSC format (0.098834ms)
+  ✔ rejects invalid IFSC (0.100042ms)
+  ✔ validates account number (0.1125ms)
+  ✔ rejects non-numeric account (0.088541ms)
+  ✔ validates email and phone (0.126042ms)
+  ✔ validates full name length (0.080375ms)
+  ✔ validates customer UUID (0.281083ms)
+✔ validators (3.811916ms)
+ℹ tests 17
+ℹ suites 4
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 573.587125
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+
+running 8 tests
+........
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 2 tests
+..
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.15s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e tests
+....                                                                     [100%]
+4 passed in 1.30s
+  ✅ PASS: platform e2e tests
+
+========================================
+TOTAL: 5 passed, 0 failed
+

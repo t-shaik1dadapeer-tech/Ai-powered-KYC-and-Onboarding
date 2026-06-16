@@ -1,0 +1,31 @@
+Phase 7 — Unified Testing Summary
+Generated: 2026-06-16T18:06:01Z
+
+Suites: 5/5 PASSED
+
+| Suite              | Tests | Coverage |
+|--------------------|-------|----------|
+| onboarding-api     | 21    | 98%      |
+| intelligence       | 18    | 88%      |
+| node-cli           | 17    | —        |
+| rust-analyzer      | 10    | —        |
+| platform e2e       | 4     | —        |
+| TOTAL              | 70    |          |
+
+Coverage artifacts:
+  evidence/test-results/onboarding-api-coverage.xml
+  evidence/test-results/onboarding-api-coverage-html/
+  evidence/test-results/intelligence-coverage.xml
+  evidence/test-results/intelligence-coverage-html/
+
+Command:
+  make test
+  bash scripts/run-all-tests.sh
+
+Integration test:
+  services/onboarding-api/tests/test_integration.py
+  Full flow: create → KYC → status → risk → customer verify
+
+E2E test:
+  tests/e2e/test_platform_e2e.py
+  API pipeline, intelligence CLI, rust scan, node validators

@@ -1,0 +1,30 @@
+# Phase 0–1 Verification Evidence
+
+**Generated:** 2026-06-16  
+**Command:** Manual verification script (see verification/phase-0.md, phase-1.md)
+
+## Phase 0 Results
+
+```
+phase-0-evaluation-matrix.md: 171 lines
+Evaluation IDs B1–B6, I1–I6, A1–A2, D2–D6: ALL PRESENT
+Phase rows in feature matrix: 15
+```
+
+## Phase 1 Results
+
+```
+Architecture files: 8/8 OK
+Mermaid diagram blocks: 26
+```
+
+## Files Created (Phase 0–1)
+
+| Path | Purpose |
+|------|---------|
+| docs/evaluation/phase-0-evaluation-matrix.md | Evaluation mapping |
+| docs/architecture/*.md | System design (8 files) |
+| verification/phase-0.md | Phase 0 verification record |
+| verification/phase-1.md | Phase 1 verification record |
+| evidence/*/\.gitkeep | Evidence store scaffolding |
+| README.md | Project entry point |

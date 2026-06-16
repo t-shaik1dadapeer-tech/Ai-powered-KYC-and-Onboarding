@@ -1,0 +1,5 @@
+Worktree Demo — 2026-06-16T18:25:03Z
+==========================
+
+▶ git init
+Initialized empty Git repository in /Users/shaikdadapeer/agent development/.git/

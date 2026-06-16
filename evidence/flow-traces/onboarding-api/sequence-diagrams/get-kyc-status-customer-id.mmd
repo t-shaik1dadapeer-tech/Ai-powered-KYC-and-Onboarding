@@ -1,0 +1,13 @@
+sequenceDiagram
+    autonumber
+    actor Client
+    participant Controller
+    participant Service
+    participant Repository
+    participant Database
+    Client->>+Controller: router.get_kyc_status [GET /kyc-status/{customer_id}]
+    Controller->>+Service: KycService.get_kyc_status
+    Service->>+Repository: CustomerRepository.get_by_id
+    Repository->>+Database: table:customers [SELECT]
+    Database->>+Repository: KycRepository.get_latest_by_customer
+    Repository-->>-Client: GET /kyc-status/{customer_id} response

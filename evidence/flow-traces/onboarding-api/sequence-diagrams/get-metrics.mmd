@@ -1,0 +1,6 @@
+sequenceDiagram
+    autonumber
+    actor Client
+    participant Controller
+    Client->>+Controller: router.metrics [GET /metrics]
+    Controller-->>-Client: GET /metrics response

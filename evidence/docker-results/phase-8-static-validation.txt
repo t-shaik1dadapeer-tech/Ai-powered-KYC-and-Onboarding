@@ -1,0 +1,27 @@
+Phase 8 Docker — Static Validation
+===================================
+Date: 2026-06-16T18:10:00Z
+Environment: Docker daemon NOT available (docker: command not found)
+
+Compose validation (Python yaml):
+  services: grafana, node-cli, onboarding-api, postgres, prometheus, rust-analyzer
+  missing: none
+
+Health checks:
+  postgres: healthcheck=True depends_on=False
+  onboarding-api: healthcheck=True depends_on=True
+  prometheus: healthcheck=True depends_on=True
+  grafana: healthcheck=True depends_on=True
+  node-cli: healthcheck=False depends_on=True (tools profile)
+  rust-analyzer: healthcheck=False depends_on=False (tools profile)
+
+Dockerfiles present:
+  services/onboarding-api/Dockerfile
+  clients/node-cli/Dockerfile
+  engines/rust-analyzer/Dockerfile
+
+Prometheus scrape: onboarding-api:8000/metrics
+
+Runtime verification: run `make docker-verify` after installing Docker Desktop.
+
+VALIDATION: PASS (static)

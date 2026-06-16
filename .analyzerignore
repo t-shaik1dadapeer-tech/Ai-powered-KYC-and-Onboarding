@@ -1,0 +1,5 @@
+# Ignore local venvs and evidence when analyzing monorepo root
+.venv/
+**/.venv/
+evidence/
+node_modules/

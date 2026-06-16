@@ -1,0 +1,21 @@
+{
+  "name": "kyc-cli",
+  "version": "0.1.0",
+  "description": "CLI client for KYC onboarding API and repository intelligence",
+  "bin": {
+    "kyc-cli": "./bin/kyc-cli.js"
+  },
+  "main": "lib/api-client.js",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "lint": "node --check bin/kyc-cli.js lib/*.js commands/*.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "keywords": ["kyc", "cli", "onboarding"],
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,6 @@
+Docker Verification — 2026-06-16T18:08:57Z
+==================================
+
+▶ docker compose build
+/Users/shaikdadapeer/agent development/scripts/docker-verify.sh: line 23: docker: command not found
+  ❌ BUILD FAILED

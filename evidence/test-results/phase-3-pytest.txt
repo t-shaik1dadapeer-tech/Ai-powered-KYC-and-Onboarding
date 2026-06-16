@@ -1,0 +1,24 @@
+Phase 3 — Repository Intelligence Engine Test Results
+Generated: 2026-06-16
+
+pytest: 10 passed in 0.23s
+
+Analysis target: services/onboarding-api
+Framework: fastapi (100% confidence)
+Services: 6 | Controllers: 6 | APIs: 9 | Models: 5 | Tests: 19 | Dependencies: 9
+Flow traces: 9
+
+Fixture coverage:
+- Spring Boot: UserController, UserService, User entity, 2 APIs
+- Node.js Express: 2 routes, express dependency
+
+Command:
+  cd engines/intelligence
+  PYTHONPATH=src .venv/bin/pytest -v
+  PYTHONPATH=src .venv/bin/python -m intelligence.cli ../../services/onboarding-api \
+    -o ../../evidence/api-maps/onboarding-api --json
+
+Evidence:
+  evidence/api-maps/onboarding-api/*.md
+  evidence/diagrams/onboarding-api-er.mmd
+  evidence/flow-traces/onboarding-api-flows.md
