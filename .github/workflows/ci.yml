@@ -214,7 +214,7 @@ jobs:
       - name: Terraform init/validate/apply
         run: bash scripts/terraform-verify.sh
 
-      - uses: azure/setup-kubectl@v4
+      - uses: azure/setup-kubectl@v5
 
       - name: Kubernetes dry-run
         run: bash scripts/k8s-verify.sh
