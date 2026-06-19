@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./onboarding.db"
     pan_verify_mode: str = "mock"
     bank_verify_mode: str = "mock"
+    api_key: str = ""  # set via API_KEY env; empty = auth disabled (dev/test)
 
 
 @lru_cache

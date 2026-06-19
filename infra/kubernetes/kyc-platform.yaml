@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kyc-platform
+  labels:
+    app.kubernetes.io/part-of: kyc-platform
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: onboarding-api-config
+  namespace: kyc-platform
+data:
+  LOG_LEVEL: INFO
+  PAN_VERIFY_MODE: mock
+  BANK_VERIFY_MODE: mock
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: onboarding-api-secrets
+  namespace: kyc-platform
+type: Opaque
+stringData:
+  database_url: postgresql+psycopg2://kyc:kyc@postgres:5432/kyc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: kyc-platform
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: kyc-platform
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: kyc
+            - name: POSTGRES_PASSWORD
+              value: kyc
+            - name: POSTGRES_DB
+              value: kyc
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "kyc"]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: onboarding-api
+  namespace: kyc-platform
+spec:
+  rules:
+    - host: kyc.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: onboarding-api
+                port:
+                  number: 8000

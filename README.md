@@ -18,7 +18,9 @@ A production-grade, phase-gated monorepo demonstrating advanced coding-agent wor
 | **9** | CI/CD | ✅ Complete |
 | **10** | Observability | ✅ Complete |
 | **11** | Worktree Demonstration | ✅ Complete |
-| 12–14 | See [roadmap](docs/architecture/06-development-roadmap.md) | ⏳ Pending |
+| **12** | Agent vs Manual Verification | ✅ Complete |
+| **13** | Engineering Evidence | ✅ Complete |
+| **14** | Final Review | ✅ Complete |
 
 ## Quick Links
 
@@ -82,6 +84,47 @@ make worktree-demo   # git init, parallel worktrees, merge demo
 ```
 
 Docs: [`docs/worktrees/README.md`](docs/worktrees/README.md)
+
+## Verification Audit (Phase 12)
+
+```bash
+make verify-phases   # validate all 15 verification/phase-*.md files
+```
+
+Master audit: [`docs/verification/agent-vs-manual-audit.md`](docs/verification/agent-vs-manual-audit.md)  
+Index: [`verification/README.md`](verification/README.md)
+
+## Evidence Store (Phase 13)
+
+```bash
+make evidence-index   # regenerate evidence/INDEX.md
+```
+
+Catalog: [`evidence/INDEX.md`](evidence/INDEX.md) — claim → artifact matrix for all phases
+
+## Final Review (Phase 14)
+
+**Overall score: 89%** across 19 evaluation dimensions (B/I/A/D).
+
+```bash
+make final-review
+```
+
+Scorecard: [`docs/final-review.md`](docs/final-review.md)
+
+## Evaluation Re-Audit (Strict B/I/A/D Framework)
+
+**Start here for Cursor agent checks:** [`docs/evaluation-index.md`](docs/evaluation-index.md) (fast, 24 criteria)  
+**Requirements checklist:** [`docs/evaluation-requirements.md`](docs/evaluation-requirements.md)
+
+| Report | Path | When to load |
+|--------|------|--------------|
+| **Quick index (use first)** | [`evaluation-index.md`](docs/evaluation-index.md) | Any single criterion |
+| Scores (24 rows) | [`evaluation-matrix.md`](docs/evaluation-matrix.md) | All scores at once |
+| Gap analysis (deep) | [`evaluation-gap-analysis.md`](docs/evaluation-gap-analysis.md) | One ID deep audit |
+| Final evaluation | [`final-evaluation-report.md`](docs/final-evaluation-report.md) | Final grade |
+
+**Overall strict score: 77/100 (B+)** — see final evaluation for hiring verdict.
 
 ## License
 

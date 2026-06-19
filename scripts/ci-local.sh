@@ -84,6 +84,12 @@ run_step "platform e2e" bash -c "
   PYTHONPATH=. .venv/bin/pytest -q '$ROOT/tests/e2e/test_platform_e2e.py'
 "
 
+run_step "load test" bash "$ROOT/scripts/load-test.sh"
+
+run_step "terraform validate" bash "$ROOT/scripts/terraform-verify.sh"
+
+run_step "kubernetes dry-run" bash "$ROOT/scripts/k8s-verify.sh"
+
 # --- Docker (optional) ---
 if command -v docker >/dev/null 2>&1; then
   run_step "docker compose build" bash -c "

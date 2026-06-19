@@ -1,0 +1,32 @@
+Evidence Index Generation — 2026-06-17T07:27:14Z
+Total evidence files (excl. coverage-html): 150
+✅ Generated /Users/shaikdadapeer/agent development/evidence/INDEX.md
+
+▶ Key artifact validation
+  ✅ test-results/phase-7-summary.txt
+  ✅ api-maps/onboarding-api/api-map.md
+  ✅ flow-traces/onboarding-api/sequence-diagrams/post-customers.mmd
+  ✅ observability-results/metrics-snapshot.txt
+  ✅ verification/phase-12-audit.txt
+  ✅ architecture/phase-0-1-verification.txt
+
+▶ Orphan check — verification files reference evidence
+  ✅ phase-0.md has evidence references
+  ✅ phase-1.md has evidence references
+  ✅ phase-2.md has evidence references
+  ✅ phase-3.md has evidence references
+  ✅ phase-4.md has evidence references
+  ✅ phase-5.md has evidence references
+  ✅ phase-6.md has evidence references
+  ✅ phase-7.md has evidence references
+  ✅ phase-8.md has evidence references
+  ✅ phase-9.md has evidence references
+  ✅ phase-10.md has evidence references
+  ✅ phase-11.md has evidence references
+  ✅ phase-12.md has evidence references
+
+========================================
+✅ Evidence index complete
+Files indexed: 150
+INDEX: /Users/shaikdadapeer/agent development/evidence/INDEX.md
+Log: /Users/shaikdadapeer/agent development/evidence/phase-13-index-generation.txt

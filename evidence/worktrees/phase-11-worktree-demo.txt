@@ -1,5 +1,72 @@
-Worktree Demo — 2026-06-16T18:25:03Z
+Worktree Demo — 2026-06-19T07:25:45Z
 ==========================
 
-▶ git init
-Initialized empty Git repository in /Users/shaikdadapeer/agent development/.git/
+▶ git repo exists
+  ✅ HEAD exists: da66245
+
+▶ Create branches (if missing)
+  ✅ Branches: analysis-worktree, observability-worktree
+
+▶ Add worktrees
+  ⏭ analysis worktree exists
+  ⏭ observability worktree exists
+
+▶ Commit demo change in analysis worktree
+  ⏭ Analysis marker already present
+
+▶ Commit demo change in observability worktree
+  ⏭ Observability marker already present
+
+▶ Merge analysis-worktree → main
+Already on 'main'
+M	.github/workflows/ci.yml
+M	.gitignore
+M	Makefile
+M	README.md
+M	evidence/ci-results/phase-9-ci-local.txt
+M	evidence/docker-results/phase-8-docker-verify.txt
+M	evidence/observability-results/metrics-snapshot.txt
+M	evidence/observability-results/phase-10-observability.txt
+M	evidence/test-results/intelligence-coverage.xml
+M	evidence/test-results/onboarding-api-coverage.xml
+M	evidence/test-results/phase-7-summary.txt
+M	evidence/worktrees/phase-11-worktree-demo.txt
+M	infra/docker/.env.example
+M	infra/docker/docker-compose.yml
+M	infra/grafana/dashboards/kyc-platform.json
+M	infra/grafana/provisioning/dashboards/dashboards.yml
+M	scripts/ci-local.sh
+M	scripts/docker-verify.sh
+M	services/onboarding-api/app/core/config.py
+M	services/onboarding-api/app/main.py
+M	verification/phase-10.md
+M	verification/phase-11.md
+M	verification/phase-5.md
+M	verification/phase-8.md
+M	verification/phase-9.md
+  ⏭ analysis-worktree already merged
+
+▶ Merge observability-worktree → main
+  ⏭ observability-worktree already merged
+
+▶ Worktree list
+/Users/shaikdadapeer/agent development                           da66245 [main]
+/Users/shaikdadapeer/agent development/.worktrees/analysis       71fdac1 [analysis-worktree]
+/Users/shaikdadapeer/agent development/.worktrees/observability  3f1395e [observability-worktree]
+
+▶ Recent merge history
+*   da66245 merge: observability-worktree into main
+|\  
+| * 3f1395e docs(observability): observability worktree demo marker
+* |   eb14311 merge: analysis-worktree into main
+|\ \  
+| |/  
+|/|   
+| * 71fdac1 docs(intelligence): analysis worktree demo marker
+|/  
+* 2beb9e8 chore: initial platform snapshot (phases 0-10)
+
+==========================
+✅ Worktree demo complete
+Docs: docs/worktrees/
+Evidence: /Users/shaikdadapeer/agent development/evidence/worktrees/phase-11-worktree-demo.txt

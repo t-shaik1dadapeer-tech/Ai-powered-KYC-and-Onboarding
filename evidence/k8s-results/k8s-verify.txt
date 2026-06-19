@@ -1,0 +1,12 @@
+Kubernetes Verification — 2026-06-19T07:26:29Z
+======================================
+▶ found: kyc-platform.yaml
+▶ found: onboarding-api-deployment.yaml
+▶ manifest structure check (fallback — no kubectl/kubeconform)
+OK kyc-platform.yaml (6 doc(s))
+OK onboarding-api-deployment.yaml (2 doc(s))
+  ✅ YAML structure valid
+
+Manifest count: 2
+✅ Kubernetes verification complete
+Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify.txt

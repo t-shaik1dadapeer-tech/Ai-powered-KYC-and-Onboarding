@@ -200,6 +200,45 @@ jobs:
             infra/docker/docker-compose-resolved.yml
           retention-days: 14
 
+  infra-validate:
+    name: Infra validate (Terraform + K8s + load)
+    runs-on: ubuntu-latest
+    needs: [test-onboarding-api]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Terraform init/validate/apply
+        run: bash scripts/terraform-verify.sh
+
+      - uses: azure/setup-kubectl@v4
+
+      - name: Kubernetes dry-run
+        run: bash scripts/k8s-verify.sh
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Load test
+        working-directory: services/onboarding-api
+        run: |
+          pip install -r requirements.txt
+          pip install httpx pytest-asyncio
+          bash ../../scripts/load-test.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: infra-validate-evidence
+          path: |
+            evidence/terraform-results/
+            evidence/k8s-results/
+            evidence/performance/
+          retention-days: 14
+
   ci-summary:
     name: CI summary
     runs-on: ubuntu-latest
@@ -211,6 +250,7 @@ jobs:
       - test-rust-analyzer
       - test-e2e
       - docker-build
+      - infra-validate
     if: always()
     steps:
       - name: Write summary
@@ -227,6 +267,7 @@ jobs:
             echo "| test-rust-analyzer | ${{ needs.test-rust-analyzer.result }} |"
             echo "| test-e2e | ${{ needs.test-e2e.result }} |"
             echo "| docker-build | ${{ needs.docker-build.result }} |"
+            echo "| infra-validate | ${{ needs.infra-validate.result }} |"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Fail if any required job failed
@@ -237,5 +278,6 @@ jobs:
           needs.test-node-cli.result != 'success' ||
           needs.test-rust-analyzer.result != 'success' ||
           needs.test-e2e.result != 'success' ||
-          needs.docker-build.result != 'success'
+          needs.docker-build.result != 'success' ||
+          needs.infra-validate.result != 'success'
         run: exit 1

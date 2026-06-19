@@ -1,0 +1,99 @@
+Terraform Verification — 2026-06-19T07:26:25Z
+=====================================
+▶ terraform init
+[0m[1mInitializing the backend...[0m
+[0m[1mInitializing provider plugins...[0m
+- Reusing previous version of hashicorp/local from the dependency lock file
+- Using previously-installed hashicorp/local v2.9.0
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+  ✅ init OK
+▶ terraform validate
+[32m[1mSuccess![0m The configuration is valid.
+[0m
+  ✅ validate OK
+▶ terraform apply (local_file resources)
+[0m[1mlocal_file.infra_registry: Refreshing state... [id=7d262b68c337da72596f8713f4d01ada79a00e5b][0m
+[0m[1mlocal_file.compose_copy: Refreshing state... [id=cfd868d8331840c3d3603dc54301ac616b11e4ee][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+[31m-[0m/[32m+[0m destroy and then create replacement[0m
+
+Terraform will perform the following actions:
+
+[1m  # local_file.infra_registry[0m must be [1m[31mreplaced[0m
+[0m[31m-[0m/[32m+[0m[0m resource "local_file" "infra_registry" {
+      [33m~[0m[0m content              = jsonencode(
+            {
+              [31m-[0m[0m artifacts    = {
+                  [31m-[0m[0m docker_compose = "bb199ab745f1789d2fd03885e7a4147d5eda38f8a7f5296d69301f3994e75274"
+                  [31m-[0m[0m k8s_deployment = "56454cf27454790441f50853e99d172a61bbc9c2bbc405b9ed111dfb07490b75"
+                  [31m-[0m[0m prometheus     = "8a2d4fb7e52ba8ae8610cfbef97e7163c03abfe1a27ab1030188f6f0afb795bb"
+                }
+              [31m-[0m[0m environment  = "dev"
+              [31m-[0m[0m generated_at = "2026-06-19T07:26:13Z"
+              [31m-[0m[0m managed_by   = "terraform"
+              [31m-[0m[0m project      = "kyc-platform"
+              [31m-[0m[0m services     = [
+                  [31m-[0m[0m "onboarding-api",
+                  [31m-[0m[0m "postgres",
+                  [31m-[0m[0m "prometheus",
+                  [31m-[0m[0m "grafana",
+                ]
+            }
+        ) -> (known after apply) [31m# forces replacement[0m[0m
+      [33m~[0m[0m content_base64sha256 = "VVeX2L49yVO5JyyTaxqA5FcxfX1yVPl7DNHfMmThYoI=" -> (known after apply)
+      [33m~[0m[0m content_base64sha512 = "eEvypWvJrd4/gf2aUUFmWxc8218PPsLHXtCBUQ1qEagj3LSLrSiZP0flo7pFO2pYnHlSZqEBuI6rmTTQRJvVSw==" -> (known after apply)
+      [33m~[0m[0m content_md5          = "63c0a91cab28336be3ad483ea812a572" -> (known after apply)
+      [33m~[0m[0m content_sha1         = "7d262b68c337da72596f8713f4d01ada79a00e5b" -> (known after apply)
+      [33m~[0m[0m content_sha256       = "555797d8be3dc953b9272c936b1a80e457317d7d7254f97b0cd1df3264e16282" -> (known after apply)
+      [33m~[0m[0m content_sha512       = "784bf2a56bc9adde3f81fd9a5141665b173cdb5f0f3ec2c75ed081510d6a11a823dcb48bad28993f47e5a3ba453b6a589c795266a101b88eab9934d0449bd54b" -> (known after apply)
+      [33m~[0m[0m id                   = "7d262b68c337da72596f8713f4d01ada79a00e5b" -> (known after apply)
+        [90m# (3 unchanged attributes hidden)[0m[0m
+    }
+
+[1mPlan:[0m 1 to add, 0 to change, 1 to destroy.
+[0m[0m[1mlocal_file.infra_registry: Destroying... [id=7d262b68c337da72596f8713f4d01ada79a00e5b][0m[0m
+[0m[1mlocal_file.infra_registry: Destruction complete after 0s[0m
+[0m[1mlocal_file.infra_registry: Creating...[0m[0m
+[0m[1mlocal_file.infra_registry: Creation complete after 0s [id=e34814a782765e4d682a31175f97211aa765cf8f][0m
+[0m[1m[32m
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0mcompose_checksum = "bb199ab745f1789d2fd03885e7a4147d5eda38f8a7f5296d69301f3994e75274"
+environment = "dev"
+infra_registry_path = "./.generated/infra-registry.json"
+  ✅ apply OK
+▶ outputs
+{
+  "compose_checksum": {
+    "sensitive": false,
+    "type": "string",
+    "value": "bb199ab745f1789d2fd03885e7a4147d5eda38f8a7f5296d69301f3994e75274"
+  },
+  "environment": {
+    "sensitive": false,
+    "type": "string",
+    "value": "dev"
+  },
+  "infra_registry_path": {
+    "sensitive": false,
+    "type": "string",
+    "value": "./.generated/infra-registry.json"
+  }
+}
+  ✅ registry: /Users/shaikdadapeer/agent development/infra/terraform/.generated/infra-registry.json
+
+✅ Terraform verification complete
+Evidence: /Users/shaikdadapeer/agent development/evidence/terraform-results/terraform-verify.txt

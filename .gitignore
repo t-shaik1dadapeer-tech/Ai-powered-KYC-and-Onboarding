@@ -28,5 +28,8 @@ target/
 # Git worktree checkouts (linked working directories)
 .worktrees/
 
+# Downloaded tools (terraform-verify bootstrap)
+.tools/
+
 # Large generated coverage HTML (XML summaries kept in evidence/)
 evidence/test-results/*-coverage-html/

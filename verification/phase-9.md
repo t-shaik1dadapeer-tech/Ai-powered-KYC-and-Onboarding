@@ -59,12 +59,28 @@ cat .github/workflows/ci.yml
 open docs/ci/failure-examples.md
 ```
 
+## Evidence
+
+| Artifact | Path |
+|----------|------|
+| Local CI log | `evidence/ci-results/phase-9-ci-local.txt` |
+| Workflow validation | `evidence/ci-results/phase-9-workflow-validation.txt` |
+
 ## GitHub Actions (after push)
 
 1. Push branch to GitHub remote
 2. Open **Actions** tab → **CI** workflow
 3. Confirm all 7 required jobs green
 4. Download artifacts from the run page
+
+## Risk Assessment
+
+| Risk | Severity | Mitigation |
+|------|----------|------------|
+| CI flakiness on cold Rust builds | Medium | `dtolnay/rust-toolchain@stable`; cargo cache in Actions |
+| No remote CI until GitHub push | Medium | `make ci-local` mirrors workflow locally |
+| Docker job fails without daemon | Low | Runs on `ubuntu-latest` with Docker preinstalled |
+| Test DB pollution (409 conflicts) | Low | In-memory DB fixtures in integration/E2E tests |
 
 ## Architecture Alignment
 

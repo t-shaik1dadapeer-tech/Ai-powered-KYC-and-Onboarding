@@ -69,6 +69,12 @@ generate-report: { framework: "fastapi", apis: 9, ... }
 customer-create: { ok: true, customerId: "...", status: "pending" }
 ```
 
+## Evidence
+
+| Artifact | Path |
+|----------|------|
+| Node test log | `evidence/test-results/phase-5-node-tests.txt` |
+
 ## Risk Assessment
 
 | Risk | Severity | Mitigation |

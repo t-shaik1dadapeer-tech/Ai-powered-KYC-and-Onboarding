@@ -1,0 +1,510 @@
+=== Full 24-Criterion Audit ===
+Started: 2026-06-19T07:19:59Z
+Root: /Users/shaikdadapeer/agent development
+
+--- B1 Repo Discovery ---
+CMD: cd engines/intelligence && PYTHONPATH=src .venv/bin/pytest tests/test_analyzer.py -q
+....                                                                     [100%]
+4 passed in 0.56s
+RESULT: PASS
+
+--- B2 API Mapping ---
+CMD: test -f docs/api/openapi.json && jq '.paths | keys | length' docs/api/openapi.json
+9
+RESULT: PASS
+
+--- B3 Test Discovery ---
+CMD: make test
+bash "/Users/shaikdadapeer/agent development/scripts/run-all-tests.sh"
+Platform Test Run — 2026-06-19T07:20:01Z
+========================================
+
+▶ onboarding-api pytest + coverage
+  ✅ PASS: onboarding-api pytest + coverage
+
+▶ intelligence pytest + coverage
+  ✅ PASS: intelligence pytest + coverage
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e tests
+  ✅ PASS: platform e2e tests
+
+========================================
+TOTAL: 5 passed, 0 failed
+
+RESULT: PASS
+
+--- B4 FastAPI Greenfield ---
+CMD: cd services/onboarding-api && PYTHONPATH=. .venv/bin/pytest -q
+........................                                                 [100%]
+24 passed in 0.35s
+RESULT: PASS
+
+--- B5 Node.js Greenfield ---
+CMD: cd clients/node-cli && npm test --silent
+▶ ApiClient
+  ✔ creates customer via POST /customers (0.977084ms)
+  ✔ throws ApiError on HTTP error response (1.664875ms)
+  ✔ throws ApiError on network failure (0.636917ms)
+✔ ApiClient (4.76975ms)
+▶ commands
+  ✔ customer-create validates before API call (0.947ms)
+  ✔ customer-create calls API with validated payload (0.765208ms)
+  ✔ submit-kyc validates PAN and IFSC (0.375042ms)
+  ✔ submit-kyc submits to API (0.511667ms)
+✔ commands (3.918834ms)
+▶ generate-report command
+  ✔ runs intelligence analyzer on onboarding-api (433.088084ms)
+✔ generate-report command (433.884291ms)
+▶ validators
+  ✔ validates PAN format (0.80825ms)
+  ✔ rejects invalid PAN (0.576834ms)
+  ✔ validates IFSC format (0.238917ms)
+  ✔ rejects invalid IFSC (0.25025ms)
+  ✔ validates account number (0.296041ms)
+  ✔ rejects non-numeric account (0.217333ms)
+  ✔ validates email and phone (0.286375ms)
+  ✔ validates full name length (0.236ms)
+  ✔ validates customer UUID (0.448417ms)
+✔ validators (6.077792ms)
+ℹ tests 17
+ℹ suites 4
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 618.409042
+RESULT: PASS
+
+--- B6 Rust Greenfield ---
+CMD: cd engines/rust-analyzer && cargo test -q
+
+running 8 tests
+........
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 2 tests
+..
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.17s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+RESULT: PASS
+
+--- I1 ER Diagram ---
+CMD: grep ForeignKey services/onboarding-api/app/models/*.py
+services/onboarding-api/app/models/kyc.py:from sqlalchemy import DateTime, ForeignKey, String
+services/onboarding-api/app/models/kyc.py:        ForeignKey("customers.id"), nullable=False, index=True
+services/onboarding-api/app/models/kyc.py:        ForeignKey("kyc_submissions.id"), unique=True, nullable=False
+services/onboarding-api/app/models/kyc.py:        ForeignKey("kyc_submissions.id"), unique=True, nullable=False
+services/onboarding-api/app/models/risk.py:from sqlalchemy import DateTime, ForeignKey, Integer, String
+services/onboarding-api/app/models/risk.py:        ForeignKey("customers.id"), nullable=False, index=True
+RESULT: PASS
+
+--- I2 E2E Flow Trace ---
+CMD: test $(ls evidence/flow-traces/onboarding-api/sequence-diagrams/*.mmd 2>/dev/null | wc -l | tr -d ' ') -ge 1
+RESULT: PASS
+
+--- I3 Safe Change ---
+CMD: make safe-change-check
+bash "/Users/shaikdadapeer/agent development/scripts/safe-change-check.sh"
+Safe Change Check — 2026-06-19T07:20:30Z
+==============================
+▶ 1/5 ci-local (lint + tests + build)
+  ✅ ci-local passed
+▶ 2/5 terraform validate
+  ✅ terraform passed
+▶ 3/5 kubernetes dry-run
+  ✅ k8s passed
+▶ 4/5 docker compose config
+  ✅ docker compose config valid
+▶ 5/5 load test (in-process)
+  ✅ load test passed
+
+✅ Safe change check complete — safe to open PR
+Evidence: /Users/shaikdadapeer/agent development/evidence/safe-change/safe-change-check.txt
+RESULT: PASS
+
+--- I4 Polyglot Service Pair ---
+CMD: cd services/onboarding-api && PYTHONPATH=. .venv/bin/pytest ../../tests/e2e/test_platform_e2e.py -q
+....                                                                     [100%]
+4 passed in 1.70s
+RESULT: PASS
+
+--- I5 Dockerization ---
+CMD: make docker-verify
+bash "/Users/shaikdadapeer/agent development/scripts/docker-verify.sh"
+Docker Verification — 2026-06-19T07:21:20Z
+==================================
+API (host)        : 8101
+Prometheus (host) : 9191
+Grafana bundled   : http://127.0.0.1:3003  (admin/admin)
+Grafana external  : http://127.0.0.1:3002  (optional import)
+
+▶ docker compose down (clean stale stack)
+
+▶ docker compose build
+  ✅ BUILD SUCCESS
+
+▶ docker compose up -d (full stack + bundled Grafana)
+▶ Waiting for services (max 180s)
+  ✅ All services ready (2x5s)
+
+▶ API health (inside container — authoritative)
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+▶ API metrics sample
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 462.0
+python_gc_objects_collected_total{generation="1"} 50.0
+python_gc_objects_collected_total{generation="2"} 10.0
+
+▶ Create customer via KYC API
+curl: (22) The requested URL returned error: 409
+make: *** [docker-verify] Error 22
+RESULT: FAIL
+
+--- I6 Bug Diagnosis ---
+CMD: grep BUG-001 docs/bug-investigation.md
+# Bug Investigation — BUG-001: Integration Tests Hit Persistent SQLite DB
+**ID:** BUG-001  
+**Regression tests (BUG-001):**
+RESULT: PASS
+
+--- A1 Multi Worktree Planning ---
+CMD: test -f docs/worktrees/merge-strategy.md
+RESULT: PASS
+
+--- A2 Parallel Worktrees ---
+CMD: make worktree-demo
+bash "/Users/shaikdadapeer/agent development/scripts/worktree-demo.sh"
+Worktree Demo — 2026-06-19T07:22:02Z
+==========================
+
+▶ git repo exists
+  ✅ HEAD exists: da66245
+
+▶ Create branches (if missing)
+  ✅ Branches: analysis-worktree, observability-worktree
+
+▶ Add worktrees
+  ⏭ analysis worktree exists
+  ⏭ observability worktree exists
+
+▶ Commit demo change in analysis worktree
+  ⏭ Analysis marker already present
+
+▶ Commit demo change in observability worktree
+  ⏭ Observability marker already present
+
+▶ Merge analysis-worktree → main
+  ⏭ analysis-worktree already merged
+
+▶ Merge observability-worktree → main
+  ⏭ observability-worktree already merged
+
+▶ Worktree list
+/Users/shaikdadapeer/agent development                           da66245 [main]
+/Users/shaikdadapeer/agent development/.worktrees/analysis       71fdac1 [analysis-worktree]
+/Users/shaikdadapeer/agent development/.worktrees/observability  3f1395e [observability-worktree]
+
+▶ Recent merge history
+*   da66245 merge: observability-worktree into main
+|\  
+| * 3f1395e docs(observability): observability worktree demo marker
+* |   eb14311 merge: analysis-worktree into main
+|\ \  
+| |/  
+|/|   
+| * 71fdac1 docs(intelligence): analysis worktree demo marker
+|/  
+* 2beb9e8 chore: initial platform snapshot (phases 0-10)
+
+==========================
+✅ Worktree demo complete
+Docs: docs/worktrees/
+Evidence: /Users/shaikdadapeer/agent development/evidence/worktrees/phase-11-worktree-demo.txt
+RESULT: PASS
+
+--- A3 Polyglot Mini-System ---
+CMD: make test
+bash "/Users/shaikdadapeer/agent development/scripts/run-all-tests.sh"
+Platform Test Run — 2026-06-19T07:22:03Z
+========================================
+
+▶ onboarding-api pytest + coverage
+  ✅ PASS: onboarding-api pytest + coverage
+
+▶ intelligence pytest + coverage
+  ✅ PASS: intelligence pytest + coverage
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e tests
+  ✅ PASS: platform e2e tests
+
+========================================
+TOTAL: 5 passed, 0 failed
+
+RESULT: PASS
+
+--- A4 Repository Modernization ---
+CMD: test -f .github/dependabot.yml
+RESULT: PASS
+
+--- A5 Agent Code Review ---
+CMD: make ci-local
+bash "/Users/shaikdadapeer/agent development/scripts/ci-local.sh"
+Local CI Run — 2026-06-19T07:22:17Z
+=========================
+
+▶ ruff onboarding-api
+  ✅ PASS: ruff onboarding-api
+
+▶ ruff intelligence
+  ✅ PASS: ruff intelligence
+
+▶ node lint
+  ✅ PASS: node lint
+
+▶ rust fmt + clippy
+  ✅ PASS: rust fmt + clippy
+
+▶ onboarding-api pytest
+  ✅ PASS: onboarding-api pytest
+
+▶ intelligence pytest
+  ✅ PASS: intelligence pytest
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e
+  ✅ PASS: platform e2e
+
+▶ load test
+  ✅ PASS: load test
+
+▶ terraform validate
+  ✅ PASS: terraform validate
+
+▶ kubernetes dry-run
+  ✅ PASS: kubernetes dry-run
+
+▶ docker compose build
+  ✅ PASS: docker compose build
+
+=========================
+TOTAL: 13 passed, 0 failed
+
+✅ Local CI complete — evidence: /Users/shaikdadapeer/agent development/evidence/ci-results/phase-9-ci-local.txt
+RESULT: PASS
+
+--- A6 Performance Profiling ---
+CMD: make load-test
+bash "/Users/shaikdadapeer/agent development/scripts/load-test.sh"
+Load Test — 2026-06-19T07:22:32Z
+======================
+requests=200 concurrency=20
+duration_s=0.211 rps=946.3
+p50_ms=16.78 p95_ms=34.96 errors=0
+PASS
+
+✅ Load test complete
+Evidence: /Users/shaikdadapeer/agent development/evidence/performance/load-test.txt
+RESULT: PASS
+
+--- D1 Terraform ---
+CMD: make terraform-verify
+bash "/Users/shaikdadapeer/agent development/scripts/terraform-verify.sh"
+Terraform Verification — 2026-06-19T07:22:34Z
+=====================================
+▶ terraform init
+  ✅ init OK
+▶ terraform validate
+  ✅ validate OK
+▶ terraform apply (local_file resources)
+  ✅ apply OK
+▶ outputs
+  ✅ registry: /Users/shaikdadapeer/agent development/infra/terraform/.generated/infra-registry.json
+
+✅ Terraform verification complete
+Evidence: /Users/shaikdadapeer/agent development/evidence/terraform-results/terraform-verify.txt
+RESULT: PASS
+
+--- D2 Docker Compose ---
+CMD: docker compose -f infra/docker/docker-compose.yml config >/dev/null
+RESULT: PASS
+
+--- D3 CI/CD ---
+CMD: make ci-local
+bash "/Users/shaikdadapeer/agent development/scripts/ci-local.sh"
+Local CI Run — 2026-06-19T07:22:35Z
+=========================
+
+▶ ruff onboarding-api
+  ✅ PASS: ruff onboarding-api
+
+▶ ruff intelligence
+  ✅ PASS: ruff intelligence
+
+▶ node lint
+  ✅ PASS: node lint
+
+▶ rust fmt + clippy
+  ✅ PASS: rust fmt + clippy
+
+▶ onboarding-api pytest
+  ✅ PASS: onboarding-api pytest
+
+▶ intelligence pytest
+  ✅ PASS: intelligence pytest
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e
+  ✅ PASS: platform e2e
+
+▶ load test
+  ✅ PASS: load test
+
+▶ terraform validate
+  ✅ PASS: terraform validate
+
+▶ kubernetes dry-run
+  ✅ PASS: kubernetes dry-run
+
+▶ docker compose build
+  ✅ PASS: docker compose build
+
+=========================
+TOTAL: 13 passed, 0 failed
+
+✅ Local CI complete — evidence: /Users/shaikdadapeer/agent development/evidence/ci-results/phase-9-ci-local.txt
+RESULT: PASS
+
+--- D4 Kubernetes ---
+CMD: make k8s-verify
+bash "/Users/shaikdadapeer/agent development/scripts/k8s-verify.sh"
+Kubernetes Verification — 2026-06-19T07:22:50Z
+======================================
+▶ found: kyc-platform.yaml
+▶ found: onboarding-api-deployment.yaml
+▶ manifest structure check (fallback — no kubectl/kubeconform)
+  ✅ YAML structure valid
+
+Manifest count: 2
+✅ Kubernetes verification complete
+Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify.txt
+RESULT: PASS
+
+--- D5 Reproducible Environment ---
+CMD: make test
+bash "/Users/shaikdadapeer/agent development/scripts/run-all-tests.sh"
+Platform Test Run — 2026-06-19T07:22:50Z
+========================================
+
+▶ onboarding-api pytest + coverage
+  ✅ PASS: onboarding-api pytest + coverage
+
+▶ intelligence pytest + coverage
+  ✅ PASS: intelligence pytest + coverage
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e tests
+  ✅ PASS: platform e2e tests
+
+========================================
+TOTAL: 5 passed, 0 failed
+
+RESULT: PASS
+
+--- D6 Observability ---
+CMD: make observability-verify
+bash "/Users/shaikdadapeer/agent development/scripts/observability-verify.sh"
+Observability Verification — 2026-06-19T07:23:02Z
+========================================
+
+▶ Generate sample traffic + scrape /metrics
+{"event": "application_started", "level": "info", "timestamp": "2026-06-19T07:23:03.318327Z"}
+{"customer_id": "55dc69bb-2ca1-459d-8cc0-d41cf742fb97", "email": "obs0@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-19T07:23:03.333161Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-19T07:23:03.338052Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-19T07:23:03.339722Z"}
+{"customer_id": "55dc69bb-2ca1-459d-8cc0-d41cf742fb97", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-19T07:23:03.344257Z"}
+{"customer_id": "55dc69bb-2ca1-459d-8cc0-d41cf742fb97", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-19T07:23:03.352471Z"}
+{"customer_id": "9767b399-d38d-44c5-af70-37f08f584e8e", "email": "obs1@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-19T07:23:03.355393Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-19T07:23:03.359098Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-19T07:23:03.359612Z"}
+{"customer_id": "9767b399-d38d-44c5-af70-37f08f584e8e", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-19T07:23:03.361393Z"}
+{"customer_id": "9767b399-d38d-44c5-af70-37f08f584e8e", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-19T07:23:03.365795Z"}
+{"customer_id": "36370d0b-4e80-4606-8575-bf0c63f488f5", "email": "obs2@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-19T07:23:03.368765Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-19T07:23:03.371425Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-19T07:23:03.371925Z"}
+{"customer_id": "36370d0b-4e80-4606-8575-bf0c63f488f5", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-19T07:23:03.374258Z"}
+{"customer_id": "36370d0b-4e80-4606-8575-bf0c63f488f5", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-19T07:23:03.379110Z"}
+{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-19T07:23:03.383452Z"}
+  ✅ All domain metrics present
+
+▶ Generate dashboard SVG evidence
+  ✅ Dashboard SVG: /Users/shaikdadapeer/agent development/evidence/screenshots/kyc-platform-dashboard.svg
+
+▶ Run metrics unit tests
+.                                                                        [100%]
+1 passed in 0.05s
+
+▶ Key metric samples
+customers_created_total{status="pending"} 3.0
+customers_created_created{status="pending"} 1.78185378333313e+09
+kyc_submissions_total{status="verified"} 3.0
+kyc_submissions_created{status="verified"} 1.7818537833442292e+09
+pan_verifications_total{status="verified"} 3.0
+pan_verifications_created{status="verified"} 1.7818537833380868e+09
+bank_verifications_total{status="verified"} 3.0
+bank_verifications_created{status="verified"} 1.7818537833397582e+09
+risk_assessments_total{band="low"} 3.0
+risk_assessments_created{band="low"} 1.781853783352448e+09
+kyc_submissions_active 3.0
+
+========================================
+✅ Observability verification complete
+Metrics: /Users/shaikdadapeer/agent development/evidence/observability-results/metrics-snapshot.txt
+Dashboard: /Users/shaikdadapeer/agent development/evidence/screenshots/kyc-platform-dashboard.svg
+Grafana JSON: infra/grafana/dashboards/kyc-platform.json
+RESULT: PASS
+
+=== SUMMARY ===
+PASS: 23 / 24
+FAIL: 1 / 24
+Finished: 2026-06-19T07:23:04Z
+Report: /Users/shaikdadapeer/agent development/evidence/evaluation-results/full-24-audit-2026-06-19-1249.txt

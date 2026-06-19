@@ -72,6 +72,15 @@ make docker-up
 | Dashboard SVG | `evidence/screenshots/kyc-platform-dashboard.svg` |
 | Verify log | `evidence/observability-results/phase-10-observability.txt` |
 
+## Risk Assessment
+
+| Risk | Severity | Mitigation |
+|------|----------|------------|
+| SVG snapshot vs live Grafana screenshot | Low | SVG generated from real `/metrics`; live optional via Docker |
+| Metric cardinality from path labels | Low | Fixed route paths; no unbounded IDs in labels |
+| Gauge `kyc_submissions_active` is cumulative proxy | Medium | Documented in metrics catalog; not a live DB count |
+| Dashboard UID mismatch | Low | Provisioning sets `uid: prometheus` matching JSON panels |
+
 ## Architecture Alignment
 
 - **I6** — structured metrics + Grafana dashboard

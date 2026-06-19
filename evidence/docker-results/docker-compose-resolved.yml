@@ -1,0 +1,125 @@
+name: docker
+services:
+  grafana:
+    depends_on:
+      prometheus:
+        condition: service_healthy
+        required: true
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_SECURITY_ADMIN_USER: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - -qO-
+        - http://localhost:3000/health
+      timeout: 5s
+      interval: 15s
+      retries: 5
+    image: grafana/grafana:11.2.0
+    networks:
+      kyc-net: null
+    ports:
+      - mode: ingress
+        target: 3000
+        published: "3003"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /Users/shaikdadapeer/agent development/infra/grafana/provisioning
+        target: /etc/grafana/provisioning
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /Users/shaikdadapeer/agent development/infra/grafana/dashboards
+        target: /var/lib/grafana/dashboards
+        read_only: true
+        bind:
+          create_host_path: true
+  onboarding-api:
+    build:
+      context: /Users/shaikdadapeer/agent development/services/onboarding-api
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+        required: true
+    environment:
+      DATABASE_URL: postgresql+psycopg2://kyc:kyc@postgres:5432/kyc
+      LOG_LEVEL: INFO
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -fsS
+        - http://localhost:8000/health
+      timeout: 5s
+      interval: 15s
+      retries: 5
+      start_period: 25s
+    networks:
+      kyc-net: null
+    ports:
+      - mode: ingress
+        target: 8000
+        published: "8101"
+        protocol: tcp
+  postgres:
+    environment:
+      POSTGRES_DB: kyc
+      POSTGRES_PASSWORD: kyc
+      POSTGRES_USER: kyc
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U kyc -d kyc
+      timeout: 5s
+      interval: 10s
+      retries: 5
+    image: postgres:16-alpine
+    networks:
+      kyc-net: null
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+        volume: {}
+  prometheus:
+    depends_on:
+      onboarding-api:
+        condition: service_healthy
+        required: true
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - -qO-
+        - http://localhost:9090/-/healthy
+      timeout: 5s
+      interval: 15s
+      retries: 5
+    image: prom/prometheus:v2.54.1
+    networks:
+      kyc-net: null
+    ports:
+      - mode: ingress
+        target: 9090
+        published: "9191"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /Users/shaikdadapeer/agent development/infra/prometheus/prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+        read_only: true
+        bind:
+          create_host_path: true
+networks:
+  kyc-net:
+    name: docker_kyc-net
+    driver: bridge
+volumes:
+  postgres_data:
+    name: docker_postgres_data

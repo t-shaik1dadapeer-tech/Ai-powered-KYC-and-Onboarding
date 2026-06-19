@@ -1,0 +1,17 @@
+{
+  "compose_checksum": {
+    "sensitive": false,
+    "type": "string",
+    "value": "bb199ab745f1789d2fd03885e7a4147d5eda38f8a7f5296d69301f3994e75274"
+  },
+  "environment": {
+    "sensitive": false,
+    "type": "string",
+    "value": "dev"
+  },
+  "infra_registry_path": {
+    "sensitive": false,
+    "type": "string",
+    "value": "./.generated/infra-registry.json"
+  }
+}

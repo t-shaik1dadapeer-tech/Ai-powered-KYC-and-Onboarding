@@ -1,0 +1,17 @@
+Grafana :3002 D6 folder provision — 2026-06-18T10:47:15Z
+
+▶ Copy KYC dashboard into D6 folder (alongside API Observability)
+  ✅ /Users/shaikdadapeer/Evil-Ai/devops/D6-observability/monitoring/grafana/dashboards/ai-powered-kyc-platform-api.json
+▶ Remove separate KYC folder provider (keep only D6 folder)
+  ✅ Removed empty AI-Powered KYC Platform folder config
+▶ Install KYC Prometheus datasource (separate from D6 prometheus)
+  ✅ kyc-prometheus → http://host.docker.internal:9191
+▶ Restart d6-grafana
+d6-grafana
+
+✅ D6 folder now has TWO different dashboards:
+   • API Observability        → D6 Prometheus (d6 stack)
+   • AI-Powered KYC Platform API → KYC Prometheus (port 9191)
+
+   Open: http://127.0.0.1:3002/dashboards → folder D6
+   Direct: http://127.0.0.1:3002/d/ai-powered-kyc-platform-api/ai-powered-kyc-platform-api

@@ -74,6 +74,15 @@ make docker-down
 
 Expected evidence after local run: `evidence/docker-results/phase-8-docker-verify.txt`
 
+## Risk Assessment
+
+| Risk | Severity | Mitigation |
+|------|----------|------------|
+| Docker not available in CI agent environment | Medium | Static validation + `docker-build` job in GitHub Actions |
+| Postgres vs SQLite behavior differences | Low | `psycopg2-binary` in requirements; integration tests use in-memory SQLite |
+| Large Rust build in compose | Low | Multi-stage Dockerfile; cache layers in CI |
+| Secrets in `.env` committed | High | `.env.example` only; `.env` in `.gitignore` |
+
 ## Architecture Alignment
 
 - **D4** — reproducible containerized deployment

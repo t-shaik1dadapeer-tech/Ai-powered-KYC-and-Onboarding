@@ -55,6 +55,15 @@ git log --oneline --graph -10
 | Analysis marker | `engines/intelligence/WORKTREE_MARKER.md` |
 | Observability marker | `docs/observability/WORKTREE_MARKER.md` |
 
+## Risk Assessment
+
+| Risk | Severity | Mitigation |
+|------|----------|------------|
+| Stale worktree on outdated main | Medium | Rebase before merge; delete after integration |
+| Duplicate `.venv` per worktree | Low | Document shared venv or PYTHONPATH approach |
+| Agent edits wrong worktree | Medium | Verify `git worktree list`; path ownership in merge-strategy |
+| Initial git commit scope creep | Low | `.gitignore` excludes `.venv`, `target`, `node_modules` |
+
 ## Architecture Alignment
 
 - **A1** — parallel agent streams via git worktrees

@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from app.core.auth import ApiKeyMiddleware
 from app.core.config import get_settings
 from app.core.database import engine
 from app.core.exceptions import AppException, app_exception_handler
@@ -51,6 +52,7 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
     app.add_exception_handler(AppException, app_exception_handler)
+    app.add_middleware(ApiKeyMiddleware)
     app.add_middleware(MetricsMiddleware)
 
     app.include_router(customers.router)
