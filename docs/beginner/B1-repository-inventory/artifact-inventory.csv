@@ -1,0 +1,77 @@
+category,artifact_name,artifact_type,language,framework,file_path,line_ref,confidence,notes
+Controllers / Route Handlers,create_customer,handler,Python,FastAPI,services/onboarding-api/app/routers/customers.py,11-13,Confirmed,POST /customers
+Controllers / Route Handlers,get_customer,handler,Python,FastAPI,services/onboarding-api/app/routers/customer_read.py,13-15,Confirmed,GET /customer/{customer_id}
+Controllers / Route Handlers,submit_kyc,handler,Python,FastAPI,services/onboarding-api/app/routers/kyc.py,13-15,Confirmed,POST /kyc
+Controllers / Route Handlers,get_kyc_status,handler,Python,FastAPI,services/onboarding-api/app/routers/kyc.py,18-20,Confirmed,GET /kyc-status/{customer_id}
+Controllers / Route Handlers,verify_pan,handler,Python,FastAPI,services/onboarding-api/app/routers/verification.py,16-18,Confirmed,POST /pan-verify
+Controllers / Route Handlers,verify_bank,handler,Python,FastAPI,services/onboarding-api/app/routers/verification.py,21-23,Confirmed,POST /bank-verify
+Controllers / Route Handlers,calculate_risk_score,handler,Python,FastAPI,services/onboarding-api/app/routers/risk.py,11-15,Confirmed,POST /risk-score
+Controllers / Route Handlers,health_check,handler,Python,FastAPI,services/onboarding-api/app/routers/health.py,9-16,Confirmed,GET /health
+Controllers / Route Handlers,metrics,handler,Python,FastAPI,services/onboarding-api/app/routers/health.py,19-21,Confirmed,GET /metrics
+Services,CustomerService,service,Python,SQLAlchemy,services/onboarding-api/app/services/customer_service.py,13,Confirmed,Customer domain logic
+Services,KycService,service,Python,SQLAlchemy,services/onboarding-api/app/services/kyc_service.py,22,Confirmed,KYC orchestration
+Services,RiskScoreService,service,Python,SQLAlchemy,services/onboarding-api/app/services/risk_score_service.py,28,Confirmed,Risk scoring
+Services,StandaloneVerificationService,service,Python,SQLAlchemy,services/onboarding-api/app/services/standalone_verification_service.py,15,Confirmed,Standalone PAN/bank verify
+Services,PanVerificationService,service,Python,None,services/onboarding-api/app/services/pan_verification_service.py,16,Confirmed,Mock PAN verifier
+Services,BankVerificationService,service,Python,None,services/onboarding-api/app/services/bank_verification_service.py,10,Confirmed,Mock bank verifier
+Services,RepositoryAnalyzer,service,Python,Custom,engines/intelligence/src/intelligence/analyzer.py,19,Confirmed,Repo analysis orchestrator
+Interfaces / Abstract Classes,FrameworkDetector,abstract_class,Python,abc.ABC,engines/intelligence/src/intelligence/detectors/base.py,18,Confirmed,Framework detection plugin interface
+Interfaces / Abstract Classes,TimestampMixin,mixin,Python,SQLAlchemy,services/onboarding-api/app/models/base.py,14,Confirmed,Shared created_at/updated_at columns
+Models / Entities,Customer,entity,Python,SQLAlchemy,services/onboarding-api/app/models/customer.py,11,Confirmed,ORM model
+Models / Entities,KycSubmission,entity,Python,SQLAlchemy,services/onboarding-api/app/models/kyc.py,13,Confirmed,ORM model
+Models / Entities,PanRecord,entity,Python,SQLAlchemy,services/onboarding-api/app/models/kyc.py,34,Confirmed,ORM model
+Models / Entities,BankRecord,entity,Python,SQLAlchemy,services/onboarding-api/app/models/kyc.py,48,Confirmed,ORM model
+Models / Entities,RiskAssessment,entity,Python,SQLAlchemy,services/onboarding-api/app/models/risk.py,12,Confirmed,ORM model
+Models / Entities,Base,entity_base,Python,SQLAlchemy,services/onboarding-api/app/models/base.py,10,Confirmed,DeclarativeBase
+DTOs / Schemas,CustomerCreate,dto,Python,Pydantic,services/onboarding-api/app/schemas/customer.py,11,Confirmed,Request schema
+DTOs / Schemas,CustomerResponse,dto,Python,Pydantic,services/onboarding-api/app/schemas/customer.py,22,Confirmed,Response schema
+DTOs / Schemas,KycSubmitRequest,dto,Python,Pydantic,services/onboarding-api/app/schemas/kyc.py,13,Confirmed,Request schema
+DTOs / Schemas,KycStatusResponse,dto,Python,Pydantic,services/onboarding-api/app/schemas/kyc.py,44,Confirmed,Response schema
+DTOs / Schemas,PanVerifyRequest,dto,Python,Pydantic,services/onboarding-api/app/schemas/verification.py,8,Confirmed,Request schema
+DTOs / Schemas,PanVerifyResponse,dto,Python,Pydantic,services/onboarding-api/app/schemas/verification.py,21,Confirmed,Response schema
+DTOs / Schemas,BankVerifyRequest,dto,Python,Pydantic,services/onboarding-api/app/schemas/verification.py,27,Confirmed,Request schema
+DTOs / Schemas,BankVerifyResponse,dto,Python,Pydantic,services/onboarding-api/app/schemas/verification.py,41,Confirmed,Response schema
+DTOs / Schemas,RiskScoreRequest,dto,Python,Pydantic,services/onboarding-api/app/schemas/risk.py,10,Confirmed,Request schema
+DTOs / Schemas,RiskScoreResponse,dto,Python,Pydantic,services/onboarding-api/app/schemas/risk.py,14,Confirmed,Response schema
+DTOs / Schemas,AnalysisResult,dto,Python,Pydantic,engines/intelligence/src/intelligence/models.py,66,Confirmed,Analyzer output model
+Repositories / DAOs,CustomerRepository,repository,Python,SQLAlchemy,services/onboarding-api/app/repositories/customer_repository.py,12,Confirmed,Customer persistence
+Repositories / DAOs,KycRepository,repository,Python,SQLAlchemy,services/onboarding-api/app/repositories/kyc_repository.py,14,Confirmed,KYC persistence
+Repositories / DAOs,DocumentRepository,repository,Python,SQLAlchemy,services/onboarding-api/app/repositories/document_repository.py,9,Confirmed,Risk assessment persistence
+Middleware / Filters,ApiKeyMiddleware,middleware,Python,Starlette,services/onboarding-api/app/core/auth.py,10,Confirmed,Optional X-API-Key gate
+Middleware / Filters,MetricsMiddleware,middleware,Python,Starlette,services/onboarding-api/app/main.py,22,Confirmed,HTTP request metrics
+Configuration,Settings,config_class,Python,pydantic-settings,services/onboarding-api/app/core/config.py,6,Confirmed,App settings via env
+Configuration,docker-compose.yml,config_file,YAML,Docker Compose,infra/docker/docker-compose.yml,1,Confirmed,Local stack definition
+Configuration,prometheus.yml,config_file,YAML,Prometheus,infra/prometheus/prometheus.yml,1,Confirmed,Scrape config
+Configuration,main.tf,config_file,HCL,Terraform,infra/terraform/main.tf,1,Confirmed,Infra as code
+Configuration,ci.yml,config_file,YAML,GitHub Actions,.github/workflows/ci.yml,1,Confirmed,CI pipeline
+Validators,PAN_PATTERN / IFSC_PATTERN,validator,Python,regex,services/onboarding-api/app/schemas/validators.py,3-4,Confirmed,Shared regex patterns
+Validators,Pydantic field_validator,validator,Python,Pydantic,services/onboarding-api/app/schemas/kyc.py,19-41,Confirmed,Inline schema validation
+Validators,validators.js,validator,JavaScript,regex,clients/node-cli/lib/validators.js,14-90,Confirmed,CLI input validation
+Bootstrap / Entry Points,create_app / app,entry_point,Python,FastAPI,services/onboarding-api/app/main.py,47-68,Confirmed,HTTP server bootstrap
+Bootstrap / Entry Points,main (intelligence),entry_point,Python,argparse,engines/intelligence/src/intelligence/cli.py,11,Confirmed,repo-analyze CLI
+Bootstrap / Entry Points,main (rust-analyzer),entry_point,Rust,clap,engines/rust-analyzer/src/main.rs,33,Confirmed,rust-analyzer CLI
+Bootstrap / Entry Points,kyc-cli,entry_point,JavaScript,commander,clients/node-cli/bin/kyc-cli.js,9,Confirmed,Node CLI bootstrap
+Utilities / Helpers,get_db,utility,Python,SQLAlchemy,services/onboarding-api/app/core/database.py,16,Confirmed,DB session dependency
+Utilities / Helpers,configure_logging / get_logger,utility,Python,structlog,services/onboarding-api/app/core/logging.py,9-29,Confirmed,Structured logging
+Utilities / Helpers,hash_sensitive,utility,Python,hashlib,services/onboarding-api/app/services/pan_verification_service.py,12,Confirmed,PAN hash for logs
+Utilities / Helpers,HTTP metrics instruments,utility,Python,prometheus_client,services/onboarding-api/app/core/metrics.py,3-56,Confirmed,Domain + HTTP metrics
+Utilities / Helpers,ApiClient,utility,JavaScript,fetch,clients/node-cli/lib/api-client.js,3,Confirmed,HTTP client wrapper
+Utilities / Helpers,walk_repository,utility,Python,pathlib,engines/intelligence/src/intelligence/walker.py,43,Confirmed,Repo file walker
+Utilities / Helpers,scan_repository,utility,Rust,walkdir,engines/rust-analyzer/src/scan.rs,21,Confirmed,Rust repo scan
+Utilities / Helpers,calculate_risk,utility,Rust,Custom,engines/rust-analyzer/src/risk/mod.rs,17,Confirmed,Rust risk calculator
+Intelligence — Detectors,FastAPIDetector,detector,Python,Custom,engines/intelligence/src/intelligence/detectors/fastapi.py,18,Confirmed,Framework detection
+Intelligence — Detectors,SpringBootDetector,detector,Python,Custom,engines/intelligence/src/intelligence/detectors/spring_boot.py,19,Confirmed,Framework detection
+Intelligence — Detectors,NodeJSDetector,detector,Python,Custom,engines/intelligence/src/intelligence/detectors/nodejs.py,20,Confirmed,Framework detection
+Intelligence — Extractors,extract_fastapi,extractor,Python,regex,engines/intelligence/src/intelligence/extractors/fastapi.py,31,Confirmed,FastAPI inventory extraction
+Intelligence — Extractors,extract_spring_boot,extractor,Python,regex,engines/intelligence/src/intelligence/extractors/spring_boot.py,25,Confirmed,Spring inventory extraction
+Intelligence — Extractors,extract_nodejs,extractor,Python,regex,engines/intelligence/src/intelligence/extractors/nodejs.py,20,Confirmed,Node inventory extraction
+Intelligence — Generators,generate_api_map,generator,Python,Custom,engines/intelligence/src/intelligence/generators/api_map.py,8,Confirmed,API map markdown
+Intelligence — Generators,generate_er_diagram,generator,Python,Custom,engines/intelligence/src/intelligence/generators/er_diagram.py,9,Confirmed,ER diagram markdown
+Intelligence — Generators,write_flow_reports,generator,Python,Custom,engines/intelligence/src/intelligence/generators/flow_trace.py,110,Confirmed,Flow trace reports
+Intelligence — Tracers,FastAPIFlowTracer,tracer,Python,Custom,engines/intelligence/src/intelligence/tracing/fastapi_tracer.py,19,Confirmed,E2E flow tracing
+Intelligence — Tracers,SpringFlowTracer,tracer,Python,Custom,engines/intelligence/src/intelligence/tracing/fastapi_tracer.py,193,Confirmed,Spring flow tracing
+CLI Commands,customer-create,command,JavaScript,commander,clients/node-cli/commands/customer-create.js,1,Confirmed,CLI subcommand
+CLI Commands,submit-kyc,command,JavaScript,commander,clients/node-cli/commands/submit-kyc.js,1,Confirmed,CLI subcommand
+CLI Commands,generate-report,command,JavaScript,commander,clients/node-cli/commands/generate-report.js,1,Confirmed,CLI subcommand
+Exception Types,AppException hierarchy,exception,Python,Custom,services/onboarding-api/app/core/exceptions.py,5-28,Confirmed,Domain errors
+Exception Types,CliError hierarchy,exception,JavaScript,Custom,clients/node-cli/lib/errors.js,1-24,Confirmed,CLI errors
