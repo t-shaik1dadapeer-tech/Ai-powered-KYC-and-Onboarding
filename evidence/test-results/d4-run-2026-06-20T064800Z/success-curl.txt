@@ -1,0 +1,7 @@
+# D4 — port-forward + curl — 2026-06-20T064800Z
+
+$ kubectl -n kyc-platform port-forward svc/onboarding-api 18080:8000 &
+$ curl http://localhost:18080/health
+
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+HTTP_CODE:200

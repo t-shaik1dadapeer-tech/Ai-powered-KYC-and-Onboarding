@@ -1,0 +1,6 @@
+# D4 — cleanup — 2026-06-20T064800Z
+
+$ kind delete cluster --name d4-kyc-verify
+Deleting cluster "d4-kyc-verify" ...
+Deleted nodes: ["d4-kyc-verify-control-plane"]
+cluster deleted (expected)

@@ -1,0 +1,429 @@
+D4 Kubernetes Verification — 2026-06-20T064800Z
+========================================================
+
+=== 1. Manifest inventory ===
+total 24
+drwxr-xr-x  5 shaikdadapeer  staff   160 Jun 18 15:15 .
+drwxr-xr-x  7 shaikdadapeer  staff   224 Jun 17 12:51 ..
+-rw-r--r--  1 shaikdadapeer  staff   732 Jun 18 09:55 README.md
+-rw-r--r--  1 shaikdadapeer  staff  1750 Jun 19 10:15 kyc-platform.yaml
+-rw-r--r--  1 shaikdadapeer  staff  1394 Jun 19 10:15 onboarding-api-deployment.yaml
+
+=== 2. kubectl dry-run (client, validate=false) ===
+--- kyc-platform.yaml ---
+E0620 12:18:00.848862   96745 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 12:18:00.897560   96745 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 12:18:00.948199   96745 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 12:18:01.002867   96745 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 12:18:01.045010   96745 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 12:18:01.101077   96745 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+D4 Kubernetes Verification — 2026-06-20T064800Z (continued)
+========================================================
+
+=== 2. kubectl dry-run (client) ===
+--- kyc-platform.yaml ---
+namespace/kyc-platform created (dry run)
+configmap/onboarding-api-config created (dry run)
+secret/onboarding-api-secrets created (dry run)
+service/postgres created (dry run)
+statefulset.apps/postgres created (dry run)
+ingress.networking.k8s.io/onboarding-api created (dry run)
+--- onboarding-api-deployment.yaml ---
+deployment.apps/onboarding-api created (dry run)
+service/onboarding-api created (dry run)
+namespace/kyc-platform created (dry run)
+configmap/onboarding-api-config created (dry run)
+secret/onboarding-api-secrets created (dry run)
+service/postgres created (dry run)
+statefulset.apps/postgres created (dry run)
+ingress.networking.k8s.io/onboarding-api created (dry run)
+deployment.apps/onboarding-api created (dry run)
+service/onboarding-api created (dry run)
+
+=== 2b. kubectl dry-run (server) ===
+namespace/kyc-platform created (server dry run)
+Error from server (NotFound): error when creating "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": namespaces "kyc-platform" not found
+Error from server (NotFound): error when creating "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": namespaces "kyc-platform" not found
+Error from server (NotFound): error when creating "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": namespaces "kyc-platform" not found
+Error from server (NotFound): error when creating "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": namespaces "kyc-platform" not found
+Error from server (NotFound): error when creating "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": namespaces "kyc-platform" not found
+
+=== 5. Build and load image ===
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  86.53kB
+Step 1/10 : FROM python:3.12-slim
+3.12-slim: Pulling from library/python
+a25cd16f2d86: Already exists
+bb1eddb5e680: Already exists
+3e02f73c7e90: Already exists
+985e4ae0ae20: Already exists
+Digest: sha256:d764629ce0ddd8c71fd371e9901efb324a95789d2315a47db7e4d27e78f1b0e9
+Status: Downloaded newer image for python:3.12-slim
+ ---> a6d7af64258d
+Step 2/10 : WORKDIR /app
+ ---> Running in 813d58a193c5
+ ---> Removed intermediate container 813d58a193c5
+ ---> c763fc309333
+Step 3/10 : ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PIP_NO_CACHE_DIR=1
+ ---> Running in 25d91375936e
+ ---> Removed intermediate container 25d91375936e
+ ---> d6b7c7e471b3
+Step 4/10 : RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+ ---> Running in c3acc3d14fb7
+Hit:1 http://deb.debian.org/debian trixie InRelease
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 http://deb.debian.org/debian trixie/main arm64 Packages [9608 kB]
+Get:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages [5404 B]
+Get:6 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [221 kB]
+Fetched 9925 kB in 12s (812 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libbrotli1 libcom-err2 libcurl4t64 libgnutls30t64 libgssapi-krb5-2 libidn2-0
+  libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap2 libnghttp2-14
+  libnghttp3-9 libp11-kit0 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules-db
+  libssh2-1t64 libtasn1-6 libunistring5
+Suggested packages:
+  gnutls-bin krb5-doc krb5-user
+Recommended packages:
+  bash-completion krb5-locales libldap-common publicsuffix libsasl2-modules
+The following NEW packages will be installed:
+  curl libbrotli1 libcom-err2 libcurl4t64 libgnutls30t64 libgssapi-krb5-2
+  libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap2
+  libnghttp2-14 libnghttp3-9 libp11-kit0 libpsl5t64 librtmp1 libsasl2-2
+  libsasl2-modules-db libssh2-1t64 libtasn1-6 libunistring5
+0 upgraded, 22 newly installed, 0 to remove and 0 not upgraded.
+Need to get 4648 kB of archives.
+After this operation, 15.6 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main arm64 libbrotli1 arm64 1.1.0-2+b7 [308 kB]
+Get:2 http://deb.debian.org/debian-security trixie-security/main arm64 libkrb5support0 arm64 1.21.3-5+deb13u1 [32.5 kB]
+Get:3 http://deb.debian.org/debian trixie/main arm64 libcom-err2 arm64 1.47.2-3+b11 [24.9 kB]
+Get:4 http://deb.debian.org/debian-security trixie-security/main arm64 libk5crypto3 arm64 1.21.3-5+deb13u1 [81.4 kB]
+Get:5 http://deb.debian.org/debian trixie/main arm64 libkeyutils1 arm64 1.6.3-6 [9716 B]
+Get:6 http://deb.debian.org/debian-security trixie-security/main arm64 libkrb5-3 arm64 1.21.3-5+deb13u1 [308 kB]
+Get:7 http://deb.debian.org/debian-security trixie-security/main arm64 libgssapi-krb5-2 arm64 1.21.3-5+deb13u1 [128 kB]
+Get:8 http://deb.debian.org/debian trixie/main arm64 libunistring5 arm64 1.3-2 [453 kB]
+Get:9 http://deb.debian.org/debian trixie/main arm64 libidn2-0 arm64 2.3.8-2 [107 kB]
+Get:10 http://deb.debian.org/debian trixie/main arm64 libsasl2-modules-db arm64 2.1.28+dfsg1-9 [20.1 kB]
+Get:11 http://deb.debian.org/debian trixie/main arm64 libsasl2-2 arm64 2.1.28+dfsg1-9 [55.6 kB]
+Get:12 http://deb.debian.org/debian trixie/main arm64 libldap2 arm64 2.6.10+dfsg-1 [179 kB]
+Get:13 http://deb.debian.org/debian-security trixie-security/main arm64 libnghttp2-14 arm64 1.64.0-1.1+deb13u1 [71.6 kB]
+Get:14 http://deb.debian.org/debian trixie/main arm64 libnghttp3-9 arm64 1.8.0-1 [63.2 kB]
+Get:15 http://deb.debian.org/debian trixie/main arm64 libpsl5t64 arm64 0.21.2-1.1+b1 [57.1 kB]
+Get:16 http://deb.debian.org/debian trixie/main arm64 libp11-kit0 arm64 0.25.5-3 [409 kB]
+Get:17 http://deb.debian.org/debian trixie/main arm64 libtasn1-6 arm64 4.20.0-2 [47.3 kB]
+Get:18 http://deb.debian.org/debian-security trixie-security/main arm64 libgnutls30t64 arm64 3.8.9-3+deb13u4 [1379 kB]
+Get:19 http://deb.debian.org/debian trixie/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2+b5 [56.8 kB]
+Get:20 http://deb.debian.org/debian trixie/main arm64 libssh2-1t64 arm64 1.11.1-1 [235 kB]
+Get:21 http://deb.debian.org/debian trixie/main arm64 libcurl4t64 arm64 8.14.1-2+deb13u3 [359 kB]
+Get:22 http://deb.debian.org/debian trixie/main arm64 curl arm64 8.14.1-2+deb13u3 [262 kB]
+[91mdebconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+[0m[91mdebconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/aarch64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 22.)
+debconf: falling back to frontend: Teletype
+[0m[91mdebconf: unable to initialize frontend: Teletype
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Noninteractive
+[0mFetched 4648 kB in 5s (900 kB/s)
+Selecting previously unselected package libbrotli1:arm64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5642 files and directories currently installed.)
+Preparing to unpack .../00-libbrotli1_1.1.0-2+b7_arm64.deb ...
+Unpacking libbrotli1:arm64 (1.1.0-2+b7) ...
+Selecting previously unselected package libkrb5support0:arm64.
+Preparing to unpack .../01-libkrb5support0_1.21.3-5+deb13u1_arm64.deb ...
+Unpacking libkrb5support0:arm64 (1.21.3-5+deb13u1) ...
+Selecting previously unselected package libcom-err2:arm64.
+Preparing to unpack .../02-libcom-err2_1.47.2-3+b11_arm64.deb ...
+Unpacking libcom-err2:arm64 (1.47.2-3+b11) ...
+Selecting previously unselected package libk5crypto3:arm64.
+Preparing to unpack .../03-libk5crypto3_1.21.3-5+deb13u1_arm64.deb ...
+Unpacking libk5crypto3:arm64 (1.21.3-5+deb13u1) ...
+Selecting previously unselected package libkeyutils1:arm64.
+Preparing to unpack .../04-libkeyutils1_1.6.3-6_arm64.deb ...
+Unpacking libkeyutils1:arm64 (1.6.3-6) ...
+Selecting previously unselected package libkrb5-3:arm64.
+Preparing to unpack .../05-libkrb5-3_1.21.3-5+deb13u1_arm64.deb ...
+Unpacking libkrb5-3:arm64 (1.21.3-5+deb13u1) ...
+Selecting previously unselected package libgssapi-krb5-2:arm64.
+Preparing to unpack .../06-libgssapi-krb5-2_1.21.3-5+deb13u1_arm64.deb ...
+Unpacking libgssapi-krb5-2:arm64 (1.21.3-5+deb13u1) ...
+Selecting previously unselected package libunistring5:arm64.
+Preparing to unpack .../07-libunistring5_1.3-2_arm64.deb ...
+Unpacking libunistring5:arm64 (1.3-2) ...
+Selecting previously unselected package libidn2-0:arm64.
+Preparing to unpack .../08-libidn2-0_2.3.8-2_arm64.deb ...
+Unpacking libidn2-0:arm64 (2.3.8-2) ...
+Selecting previously unselected package libsasl2-modules-db:arm64.
+Preparing to unpack .../09-libsasl2-modules-db_2.1.28+dfsg1-9_arm64.deb ...
+Unpacking libsasl2-modules-db:arm64 (2.1.28+dfsg1-9) ...
+Selecting previously unselected package libsasl2-2:arm64.
+Preparing to unpack .../10-libsasl2-2_2.1.28+dfsg1-9_arm64.deb ...
+Unpacking libsasl2-2:arm64 (2.1.28+dfsg1-9) ...
+Selecting previously unselected package libldap2:arm64.
+Preparing to unpack .../11-libldap2_2.6.10+dfsg-1_arm64.deb ...
+Unpacking libldap2:arm64 (2.6.10+dfsg-1) ...
+Selecting previously unselected package libnghttp2-14:arm64.
+Preparing to unpack .../12-libnghttp2-14_1.64.0-1.1+deb13u1_arm64.deb ...
+Unpacking libnghttp2-14:arm64 (1.64.0-1.1+deb13u1) ...
+Selecting previously unselected package libnghttp3-9:arm64.
+Preparing to unpack .../13-libnghttp3-9_1.8.0-1_arm64.deb ...
+Unpacking libnghttp3-9:arm64 (1.8.0-1) ...
+Selecting previously unselected package libpsl5t64:arm64.
+Preparing to unpack .../14-libpsl5t64_0.21.2-1.1+b1_arm64.deb ...
+Unpacking libpsl5t64:arm64 (0.21.2-1.1+b1) ...
+Selecting previously unselected package libp11-kit0:arm64.
+Preparing to unpack .../15-libp11-kit0_0.25.5-3_arm64.deb ...
+Unpacking libp11-kit0:arm64 (0.25.5-3) ...
+Selecting previously unselected package libtasn1-6:arm64.
+Preparing to unpack .../16-libtasn1-6_4.20.0-2_arm64.deb ...
+Unpacking libtasn1-6:arm64 (4.20.0-2) ...
+Selecting previously unselected package libgnutls30t64:arm64.
+Preparing to unpack .../17-libgnutls30t64_3.8.9-3+deb13u4_arm64.deb ...
+Unpacking libgnutls30t64:arm64 (3.8.9-3+deb13u4) ...
+Selecting previously unselected package librtmp1:arm64.
+Preparing to unpack .../18-librtmp1_2.4+20151223.gitfa8646d.1-2+b5_arm64.deb ...
+Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+Selecting previously unselected package libssh2-1t64:arm64.
+Preparing to unpack .../19-libssh2-1t64_1.11.1-1_arm64.deb ...
+Unpacking libssh2-1t64:arm64 (1.11.1-1) ...
+Selecting previously unselected package libcurl4t64:arm64.
+Preparing to unpack .../20-libcurl4t64_8.14.1-2+deb13u3_arm64.deb ...
+Unpacking libcurl4t64:arm64 (8.14.1-2+deb13u3) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../21-curl_8.14.1-2+deb13u3_arm64.deb ...
+Unpacking curl (8.14.1-2+deb13u3) ...
+Setting up libkeyutils1:arm64 (1.6.3-6) ...
+Setting up libbrotli1:arm64 (1.1.0-2+b7) ...
+Setting up libnghttp2-14:arm64 (1.64.0-1.1+deb13u1) ...
+Setting up libcom-err2:arm64 (1.47.2-3+b11) ...
+Setting up libkrb5support0:arm64 (1.21.3-5+deb13u1) ...
+Setting up libsasl2-modules-db:arm64 (2.1.28+dfsg1-9) ...
+Setting up libp11-kit0:arm64 (0.25.5-3) ...
+Setting up libunistring5:arm64 (1.3-2) ...
+Setting up libk5crypto3:arm64 (1.21.3-5+deb13u1) ...
+Setting up libsasl2-2:arm64 (2.1.28+dfsg1-9) ...
+Setting up libnghttp3-9:arm64 (1.8.0-1) ...
+Setting up libtasn1-6:arm64 (4.20.0-2) ...
+Setting up libkrb5-3:arm64 (1.21.3-5+deb13u1) ...
+Setting up libssh2-1t64:arm64 (1.11.1-1) ...
+Setting up libldap2:arm64 (2.6.10+dfsg-1) ...
+Setting up libidn2-0:arm64 (2.3.8-2) ...
+Setting up libgssapi-krb5-2:arm64 (1.21.3-5+deb13u1) ...
+Setting up libgnutls30t64:arm64 (3.8.9-3+deb13u4) ...
+Setting up libpsl5t64:arm64 (0.21.2-1.1+b1) ...
+Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+Setting up libcurl4t64:arm64 (8.14.1-2+deb13u3) ...
+Setting up curl (8.14.1-2+deb13u3) ...
+Processing triggers for libc-bin (2.41-12+deb13u3) ...
+ ---> Removed intermediate container c3acc3d14fb7
+ ---> d589b4c79002
+Step 5/10 : COPY requirements.txt .
+ ---> 8255d11881ba
+Step 6/10 : RUN pip install -r requirements.txt
+ ---> Running in 9577e1f386b3
+Collecting fastapi>=0.111.0 (from -r requirements.txt (line 1))
+  Downloading fastapi-0.138.0-py3-none-any.whl.metadata (27 kB)
+Collecting uvicorn>=0.30.0 (from uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading uvicorn-0.49.0-py3-none-any.whl.metadata (6.7 kB)
+Collecting sqlalchemy>=2.0.30 (from -r requirements.txt (line 3))
+  Downloading sqlalchemy-2.0.51-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (9.5 kB)
+Collecting pydantic>=2.7.0 (from -r requirements.txt (line 4))
+  Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+Collecting pydantic-settings>=2.3.0 (from -r requirements.txt (line 5))
+  Downloading pydantic_settings-2.14.2-py3-none-any.whl.metadata (3.4 kB)
+Collecting email-validator>=2.1.0 (from -r requirements.txt (line 6))
+  Downloading email_validator-2.3.0-py3-none-any.whl.metadata (26 kB)
+Collecting structlog>=24.2.0 (from -r requirements.txt (line 7))
+  Downloading structlog-26.1.0-py3-none-any.whl.metadata (9.7 kB)
+Collecting prometheus-client>=0.20.0 (from -r requirements.txt (line 8))
+  Downloading prometheus_client-0.25.0-py3-none-any.whl.metadata (2.1 kB)
+Collecting httpx>=0.27.0 (from -r requirements.txt (line 9))
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting psycopg2-binary>=2.9.9 (from -r requirements.txt (line 10))
+  Downloading psycopg2_binary-2.9.12-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (4.9 kB)
+Collecting starlette>=0.46.0 (from fastapi>=0.111.0->-r requirements.txt (line 1))
+  Downloading starlette-1.3.1-py3-none-any.whl.metadata (6.4 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi>=0.111.0->-r requirements.txt (line 1))
+  Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting typing-inspection>=0.4.2 (from fastapi>=0.111.0->-r requirements.txt (line 1))
+  Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+Collecting annotated-doc>=0.0.2 (from fastapi>=0.111.0->-r requirements.txt (line 1))
+  Downloading annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+Collecting click>=7.0 (from uvicorn>=0.30.0->uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading click-8.4.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting h11>=0.8 (from uvicorn>=0.30.0->uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting greenlet>=1 (from sqlalchemy>=2.0.30->-r requirements.txt (line 3))
+  Downloading greenlet-3.5.2-cp312-cp312-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl.metadata (3.8 kB)
+Collecting annotated-types>=0.6.0 (from pydantic>=2.7.0->-r requirements.txt (line 4))
+  Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.46.4 (from pydantic>=2.7.0->-r requirements.txt (line 4))
+  Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.6 kB)
+Collecting python-dotenv>=0.21.0 (from pydantic-settings>=2.3.0->-r requirements.txt (line 5))
+  Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+Collecting dnspython>=2.0.0 (from email-validator>=2.1.0->-r requirements.txt (line 6))
+  Downloading dnspython-2.8.0-py3-none-any.whl.metadata (5.7 kB)
+Collecting idna>=2.0.0 (from email-validator>=2.1.0->-r requirements.txt (line 6))
+  Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+Collecting anyio (from httpx>=0.27.0->-r requirements.txt (line 9))
+  Downloading anyio-4.14.0-py3-none-any.whl.metadata (4.6 kB)
+Collecting certifi (from httpx>=0.27.0->-r requirements.txt (line 9))
+  Downloading certifi-2026.6.17-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx>=0.27.0->-r requirements.txt (line 9))
+  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting httptools>=0.8.0 (from uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading httptools-0.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (3.5 kB)
+Collecting pyyaml>=5.1 (from uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)
+Collecting uvloop>=0.15.1 (from uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (4.9 kB)
+Collecting watchfiles>=0.20 (from uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.9 kB)
+Collecting websockets>=10.4 (from uvicorn[standard]>=0.30.0->-r requirements.txt (line 2))
+  Downloading websockets-16.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (6.8 kB)
+Downloading fastapi-0.138.0-py3-none-any.whl (126 kB)
+Downloading uvicorn-0.49.0-py3-none-any.whl (71 kB)
+Downloading sqlalchemy-2.0.51-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (3.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 891.9 kB/s eta 0:00:00
+Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 999.4 kB/s eta 0:00:00
+Downloading pydantic_settings-2.14.2-py3-none-any.whl (61 kB)
+Downloading email_validator-2.3.0-py3-none-any.whl (35 kB)
+Downloading structlog-26.1.0-py3-none-any.whl (73 kB)
+Downloading prometheus_client-0.25.0-py3-none-any.whl (64 kB)
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading psycopg2_binary-2.9.12-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (5.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.9/5.9 MB 1.0 MB/s eta 0:00:00
+Downloading annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Downloading click-8.4.1-py3-none-any.whl (116 kB)
+Downloading dnspython-2.8.0-py3-none-any.whl (331 kB)
+Downloading greenlet-3.5.2-cp312-cp312-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl (604 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 604.3/604.3 kB 786.0 kB/s eta 0:00:00
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading httptools-0.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (518 kB)
+Downloading idna-3.18-py3-none-any.whl (65 kB)
+Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.1/775.1 kB 1.3 MB/s eta 0:00:00
+Downloading starlette-1.3.1-py3-none-any.whl (73 kB)
+Downloading anyio-4.14.0-py3-none-any.whl (123 kB)
+Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 1.0 MB/s eta 0:00:00
+Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (453 kB)
+Downloading websockets-16.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (186 kB)
+Downloading certifi-2026.6.17-py3-none-any.whl (133 kB)
+Installing collected packages: websockets, uvloop, typing-extensions, structlog, pyyaml, python-dotenv, psycopg2-binary, prometheus-client, idna, httptools, h11, greenlet, dnspython, click, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, pydantic-core, httpcore, email-validator, anyio, watchfiles, starlette, pydantic, httpx, pydantic-settings, fastapi
+Successfully installed annotated-doc-0.0.4 annotated-types-0.7.0 anyio-4.14.0 certifi-2026.6.17 click-8.4.1 dnspython-2.8.0 email-validator-2.3.0 fastapi-0.138.0 greenlet-3.5.2 h11-0.16.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 idna-3.18 prometheus-client-0.25.0 psycopg2-binary-2.9.12 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-settings-2.14.2 python-dotenv-1.2.2 pyyaml-6.0.3 sqlalchemy-2.0.51 starlette-1.3.1 structlog-26.1.0 typing-extensions-4.15.0 typing-inspection-0.4.2 uvicorn-0.49.0 uvloop-0.22.1 watchfiles-1.2.0 websockets-16.0
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[0m[91m
+[notice] A new release of pip is available: 25.0.1 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+[0m ---> Removed intermediate container 9577e1f386b3
+ ---> 57de06323e45
+Step 7/10 : COPY app ./app
+ ---> a6ed3314d1da
+Step 8/10 : EXPOSE 8000
+ ---> Running in 3e5e07133a5a
+ ---> Removed intermediate container 3e5e07133a5a
+ ---> 0f2a1d1da5f4
+Step 9/10 : HEALTHCHECK --interval=15s --timeout=5s --start-period=20s --retries=3     CMD curl -fsS http://localhost:8000/health || exit 1
+ ---> Running in 55a6ba499574
+ ---> Removed intermediate container 55a6ba499574
+ ---> d768d3a1acd0
+Step 10/10 : CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Running in 32639ffba8b1
+ ---> Removed intermediate container 32639ffba8b1
+ ---> 42b5fe5b02d2
+Successfully built 42b5fe5b02d2
+Successfully tagged onboarding-api:local
+Image: "onboarding-api:local" with ID "sha256:42b5fe5b02d2b0d2713212c41c155890472b1a70b15593b284999071e4a4f169" not yet present on node "d4-kyc-verify-control-plane", loading...
+
+=== 6. kubectl apply (live) ===
+namespace/kyc-platform created
+configmap/onboarding-api-config created
+secret/onboarding-api-secrets created
+service/postgres created
+statefulset.apps/postgres created
+ingress.networking.k8s.io/onboarding-api created
+deployment.apps/onboarding-api created
+service/onboarding-api created
+
+=== 7. Wait for pods ===
+error: timed out waiting for the condition on pods/postgres-0
+
+=== 5b. Load postgres image into kind (TLS workaround) ===
+postgres:16-alpine
+Image: "postgres:16-alpine" with ID "sha256:0ab885cf71916beded83c51df1ea71acddeab24048fd957b4f4471f59dcb9bc5" not yet present on node "d4-kyc-verify-control-plane", loading...
+
+=== 7b. Restart workloads ===
+pod "postgres-0" deleted from kyc-platform namespace
+deployment.apps/onboarding-api restarted
+pod/postgres-0 condition met
+pod/onboarding-api-6569c86688-xk97n condition met
+error: timed out waiting for the condition on pods/onboarding-api-795497d54-dtqmm
+
+=== 8. Cluster state (final) ===
+NAME                                  READY   STATUS    RESTARTS        AGE
+pod/onboarding-api-6569c86688-xk97n   1/1     Running   1 (3m13s ago)   3m16s
+pod/postgres-0                        1/1     Running   0               3m16s
+
+NAME                     TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+service/onboarding-api   ClusterIP   10.96.16.39    <none>        8000/TCP   7m42s
+service/postgres         ClusterIP   10.96.19.175   <none>        5432/TCP   7m42s
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/onboarding-api   1/1     1            1           7m42s
+
+NAME                                        DESIRED   CURRENT   READY   AGE
+replicaset.apps/onboarding-api-6569c86688   1         1         1       3m16s
+replicaset.apps/onboarding-api-795497d54    0         0         0       7m42s
+
+NAME                        READY   AGE
+statefulset.apps/postgres   1/1     7m42s
+apiVersion: v1
+data:
+  BANK_VERIFY_MODE: mock
+  LOG_LEVEL: INFO
+  PAN_VERIFY_MODE: mock
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"BANK_VERIFY_MODE":"mock","LOG_LEVEL":"INFO","PAN_VERIFY_MODE":"mock"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"onboarding-api-config","namespace":"kyc-platform"}}
+  creationTimestamp: "2026-06-20T07:09:05Z"
+  name: onboarding-api-config
+  namespace: kyc-platform
+  resourceVersion: "1005"
+  uid: 0002576b-089a-4ffb-bed9-beff732afb9f
+NAME                     TYPE     DATA   AGE
+onboarding-api-secrets   Opaque   1      7m43s
+NAME             CLASS    HOSTS       ADDRESS   PORTS   AGE
+onboarding-api   <none>   kyc.local             80      7m43s
+
+=== 9. Port-forward + curl ===
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+HTTP_CODE:200
+
+=== 10. Cleanup ===
+Deleting cluster "d4-kyc-verify" ...
+Deleted nodes: ["d4-kyc-verify-control-plane"]
+cluster deleted (expected)

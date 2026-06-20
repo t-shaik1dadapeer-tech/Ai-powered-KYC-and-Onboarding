@@ -1,0 +1,14 @@
+# D4 — kubectl apply (live) — 2026-06-20T064800Z
+
+namespace/kyc-platform created
+configmap/onboarding-api-config created
+secret/onboarding-api-secrets created
+service/postgres created
+statefulset.apps/postgres created
+ingress.networking.k8s.io/onboarding-api created
+deployment.apps/onboarding-api created
+service/onboarding-api created
+
+# Pods (after image load workaround):
+#   postgres-0                        1/1 Running
+#   onboarding-api-6569c86688-xk97n   1/1 Running

@@ -1,0 +1,16 @@
+# D4 — kubectl dry-run (client) — 2026-06-20T064800Z
+# Cluster: kind d4-kyc-verify (v1.32.2)
+
+--- kyc-platform.yaml ---
+namespace/kyc-platform created (dry run)
+configmap/onboarding-api-config created (dry run)
+secret/onboarding-api-secrets created (dry run)
+service/postgres created (dry run)
+statefulset.apps/postgres created (dry run)
+ingress.networking.k8s.io/onboarding-api created (dry run)
+
+--- onboarding-api-deployment.yaml ---
+deployment.apps/onboarding-api created (dry run)
+service/onboarding-api created (dry run)
+
+# Note: server dry-run on multi-doc file fails until namespace exists (expected)
