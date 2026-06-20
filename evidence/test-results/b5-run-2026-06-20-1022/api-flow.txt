@@ -1,0 +1,8 @@
+=== live customer-create (port 8101) ===
+
+customerId=2ae95ffc-d06b-4f30-8b34-e41d7ac598b0 email=b5-cli-1781931182@example.com
+=== live submit-kyc ===
+
+=== duplicate email (409) ===
+
+=== generate-report live ===

@@ -1,0 +1,14 @@
+sequenceDiagram
+    autonumber
+    actor Client
+    participant Controller
+    participant Service
+    participant Repository
+    participant Database
+    Client->>+Controller: router.create_customer [POST /customers]
+    Controller->>+Service: CustomerService.create_customer
+    Service->>+Repository: CustomerRepository.get_by_email
+    Repository->>+Database: table:customers [SELECT]
+    Database->>+Repository: CustomerRepository.create
+    Repository->>+Database: table:customers [INSERT/UPDATE]
+    Database-->>-Client: POST /customers response

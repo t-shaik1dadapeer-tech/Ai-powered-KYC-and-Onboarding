@@ -1,0 +1,4 @@
+command,description,required_options,optional_options,env_vars,exit_success,exit_failure,output_format,backend
+customer-create,Create a new customer via onboarding API,"--name <name>; --email <email>; --phone <phone>","--api-url <url>",API_BASE_URL,0,1,JSON stdout {ok:true customerId status email raw},HTTP POST /customers
+submit-kyc,Submit KYC documents for a customer,"--customer-id <uuid>; --pan <pan>; --account <number>; --ifsc <ifsc>","--api-url <url>",API_BASE_URL,0,1,JSON stdout {ok:true customerId kycSubmissionId status panStatus bankStatus raw},HTTP POST /kyc
+generate-report,Analyze repository with Python intelligence engine,"--path <dir>","--output <dir>; --python <bin>",none,0,1,JSON stdout {ok:true outputDir summary},subprocess python3 -m intelligence.cli

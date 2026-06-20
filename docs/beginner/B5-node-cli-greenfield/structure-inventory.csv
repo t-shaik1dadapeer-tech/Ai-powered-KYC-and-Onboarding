@@ -1,0 +1,17 @@
+category,path,purpose,lines_approx
+entry_point,bin/kyc-cli.js,CLI entry (commander program + error handler),76
+command,commands/customer-create.js,Customer create handler,25
+command,commands/submit-kyc.js,KYC submit handler,34
+command,commands/generate-report.js,Report generation handler,18
+library,lib/api-client.js,HTTP client for onboarding API,72
+library,lib/analyzer-client.js,Python intelligence engine subprocess wrapper,81
+library,lib/validators.js,Client-side input validation,92
+library,lib/errors.js,Error class hierarchy,33
+test,tests/api-client.test.js,ApiClient unit tests,72
+test,tests/commands.test.js,Command handler tests,94
+test,tests/validators.test.js,Validator unit tests,54
+test,tests/generate-report.test.js,Integration test for analyzer,23
+config,package.json,npm manifest scripts engines deps,22
+config,package-lock.json,Dependency lockfile,present
+container,Dockerfile,node:20-alpine CLI image,15
+docs,README.md,Install run test architecture,68

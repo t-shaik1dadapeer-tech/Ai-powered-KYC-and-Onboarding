@@ -1,0 +1,19 @@
+=== node version ===
+v26.3.0
+
+=== npm run lint ===
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> kyc-cli@0.1.0 lint
+> node --check bin/kyc-cli.js lib/*.js commands/*.js
+
+
+=== npm test ===
+
+=== kyc-cli --help ===
+
+=== kyc-cli --version ===
+
+=== validation error (bad email) ===
+
+=== validation error (bad PAN) ===

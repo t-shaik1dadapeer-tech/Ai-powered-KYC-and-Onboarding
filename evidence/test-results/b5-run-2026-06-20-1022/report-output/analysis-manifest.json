@@ -1,0 +1,925 @@
+{
+  "repository": "/Users/shaikdadapeer/agent development/services/onboarding-api",
+  "framework": "fastapi",
+  "confidence": 1.0,
+  "generated_at": "2026-06-20T04:53:04.461175+00:00",
+  "inventories": {
+    "services": [
+      {
+        "name": "BankVerificationService",
+        "file": "app/services/bank_verification_service.py",
+        "line": 10,
+        "extra": {}
+      },
+      {
+        "name": "CustomerService",
+        "file": "app/services/customer_service.py",
+        "line": 13,
+        "extra": {}
+      },
+      {
+        "name": "KycService",
+        "file": "app/services/kyc_service.py",
+        "line": 22,
+        "extra": {}
+      },
+      {
+        "name": "PanVerificationService",
+        "file": "app/services/pan_verification_service.py",
+        "line": 16,
+        "extra": {}
+      },
+      {
+        "name": "RiskScoreService",
+        "file": "app/services/risk_score_service.py",
+        "line": 28,
+        "extra": {}
+      },
+      {
+        "name": "StandaloneVerificationService",
+        "file": "app/services/standalone_verification_service.py",
+        "line": 15,
+        "extra": {}
+      }
+    ],
+    "controllers": [
+      {
+        "name": "customer_read.router",
+        "file": "app/routers/customer_read.py",
+        "line": 10,
+        "extra": {
+          "prefix": ""
+        }
+      },
+      {
+        "name": "customers.router",
+        "file": "app/routers/customers.py",
+        "line": 8,
+        "extra": {
+          "prefix": "/customers"
+        }
+      },
+      {
+        "name": "health.router",
+        "file": "app/routers/health.py",
+        "line": 6,
+        "extra": {
+          "prefix": ""
+        }
+      },
+      {
+        "name": "kyc.router",
+        "file": "app/routers/kyc.py",
+        "line": 10,
+        "extra": {
+          "prefix": ""
+        }
+      },
+      {
+        "name": "risk.router",
+        "file": "app/routers/risk.py",
+        "line": 8,
+        "extra": {
+          "prefix": ""
+        }
+      },
+      {
+        "name": "verification.router",
+        "file": "app/routers/verification.py",
+        "line": 13,
+        "extra": {
+          "prefix": ""
+        }
+      }
+    ],
+    "apis": [
+      {
+        "method": "GET",
+        "path": "/customer/{customer_id}",
+        "handler": "get_customer",
+        "file": "app/routers/customer_read.py",
+        "line": 13
+      },
+      {
+        "method": "POST",
+        "path": "/customers",
+        "handler": "create_customer",
+        "file": "app/routers/customers.py",
+        "line": 11
+      },
+      {
+        "method": "GET",
+        "path": "/health",
+        "handler": "health_check",
+        "file": "app/routers/health.py",
+        "line": 9
+      },
+      {
+        "method": "GET",
+        "path": "/metrics",
+        "handler": "metrics",
+        "file": "app/routers/health.py",
+        "line": 19
+      },
+      {
+        "method": "POST",
+        "path": "/kyc",
+        "handler": "submit_kyc",
+        "file": "app/routers/kyc.py",
+        "line": 13
+      },
+      {
+        "method": "GET",
+        "path": "/kyc-status/{customer_id}",
+        "handler": "get_kyc_status",
+        "file": "app/routers/kyc.py",
+        "line": 18
+      },
+      {
+        "method": "POST",
+        "path": "/risk-score",
+        "handler": "calculate_risk_score",
+        "file": "app/routers/risk.py",
+        "line": 11
+      },
+      {
+        "method": "POST",
+        "path": "/pan-verify",
+        "handler": "verify_pan",
+        "file": "app/routers/verification.py",
+        "line": 16
+      },
+      {
+        "method": "POST",
+        "path": "/bank-verify",
+        "handler": "verify_bank",
+        "file": "app/routers/verification.py",
+        "line": 21
+      }
+    ],
+    "models": [
+      {
+        "name": "Customer",
+        "table": "customers",
+        "file": "app/models/customer.py",
+        "line": 11
+      },
+      {
+        "name": "KycSubmission",
+        "table": "kyc_submissions",
+        "file": "app/models/kyc.py",
+        "line": 13
+      },
+      {
+        "name": "PanRecord",
+        "table": "pan_records",
+        "file": "app/models/kyc.py",
+        "line": 34
+      },
+      {
+        "name": "BankRecord",
+        "table": "bank_records",
+        "file": "app/models/kyc.py",
+        "line": 48
+      },
+      {
+        "name": "RiskAssessment",
+        "table": "risk_assessments",
+        "file": "app/models/risk.py",
+        "line": 12
+      }
+    ],
+    "tests": [
+      {
+        "name": "test_create_customer",
+        "file": "tests/test_customers.py",
+        "line": 1,
+        "extra": {}
+      },
+      {
+        "name": "test_create_customer_duplicate_email",
+        "file": "tests/test_customers.py",
+        "line": 17,
+        "extra": {}
+      },
+      {
+        "name": "test_create_customer_invalid_email",
+        "file": "tests/test_customers.py",
+        "line": 29,
+        "extra": {}
+      },
+      {
+        "name": "test_get_customer",
+        "file": "tests/test_customers.py",
+        "line": 37,
+        "extra": {}
+      },
+      {
+        "name": "test_get_customer_not_found",
+        "file": "tests/test_customers.py",
+        "line": 44,
+        "extra": {}
+      },
+      {
+        "name": "test_health",
+        "file": "tests/test_health.py",
+        "line": 1,
+        "extra": {}
+      },
+      {
+        "name": "test_metrics",
+        "file": "tests/test_health.py",
+        "line": 9,
+        "extra": {}
+      },
+      {
+        "name": "test_full_kyc_onboarding_flow",
+        "file": "tests/test_integration.py",
+        "line": 3,
+        "extra": {}
+      },
+      {
+        "name": "test_health_and_metrics_available",
+        "file": "tests/test_integration.py",
+        "line": 46,
+        "extra": {}
+      },
+      {
+        "name": "test_submit_kyc_success",
+        "file": "tests/test_kyc.py",
+        "line": 1,
+        "extra": {}
+      },
+      {
+        "name": "test_submit_kyc_invalid_pan",
+        "file": "tests/test_kyc.py",
+        "line": 18,
+        "extra": {}
+      },
+      {
+        "name": "test_submit_kyc_rejected_pan",
+        "file": "tests/test_kyc.py",
+        "line": 31,
+        "extra": {}
+      },
+      {
+        "name": "test_get_kyc_status",
+        "file": "tests/test_kyc.py",
+        "line": 44,
+        "extra": {}
+      },
+      {
+        "name": "test_get_kyc_status_not_found",
+        "file": "tests/test_kyc.py",
+        "line": 59,
+        "extra": {}
+      },
+      {
+        "name": "test_kyc_flow_exposes_domain_metrics",
+        "file": "tests/test_metrics.py",
+        "line": 16,
+        "extra": {}
+      },
+      {
+        "name": "test_risk_score_without_kyc",
+        "file": "tests/test_risk.py",
+        "line": 1,
+        "extra": {}
+      },
+      {
+        "name": "test_risk_score_after_kyc",
+        "file": "tests/test_risk.py",
+        "line": 10,
+        "extra": {}
+      },
+      {
+        "name": "test_risk_score_customer_not_found",
+        "file": "tests/test_risk.py",
+        "line": 27,
+        "extra": {}
+      },
+      {
+        "name": "test_pan_verify_success",
+        "file": "tests/test_verification.py",
+        "line": 1,
+        "extra": {}
+      },
+      {
+        "name": "test_pan_verify_invalid_format",
+        "file": "tests/test_verification.py",
+        "line": 10,
+        "extra": {}
+      },
+      {
+        "name": "test_bank_verify_success",
+        "file": "tests/test_verification.py",
+        "line": 18,
+        "extra": {}
+      },
+      {
+        "name": "test_bank_verify_invalid_account",
+        "file": "tests/test_verification.py",
+        "line": 31,
+        "extra": {}
+      }
+    ],
+    "dependencies": [
+      {
+        "name": "fastapi",
+        "version": "0.111.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "uvicorn",
+        "version": "0.30.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "sqlalchemy",
+        "version": "2.0.30",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.7.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "pydantic-settings",
+        "version": "2.3.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "email-validator",
+        "version": "2.1.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "structlog",
+        "version": "24.2.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "prometheus-client",
+        "version": "0.20.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "httpx",
+        "version": "0.27.0",
+        "source": "pyproject.toml"
+      },
+      {
+        "name": "fastapi",
+        "version": "0.111.0",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "uvicorn",
+        "version": null,
+        "source": "requirements.txt"
+      },
+      {
+        "name": "sqlalchemy",
+        "version": "2.0.30",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.7.0",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "pydantic-settings",
+        "version": "2.3.0",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "email-validator",
+        "version": "2.1.0",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "structlog",
+        "version": "24.2.0",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "prometheus-client",
+        "version": "0.20.0",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "httpx",
+        "version": "0.27.0",
+        "source": "requirements.txt"
+      },
+      {
+        "name": "psycopg2-binary",
+        "version": "2.9.9",
+        "source": "requirements.txt"
+      }
+    ]
+  },
+  "flow_traces": [
+    {
+      "endpoint": "GET /customer/{customer_id}",
+      "chain": [
+        "router.get_customer",
+        "CustomerService.get_customer",
+        "CustomerRepository.get_by_id",
+        "table:customers"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.get_customer",
+          "file": "app/routers/customer_read.py",
+          "line": 13,
+          "operation": "GET /customer/{customer_id}"
+        },
+        {
+          "layer": "service",
+          "symbol": "CustomerService.get_customer",
+          "file": "app/services/customer_service.py",
+          "line": 29,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.get_by_id",
+          "file": "app/repositories/customer_repository.py",
+          "line": 32,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "SELECT"
+        }
+      ],
+      "confidence": 1.0,
+      "uncertainties": [],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    participant Service\n    participant Repository\n    participant Database\n    Client->>+Controller: router.get_customer [GET /customer/{customer_id}]\n    Controller->>+Service: CustomerService.get_customer\n    Service->>+Repository: CustomerRepository.get_by_id\n    Repository->>+Database: table:customers [SELECT]\n    Database-->>-Client: GET /customer/{customer_id} response\n"
+    },
+    {
+      "endpoint": "POST /customers",
+      "chain": [
+        "router.create_customer",
+        "CustomerService.create_customer",
+        "CustomerRepository.get_by_email",
+        "table:customers",
+        "CustomerRepository.create",
+        "table:customers"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.create_customer",
+          "file": "app/routers/customers.py",
+          "line": 11,
+          "operation": "POST /customers"
+        },
+        {
+          "layer": "service",
+          "symbol": "CustomerService.create_customer",
+          "file": "app/services/customer_service.py",
+          "line": 17,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.get_by_email",
+          "file": "app/repositories/customer_repository.py",
+          "line": 38,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "SELECT"
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.create",
+          "file": "app/repositories/customer_repository.py",
+          "line": 16,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "INSERT/UPDATE"
+        }
+      ],
+      "confidence": 0.92,
+      "uncertainties": [
+        "Table inferred from method name `get_by_email`"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    participant Service\n    participant Repository\n    participant Database\n    Client->>+Controller: router.create_customer [POST /customers]\n    Controller->>+Service: CustomerService.create_customer\n    Service->>+Repository: CustomerRepository.get_by_email\n    Repository->>+Database: table:customers [SELECT]\n    Database->>+Repository: CustomerRepository.create\n    Repository->>+Database: table:customers [INSERT/UPDATE]\n    Database-->>-Client: POST /customers response\n"
+    },
+    {
+      "endpoint": "GET /health",
+      "chain": [
+        "router.health_check"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.health_check",
+          "file": "app/routers/health.py",
+          "line": 9,
+          "operation": "GET /health"
+        }
+      ],
+      "confidence": 0.47000000000000003,
+      "uncertainties": [
+        "Service call not resolved in handler"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    Client->>+Controller: router.health_check [GET /health]\n    Controller-->>-Client: GET /health response\n"
+    },
+    {
+      "endpoint": "GET /metrics",
+      "chain": [
+        "router.metrics"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.metrics",
+          "file": "app/routers/health.py",
+          "line": 19,
+          "operation": "GET /metrics"
+        }
+      ],
+      "confidence": 0.47000000000000003,
+      "uncertainties": [
+        "Service call not resolved in handler"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    Client->>+Controller: router.metrics [GET /metrics]\n    Controller-->>-Client: GET /metrics response\n"
+    },
+    {
+      "endpoint": "POST /kyc",
+      "chain": [
+        "router.submit_kyc",
+        "KycService.submit_kyc",
+        "CustomerRepository.get_by_id",
+        "table:customers",
+        "KycRepository.create_submission",
+        "table:kyc_submissions",
+        "KycRepository.save_pan_record",
+        "table:pan_records",
+        "KycRepository.save_bank_record",
+        "table:bank_records",
+        "KycRepository.update_submission_status",
+        "table:kyc_submissions",
+        "CustomerRepository.update_status",
+        "table:customers"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.submit_kyc",
+          "file": "app/routers/kyc.py",
+          "line": 13,
+          "operation": "POST /kyc"
+        },
+        {
+          "layer": "service",
+          "symbol": "KycService.submit_kyc",
+          "file": "app/services/kyc_service.py",
+          "line": 29,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.get_by_id",
+          "file": "app/repositories/customer_repository.py",
+          "line": 32,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "SELECT"
+        },
+        {
+          "layer": "repository",
+          "symbol": "KycRepository.create_submission",
+          "file": "app/repositories/kyc_repository.py",
+          "line": 18,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:kyc_submissions",
+          "file": null,
+          "line": null,
+          "operation": "INSERT/UPDATE"
+        },
+        {
+          "layer": "repository",
+          "symbol": "KycRepository.save_pan_record",
+          "file": "app/repositories/kyc_repository.py",
+          "line": 51,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:pan_records",
+          "file": null,
+          "line": null,
+          "operation": "INSERT/UPDATE"
+        },
+        {
+          "layer": "repository",
+          "symbol": "KycRepository.save_bank_record",
+          "file": "app/repositories/kyc_repository.py",
+          "line": 69,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:bank_records",
+          "file": null,
+          "line": null,
+          "operation": "INSERT/UPDATE"
+        },
+        {
+          "layer": "repository",
+          "symbol": "KycRepository.update_submission_status",
+          "file": "app/repositories/kyc_repository.py",
+          "line": 89,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:kyc_submissions",
+          "file": null,
+          "line": null,
+          "operation": "UPDATE"
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.update_status",
+          "file": "app/repositories/customer_repository.py",
+          "line": 42,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "UPDATE"
+        }
+      ],
+      "confidence": 0.52,
+      "uncertainties": [
+        "Unknown repo attribute `_pan_service` on KycService",
+        "Table inferred from method name `save_pan_record`",
+        "Unknown repo attribute `_bank_service` on KycService",
+        "Table inferred from method name `save_bank_record`",
+        "Table inferred from method name `update_submission_status`",
+        "Table inferred from method name `update_status`"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    participant Service\n    participant Repository\n    participant Database\n    Client->>+Controller: router.submit_kyc [POST /kyc]\n    Controller->>+Service: KycService.submit_kyc\n    Service->>+Repository: CustomerRepository.get_by_id\n    Repository->>+Database: table:customers [SELECT]\n    Database->>+Repository: KycRepository.create_submission\n    Repository->>+Database: table:kyc_submissions [INSERT/UPDATE]\n    Database->>+Repository: KycRepository.save_pan_record\n    Repository->>+Database: table:pan_records [INSERT/UPDATE]\n    Database->>+Repository: KycRepository.save_bank_record\n    Repository->>+Database: table:bank_records [INSERT/UPDATE]\n    Database->>+Repository: KycRepository.update_submission_status\n    Repository->>+Database: table:kyc_submissions [UPDATE]\n    Database->>+Repository: CustomerRepository.update_status\n    Repository->>+Database: table:customers [UPDATE]\n    Database-->>-Client: POST /kyc response\n"
+    },
+    {
+      "endpoint": "GET /kyc-status/{customer_id}",
+      "chain": [
+        "router.get_kyc_status",
+        "KycService.get_kyc_status",
+        "CustomerRepository.get_by_id",
+        "table:customers",
+        "KycRepository.get_latest_by_customer"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.get_kyc_status",
+          "file": "app/routers/kyc.py",
+          "line": 18,
+          "operation": "GET /kyc-status/{customer_id}"
+        },
+        {
+          "layer": "service",
+          "symbol": "KycService.get_kyc_status",
+          "file": "app/services/kyc_service.py",
+          "line": 71,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.get_by_id",
+          "file": "app/repositories/customer_repository.py",
+          "line": 32,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "SELECT"
+        },
+        {
+          "layer": "repository",
+          "symbol": "KycRepository.get_latest_by_customer",
+          "file": "app/repositories/kyc_repository.py",
+          "line": 32,
+          "operation": null
+        }
+      ],
+      "confidence": 0.84,
+      "uncertainties": [
+        "Could not resolve table for KycRepository.get_latest_by_customer",
+        "Database table unresolved for KycRepository.get_latest_by_customer"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    participant Service\n    participant Repository\n    participant Database\n    Client->>+Controller: router.get_kyc_status [GET /kyc-status/{customer_id}]\n    Controller->>+Service: KycService.get_kyc_status\n    Service->>+Repository: CustomerRepository.get_by_id\n    Repository->>+Database: table:customers [SELECT]\n    Database->>+Repository: KycRepository.get_latest_by_customer\n    Repository-->>-Client: GET /kyc-status/{customer_id} response\n"
+    },
+    {
+      "endpoint": "POST /risk-score",
+      "chain": [
+        "router.calculate_risk_score",
+        "RiskScoreService.calculate",
+        "CustomerRepository.get_by_id",
+        "table:customers",
+        "KycRepository.get_latest_by_customer",
+        "DocumentRepository.save_risk_assessment",
+        "table:risk_assessments"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.calculate_risk_score",
+          "file": "app/routers/risk.py",
+          "line": 11,
+          "operation": "POST /risk-score"
+        },
+        {
+          "layer": "service",
+          "symbol": "RiskScoreService.calculate",
+          "file": "app/services/risk_score_service.py",
+          "line": 34,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.get_by_id",
+          "file": "app/repositories/customer_repository.py",
+          "line": 32,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "SELECT"
+        },
+        {
+          "layer": "repository",
+          "symbol": "KycRepository.get_latest_by_customer",
+          "file": "app/repositories/kyc_repository.py",
+          "line": 32,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "DocumentRepository.save_risk_assessment",
+          "file": "app/repositories/document_repository.py",
+          "line": 15,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:risk_assessments",
+          "file": null,
+          "line": null,
+          "operation": "INSERT/UPDATE"
+        }
+      ],
+      "confidence": 0.76,
+      "uncertainties": [
+        "Could not resolve table for KycRepository.get_latest_by_customer",
+        "Database table unresolved for KycRepository.get_latest_by_customer",
+        "Table inferred from method name `save_risk_assessment`"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    participant Service\n    participant Repository\n    participant Database\n    Client->>+Controller: router.calculate_risk_score [POST /risk-score]\n    Controller->>+Service: RiskScoreService.calculate\n    Service->>+Repository: CustomerRepository.get_by_id\n    Repository->>+Database: table:customers [SELECT]\n    Database->>+Repository: KycRepository.get_latest_by_customer\n    Repository->>+Repository: DocumentRepository.save_risk_assessment\n    Repository->>+Database: table:risk_assessments [INSERT/UPDATE]\n    Database-->>-Client: POST /risk-score response\n"
+    },
+    {
+      "endpoint": "POST /pan-verify",
+      "chain": [
+        "router.verify_pan",
+        "StandaloneVerificationService.verify_pan",
+        "CustomerRepository.get_by_id",
+        "table:customers"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.verify_pan",
+          "file": "app/routers/verification.py",
+          "line": 16,
+          "operation": "POST /pan-verify"
+        },
+        {
+          "layer": "service",
+          "symbol": "StandaloneVerificationService.verify_pan",
+          "file": "app/services/standalone_verification_service.py",
+          "line": 21,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.get_by_id",
+          "file": "app/repositories/customer_repository.py",
+          "line": 32,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "SELECT"
+        }
+      ],
+      "confidence": 0.92,
+      "uncertainties": [
+        "Unknown repo attribute `_pan_service` on StandaloneVerificationService"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    participant Service\n    participant Repository\n    participant Database\n    Client->>+Controller: router.verify_pan [POST /pan-verify]\n    Controller->>+Service: StandaloneVerificationService.verify_pan\n    Service->>+Repository: CustomerRepository.get_by_id\n    Repository->>+Database: table:customers [SELECT]\n    Database-->>-Client: POST /pan-verify response\n"
+    },
+    {
+      "endpoint": "POST /bank-verify",
+      "chain": [
+        "router.verify_bank",
+        "StandaloneVerificationService.verify_bank",
+        "CustomerRepository.get_by_id",
+        "table:customers"
+      ],
+      "steps": [
+        {
+          "layer": "controller",
+          "symbol": "router.verify_bank",
+          "file": "app/routers/verification.py",
+          "line": 21,
+          "operation": "POST /bank-verify"
+        },
+        {
+          "layer": "service",
+          "symbol": "StandaloneVerificationService.verify_bank",
+          "file": "app/services/standalone_verification_service.py",
+          "line": 31,
+          "operation": null
+        },
+        {
+          "layer": "repository",
+          "symbol": "CustomerRepository.get_by_id",
+          "file": "app/repositories/customer_repository.py",
+          "line": 32,
+          "operation": null
+        },
+        {
+          "layer": "database",
+          "symbol": "table:customers",
+          "file": null,
+          "line": null,
+          "operation": "SELECT"
+        }
+      ],
+      "confidence": 0.92,
+      "uncertainties": [
+        "Unknown repo attribute `_bank_service` on StandaloneVerificationService"
+      ],
+      "sequence_diagram": "sequenceDiagram\n    autonumber\n    actor Client\n    participant Controller\n    participant Service\n    participant Repository\n    participant Database\n    Client->>+Controller: router.verify_bank [POST /bank-verify]\n    Controller->>+Service: StandaloneVerificationService.verify_bank\n    Service->>+Repository: CustomerRepository.get_by_id\n    Repository->>+Database: table:customers [SELECT]\n    Database-->>-Client: POST /bank-verify response\n"
+    }
+  ],
+  "rust_scan": {
+    "file_count": 59,
+    "graph_edges": 81,
+    "risk": {
+      "score": 55,
+      "band": "medium",
+      "factors": {
+        "avg_lines_per_file": 30.728813559322035,
+        "dependency_count": 13,
+        "secret_pattern_hits": 0,
+        "test_files": 8,
+        "test_ratio": 0.13559322033898305,
+        "total_files": 59
+      }
+    },
+    "scan_duration_ms": 249
+  }
+}

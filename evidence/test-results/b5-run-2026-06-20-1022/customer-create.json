@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "customerId": "2ae95ffc-d06b-4f30-8b34-e41d7ac598b0",
+  "status": "pending",
+  "email": "b5-cli-1781931182@example.com",
+  "raw": {
+    "id": "2ae95ffc-d06b-4f30-8b34-e41d7ac598b0",
+    "full_name": "B5 Test User",
+    "email": "b5-cli-1781931182@example.com",
+    "phone": "9876543210",
+    "status": "pending",
+    "created_at": "2026-06-20T04:53:03.137011Z",
+    "updated_at": "2026-06-20T04:53:03.137011Z"
+  }
+}

@@ -1,0 +1,12 @@
+sequenceDiagram
+    autonumber
+    actor Client
+    participant Controller
+    participant Service
+    participant Repository
+    participant Database
+    Client->>+Controller: router.verify_pan [POST /pan-verify]
+    Controller->>+Service: StandaloneVerificationService.verify_pan
+    Service->>+Repository: CustomerRepository.get_by_id
+    Repository->>+Database: table:customers [SELECT]
+    Database-->>-Client: POST /pan-verify response

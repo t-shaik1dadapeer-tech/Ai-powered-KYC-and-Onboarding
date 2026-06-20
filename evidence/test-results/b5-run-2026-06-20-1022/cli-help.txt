@@ -1,0 +1,14 @@
+Usage: kyc-cli [options] [command]
+
+KYC onboarding and repository intelligence CLI
+
+Options:
+  -V, --version              output the version number
+  -h, --help                 display help for command
+
+Commands:
+  customer-create [options]  Create a new customer
+  submit-kyc [options]       Submit KYC for a customer
+  generate-report [options]  Analyze a repository and generate intelligence
+                             reports
+  help [command]             display help for command

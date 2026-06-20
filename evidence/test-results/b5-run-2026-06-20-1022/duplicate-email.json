@@ -1,0 +1,6 @@
+{
+  "ok": false,
+  "error": "conflict",
+  "message": "Customer with email b5-cli-1781931182@example.com already exists",
+  "statusCode": 409
+}
