@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "customerId": "3dd1ecf1-ddf2-4be2-969d-f881c64482e6",
+  "status": "pending",
+  "email": "i4-cli-1781933661@example.com",
+  "raw": {
+    "id": "3dd1ecf1-ddf2-4be2-969d-f881c64482e6",
+    "full_name": "I4 User",
+    "email": "i4-cli-1781933661@example.com",
+    "phone": "9876543210",
+    "status": "pending",
+    "created_at": "2026-06-20T05:34:22",
+    "updated_at": "2026-06-20T05:34:22"
+  }
+}

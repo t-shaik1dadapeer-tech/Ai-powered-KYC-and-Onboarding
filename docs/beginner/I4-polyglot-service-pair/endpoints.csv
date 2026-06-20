@@ -1,0 +1,10 @@
+method,path,request_model,response_model,status_success,validation,cli_uses,source_file
+POST,/customers,CustomerCreate,CustomerResponse,201,full_name email phone,customer-create,app/routers/customers.py
+GET,/customer/{customer_id},path UUID,CustomerResponse,200,uuid path param,no,app/routers/customer_read.py
+POST,/kyc,KycSubmitRequest,KycStatusResponse,201,pan account ifsc customer_id,submit-kyc,app/routers/kyc.py
+GET,/kyc-status/{customer_id},path UUID,KycStatusResponse,200,uuid path param,no,app/routers/kyc.py
+POST,/pan-verify,PanVerifyRequest,PanVerifyResponse,200,pan,no,app/routers/verification.py
+POST,/bank-verify,BankVerifyRequest,BankVerifyResponse,200,account ifsc,no,app/routers/verification.py
+POST,/risk-score,RiskScoreRequest,RiskScoreResponse,200,customer_id,no,app/routers/risk.py
+GET,/health,none,health dict,200,none,no,app/routers/health.py
+GET,/metrics,none,prometheus text,200,none,no,app/routers/health.py

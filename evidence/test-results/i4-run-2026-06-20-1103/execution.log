@@ -1,0 +1,3 @@
+=== I4 verification 2026-06-20T05:33:51Z ===
+uvicorn pid=5012 port=8112
+=== health check ===

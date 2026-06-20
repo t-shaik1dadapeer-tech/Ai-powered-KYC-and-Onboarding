@@ -1,0 +1,24 @@
+INFO:     Started server process [5012]
+INFO:     Waiting for application startup.
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T05:33:54.269978Z"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8112 (Press CTRL+C to quit)
+INFO:     Started server process [5536]
+INFO:     Waiting for application startup.
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T05:34:20.534252Z"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8112 (Press CTRL+C to quit)
+INFO:     127.0.0.1:55542 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55543 - "GET /health HTTP/1.1" 200 OK
+{"customer_id": "3dd1ecf1-ddf2-4be2-969d-f881c64482e6", "email": "i4-cli-1781933661@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T05:34:22.623818Z"}
+INFO:     127.0.0.1:55548 - "POST /customers HTTP/1.1" 201 Created
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T05:34:23.278073Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T05:34:23.285679Z"}
+{"customer_id": "3dd1ecf1-ddf2-4be2-969d-f881c64482e6", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T05:34:23.319338Z"}
+INFO:     127.0.0.1:55549 - "POST /kyc HTTP/1.1" 201 Created
+INFO:     127.0.0.1:55550 - "POST /customers HTTP/1.1" 409 Conflict
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-20T05:34:23.912749Z"}
+INFO:     Application shutdown complete.
+INFO:     Finished server process [5536]
