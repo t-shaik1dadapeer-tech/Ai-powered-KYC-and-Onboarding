@@ -1,0 +1,3 @@
+command,description,required_options,optional_options,exit_success,exit_failure,output_format
+scan,Scan repository and output full JSON analysis,--path <dir>,--pretty (default true),0,1,JSON stdout ScanResult
+risk,Calculate risk score only,--path <dir>,none,0,1,JSON stdout RiskAssessment

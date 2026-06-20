@@ -1,0 +1,14 @@
+=== rustc/cargo versions ===
+rustc 1.96.0 (ac68faa20 2026-05-25)
+cargo 1.96.0 (30a34c682 2026-05-25)
+
+=== cargo build --release ===
+    Finished `release` profile [optimized] target(s) in 0.15s
+
+=== cargo test ===
+
+=== scan command ===
+
+=== risk command ===
+
+=== invalid path error ===

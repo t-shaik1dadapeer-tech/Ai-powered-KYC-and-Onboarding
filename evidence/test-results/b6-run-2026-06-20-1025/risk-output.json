@@ -1,0 +1,12 @@
+{
+  "score": 55,
+  "band": "medium",
+  "factors": {
+    "avg_lines_per_file": 30.728813559322035,
+    "dependency_count": 13,
+    "secret_pattern_hits": 0,
+    "test_files": 8,
+    "test_ratio": 0.13559322033898305,
+    "total_files": 59
+  }
+}

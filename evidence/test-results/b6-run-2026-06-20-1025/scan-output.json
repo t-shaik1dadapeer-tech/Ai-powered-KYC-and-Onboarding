@@ -1,0 +1,1071 @@
+{
+  "repository": "../../services/onboarding-api",
+  "file_count": 59,
+  "files": [
+    {
+      "path": ".dockerignore",
+      "language": "",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": ".gitignore",
+      "language": "",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": ".ruff_cache/.gitignore",
+      "language": "",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": ".ruff_cache/CACHEDIR.TAG",
+      "language": "tag",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "Dockerfile",
+      "language": "",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "README.md",
+      "language": "md",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/__init__.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/core/auth.py",
+      "language": "python",
+      "imports": [
+        "starlette.middleware.base",
+        "starlette.requests",
+        "starlette.responses",
+        "app.core.config"
+      ],
+      "symbols": [
+        "ApiKeyMiddleware"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/core/config.py",
+      "language": "python",
+      "imports": [
+        "functools",
+        "pydantic_settings"
+      ],
+      "symbols": [
+        "Settings"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/core/database.py",
+      "language": "python",
+      "imports": [
+        "collections.abc",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "app.core.config"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/core/exceptions.py",
+      "language": "python",
+      "imports": [
+        "fastapi",
+        "fastapi.responses"
+      ],
+      "symbols": [
+        "AppException",
+        "NotFoundError",
+        "ConflictError",
+        "ValidationError",
+        "VerificationError"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/core/logging.py",
+      "language": "python",
+      "imports": [
+        "logging",
+        "sys",
+        "structlog",
+        "app.core.config"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/core/metrics.py",
+      "language": "python",
+      "imports": [
+        "prometheus_client"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/main.py",
+      "language": "python",
+      "imports": [
+        "time",
+        "contextlib",
+        "fastapi",
+        "starlette.middleware.base",
+        "app.core.auth",
+        "app.core.config",
+        "app.core.database",
+        "app.core.exceptions",
+        "app.core.logging",
+        "app.core.metrics",
+        "app.models.base",
+        "app.models.customer",
+        "app.models.kyc",
+        "app.models.risk",
+        "app.routers"
+      ],
+      "symbols": [
+        "MetricsMiddleware"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/models/base.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "datetime",
+        "sqlalchemy",
+        "sqlalchemy.dialects.postgresql",
+        "sqlalchemy.orm",
+        "sqlalchemy.types"
+      ],
+      "symbols": [
+        "Base",
+        "TimestampMixin"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/models/customer.py",
+      "language": "python",
+      "imports": [
+        "__future__",
+        "uuid",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "app.models.base",
+        "app.models.kyc",
+        "app.models.risk"
+      ],
+      "symbols": [
+        "Customer"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/models/kyc.py",
+      "language": "python",
+      "imports": [
+        "__future__",
+        "uuid",
+        "datetime",
+        "typing",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "app.models.base",
+        "app.models.customer"
+      ],
+      "symbols": [
+        "KycSubmission",
+        "PanRecord",
+        "BankRecord"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/models/risk.py",
+      "language": "python",
+      "imports": [
+        "__future__",
+        "uuid",
+        "datetime",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "app.models.base",
+        "app.models.customer"
+      ],
+      "symbols": [
+        "RiskAssessment"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/repositories/customer_repository.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "sqlalchemy",
+        "sqlalchemy.exc",
+        "sqlalchemy.orm",
+        "app.core.exceptions",
+        "app.models.customer",
+        "app.schemas.customer"
+      ],
+      "symbols": [
+        "CustomerRepository"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/repositories/document_repository.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "datetime",
+        "sqlalchemy.orm",
+        "app.models.risk"
+      ],
+      "symbols": [
+        "DocumentRepository"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/repositories/kyc_repository.py",
+      "language": "python",
+      "imports": [
+        "__future__",
+        "uuid",
+        "datetime",
+        "typing",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "app.core.exceptions",
+        "app.models.kyc"
+      ],
+      "symbols": [
+        "KycRepository"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/routers/__init__.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/routers/customer_read.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "fastapi",
+        "sqlalchemy.orm",
+        "app.core.database",
+        "app.schemas.customer",
+        "app.services.customer_service"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/routers/customers.py",
+      "language": "python",
+      "imports": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "app.core.database",
+        "app.schemas.customer",
+        "app.services.customer_service"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/routers/health.py",
+      "language": "python",
+      "imports": [
+        "fastapi",
+        "prometheus_client",
+        "app.core.config"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/routers/kyc.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "fastapi",
+        "sqlalchemy.orm",
+        "app.core.database",
+        "app.schemas.kyc",
+        "app.services.kyc_service"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/routers/risk.py",
+      "language": "python",
+      "imports": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "app.core.database",
+        "app.schemas.risk",
+        "app.services.risk_score_service"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/routers/verification.py",
+      "language": "python",
+      "imports": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "app.core.database",
+        "app.schemas.verification",
+        "app.services.standalone_verification_service"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/schemas/customer.py",
+      "language": "python",
+      "imports": [
+        "re",
+        "uuid",
+        "datetime",
+        "pydantic"
+      ],
+      "symbols": [
+        "CustomerCreate",
+        "CustomerResponse"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/schemas/kyc.py",
+      "language": "python",
+      "imports": [
+        "__future__",
+        "re",
+        "uuid",
+        "datetime",
+        "typing",
+        "pydantic",
+        "app.schemas.validators"
+      ],
+      "symbols": [
+        "KycSubmitRequest",
+        "KycStatusResponse"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/schemas/risk.py",
+      "language": "python",
+      "imports": [
+        "__future__",
+        "uuid",
+        "datetime",
+        "typing",
+        "pydantic"
+      ],
+      "symbols": [
+        "RiskScoreRequest",
+        "RiskScoreResponse"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/schemas/validators.py",
+      "language": "python",
+      "imports": [
+        "re"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "app/schemas/verification.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "pydantic",
+        "app.schemas.validators"
+      ],
+      "symbols": [
+        "PanVerifyRequest",
+        "PanVerifyResponse",
+        "BankVerifyRequest",
+        "BankVerifyResponse"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/services/bank_verification_service.py",
+      "language": "python",
+      "imports": [
+        "app.core.exceptions",
+        "app.core.logging",
+        "app.services.pan_verification_service"
+      ],
+      "symbols": [
+        "BankVerificationService"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/services/customer_service.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "sqlalchemy.orm",
+        "app.core.logging",
+        "app.core.metrics",
+        "app.repositories.customer_repository",
+        "app.schemas.customer"
+      ],
+      "symbols": [
+        "CustomerService"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/services/kyc_service.py",
+      "language": "python",
+      "imports": [
+        "uuid",
+        "sqlalchemy.orm",
+        "app.core.exceptions",
+        "app.core.logging",
+        "app.core.metrics",
+        "app.repositories.customer_repository",
+        "app.repositories.kyc_repository",
+        "app.schemas.kyc",
+        "app.services.bank_verification_service",
+        "app.services.pan_verification_service"
+      ],
+      "symbols": [
+        "KycService"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/services/pan_verification_service.py",
+      "language": "python",
+      "imports": [
+        "hashlib",
+        "app.core.exceptions",
+        "app.core.logging"
+      ],
+      "symbols": [
+        "PanVerificationService"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/services/risk_score_service.py",
+      "language": "python",
+      "imports": [
+        "__future__",
+        "uuid",
+        "typing",
+        "sqlalchemy.orm",
+        "app.core.logging",
+        "app.core.metrics",
+        "app.repositories.customer_repository",
+        "app.repositories.document_repository",
+        "app.repositories.kyc_repository",
+        "app.schemas.risk"
+      ],
+      "symbols": [
+        "RiskScoreService"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "app/services/standalone_verification_service.py",
+      "language": "python",
+      "imports": [
+        "sqlalchemy.orm",
+        "app.core.metrics",
+        "app.repositories.customer_repository",
+        "app.schemas.verification",
+        "app.services.bank_verification_service",
+        "app.services.pan_verification_service"
+      ],
+      "symbols": [
+        "StandaloneVerificationService"
+      ],
+      "test_file": false
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "imports": [],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "tests/conftest.py",
+      "language": "python",
+      "imports": [
+        "pytest",
+        "fastapi.testclient",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "sqlalchemy.pool",
+        "app.core.database",
+        "app.main",
+        "app.models.base"
+      ],
+      "symbols": [],
+      "test_file": false
+    },
+    {
+      "path": "tests/test_auth.py",
+      "language": "python",
+      "imports": [
+        "pytest",
+        "httpx",
+        "app.main"
+      ],
+      "symbols": [],
+      "test_file": true
+    },
+    {
+      "path": "tests/test_customers.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [
+        "test_create_customer",
+        "test_create_customer_duplicate_email",
+        "test_create_customer_invalid_email",
+        "test_get_customer",
+        "test_get_customer_not_found"
+      ],
+      "test_file": true
+    },
+    {
+      "path": "tests/test_health.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [
+        "test_health",
+        "test_metrics"
+      ],
+      "test_file": true
+    },
+    {
+      "path": "tests/test_integration.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [
+        "test_full_kyc_onboarding_flow",
+        "test_health_and_metrics_available"
+      ],
+      "test_file": true
+    },
+    {
+      "path": "tests/test_kyc.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [
+        "test_submit_kyc_success",
+        "test_submit_kyc_invalid_pan",
+        "test_submit_kyc_rejected_pan",
+        "test_get_kyc_status",
+        "test_get_kyc_status_not_found"
+      ],
+      "test_file": true
+    },
+    {
+      "path": "tests/test_metrics.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [
+        "test_kyc_flow_exposes_domain_metrics"
+      ],
+      "test_file": true
+    },
+    {
+      "path": "tests/test_risk.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [
+        "test_risk_score_without_kyc",
+        "test_risk_score_after_kyc",
+        "test_risk_score_customer_not_found"
+      ],
+      "test_file": true
+    },
+    {
+      "path": "tests/test_verification.py",
+      "language": "python",
+      "imports": [],
+      "symbols": [
+        "test_pan_verify_success",
+        "test_pan_verify_invalid_format",
+        "test_bank_verify_success",
+        "test_bank_verify_invalid_account"
+      ],
+      "test_file": true
+    }
+  ],
+  "graph_edges": [
+    {
+      "from": "app/core/auth.py",
+      "to": "app/core/config.py",
+      "import": "app.core.config"
+    },
+    {
+      "from": "app/core/database.py",
+      "to": "app/core/config.py",
+      "import": "app.core.config"
+    },
+    {
+      "from": "app/core/logging.py",
+      "to": "app/core/config.py",
+      "import": "app.core.config"
+    },
+    {
+      "from": "app/core/logging.py",
+      "to": "app/core/logging.py",
+      "import": "logging"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/core/auth.py",
+      "import": "app.core.auth"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/core/config.py",
+      "import": "app.core.config"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/core/database.py",
+      "import": "app.core.database"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/core/exceptions.py",
+      "import": "app.core.exceptions"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/core/logging.py",
+      "import": "app.core.logging"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/core/metrics.py",
+      "import": "app.core.metrics"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/models/base.py",
+      "import": "app.models.base"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/models/customer.py",
+      "import": "app.models.customer"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/models/kyc.py",
+      "import": "app.models.kyc"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/models/risk.py",
+      "import": "app.models.risk"
+    },
+    {
+      "from": "app/main.py",
+      "to": "app/routers/__init__.py",
+      "import": "app.routers"
+    },
+    {
+      "from": "app/models/customer.py",
+      "to": "app/models/base.py",
+      "import": "app.models.base"
+    },
+    {
+      "from": "app/models/customer.py",
+      "to": "app/models/kyc.py",
+      "import": "app.models.kyc"
+    },
+    {
+      "from": "app/models/customer.py",
+      "to": "app/models/risk.py",
+      "import": "app.models.risk"
+    },
+    {
+      "from": "app/models/kyc.py",
+      "to": "app/models/base.py",
+      "import": "app.models.base"
+    },
+    {
+      "from": "app/models/kyc.py",
+      "to": "app/models/customer.py",
+      "import": "app.models.customer"
+    },
+    {
+      "from": "app/models/risk.py",
+      "to": "app/models/base.py",
+      "import": "app.models.base"
+    },
+    {
+      "from": "app/models/risk.py",
+      "to": "app/models/customer.py",
+      "import": "app.models.customer"
+    },
+    {
+      "from": "app/repositories/customer_repository.py",
+      "to": "app/core/exceptions.py",
+      "import": "app.core.exceptions"
+    },
+    {
+      "from": "app/repositories/customer_repository.py",
+      "to": "app/models/customer.py",
+      "import": "app.models.customer"
+    },
+    {
+      "from": "app/repositories/customer_repository.py",
+      "to": "app/schemas/customer.py",
+      "import": "app.schemas.customer"
+    },
+    {
+      "from": "app/repositories/document_repository.py",
+      "to": "app/models/risk.py",
+      "import": "app.models.risk"
+    },
+    {
+      "from": "app/repositories/kyc_repository.py",
+      "to": "app/core/exceptions.py",
+      "import": "app.core.exceptions"
+    },
+    {
+      "from": "app/repositories/kyc_repository.py",
+      "to": "app/models/kyc.py",
+      "import": "app.models.kyc"
+    },
+    {
+      "from": "app/routers/customer_read.py",
+      "to": "app/core/database.py",
+      "import": "app.core.database"
+    },
+    {
+      "from": "app/routers/customer_read.py",
+      "to": "app/schemas/customer.py",
+      "import": "app.schemas.customer"
+    },
+    {
+      "from": "app/routers/customer_read.py",
+      "to": "app/services/customer_service.py",
+      "import": "app.services.customer_service"
+    },
+    {
+      "from": "app/routers/customers.py",
+      "to": "app/core/database.py",
+      "import": "app.core.database"
+    },
+    {
+      "from": "app/routers/customers.py",
+      "to": "app/schemas/customer.py",
+      "import": "app.schemas.customer"
+    },
+    {
+      "from": "app/routers/customers.py",
+      "to": "app/services/customer_service.py",
+      "import": "app.services.customer_service"
+    },
+    {
+      "from": "app/routers/health.py",
+      "to": "app/core/config.py",
+      "import": "app.core.config"
+    },
+    {
+      "from": "app/routers/kyc.py",
+      "to": "app/core/database.py",
+      "import": "app.core.database"
+    },
+    {
+      "from": "app/routers/kyc.py",
+      "to": "app/schemas/kyc.py",
+      "import": "app.schemas.kyc"
+    },
+    {
+      "from": "app/routers/kyc.py",
+      "to": "app/services/kyc_service.py",
+      "import": "app.services.kyc_service"
+    },
+    {
+      "from": "app/routers/risk.py",
+      "to": "app/core/database.py",
+      "import": "app.core.database"
+    },
+    {
+      "from": "app/routers/risk.py",
+      "to": "app/schemas/risk.py",
+      "import": "app.schemas.risk"
+    },
+    {
+      "from": "app/routers/risk.py",
+      "to": "app/services/risk_score_service.py",
+      "import": "app.services.risk_score_service"
+    },
+    {
+      "from": "app/routers/verification.py",
+      "to": "app/core/database.py",
+      "import": "app.core.database"
+    },
+    {
+      "from": "app/routers/verification.py",
+      "to": "app/schemas/verification.py",
+      "import": "app.schemas.verification"
+    },
+    {
+      "from": "app/routers/verification.py",
+      "to": "app/services/standalone_verification_service.py",
+      "import": "app.services.standalone_verification_service"
+    },
+    {
+      "from": "app/schemas/customer.py",
+      "to": ".dockerignore",
+      "import": "re"
+    },
+    {
+      "from": "app/schemas/kyc.py",
+      "to": ".dockerignore",
+      "import": "re"
+    },
+    {
+      "from": "app/schemas/kyc.py",
+      "to": "app/schemas/validators.py",
+      "import": "app.schemas.validators"
+    },
+    {
+      "from": "app/schemas/validators.py",
+      "to": ".dockerignore",
+      "import": "re"
+    },
+    {
+      "from": "app/schemas/verification.py",
+      "to": "app/schemas/validators.py",
+      "import": "app.schemas.validators"
+    },
+    {
+      "from": "app/services/bank_verification_service.py",
+      "to": "app/core/exceptions.py",
+      "import": "app.core.exceptions"
+    },
+    {
+      "from": "app/services/bank_verification_service.py",
+      "to": "app/core/logging.py",
+      "import": "app.core.logging"
+    },
+    {
+      "from": "app/services/bank_verification_service.py",
+      "to": "app/services/pan_verification_service.py",
+      "import": "app.services.pan_verification_service"
+    },
+    {
+      "from": "app/services/customer_service.py",
+      "to": "app/core/logging.py",
+      "import": "app.core.logging"
+    },
+    {
+      "from": "app/services/customer_service.py",
+      "to": "app/core/metrics.py",
+      "import": "app.core.metrics"
+    },
+    {
+      "from": "app/services/customer_service.py",
+      "to": "app/repositories/customer_repository.py",
+      "import": "app.repositories.customer_repository"
+    },
+    {
+      "from": "app/services/customer_service.py",
+      "to": "app/schemas/customer.py",
+      "import": "app.schemas.customer"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/core/exceptions.py",
+      "import": "app.core.exceptions"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/core/logging.py",
+      "import": "app.core.logging"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/core/metrics.py",
+      "import": "app.core.metrics"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/repositories/customer_repository.py",
+      "import": "app.repositories.customer_repository"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/repositories/kyc_repository.py",
+      "import": "app.repositories.kyc_repository"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/schemas/kyc.py",
+      "import": "app.schemas.kyc"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/services/bank_verification_service.py",
+      "import": "app.services.bank_verification_service"
+    },
+    {
+      "from": "app/services/kyc_service.py",
+      "to": "app/services/pan_verification_service.py",
+      "import": "app.services.pan_verification_service"
+    },
+    {
+      "from": "app/services/pan_verification_service.py",
+      "to": "app/core/exceptions.py",
+      "import": "app.core.exceptions"
+    },
+    {
+      "from": "app/services/pan_verification_service.py",
+      "to": "app/core/logging.py",
+      "import": "app.core.logging"
+    },
+    {
+      "from": "app/services/risk_score_service.py",
+      "to": "app/core/logging.py",
+      "import": "app.core.logging"
+    },
+    {
+      "from": "app/services/risk_score_service.py",
+      "to": "app/core/metrics.py",
+      "import": "app.core.metrics"
+    },
+    {
+      "from": "app/services/risk_score_service.py",
+      "to": "app/repositories/customer_repository.py",
+      "import": "app.repositories.customer_repository"
+    },
+    {
+      "from": "app/services/risk_score_service.py",
+      "to": "app/repositories/document_repository.py",
+      "import": "app.repositories.document_repository"
+    },
+    {
+      "from": "app/services/risk_score_service.py",
+      "to": "app/repositories/kyc_repository.py",
+      "import": "app.repositories.kyc_repository"
+    },
+    {
+      "from": "app/services/risk_score_service.py",
+      "to": "app/schemas/risk.py",
+      "import": "app.schemas.risk"
+    },
+    {
+      "from": "app/services/standalone_verification_service.py",
+      "to": "app/core/metrics.py",
+      "import": "app.core.metrics"
+    },
+    {
+      "from": "app/services/standalone_verification_service.py",
+      "to": "app/repositories/customer_repository.py",
+      "import": "app.repositories.customer_repository"
+    },
+    {
+      "from": "app/services/standalone_verification_service.py",
+      "to": "app/schemas/verification.py",
+      "import": "app.schemas.verification"
+    },
+    {
+      "from": "app/services/standalone_verification_service.py",
+      "to": "app/services/bank_verification_service.py",
+      "import": "app.services.bank_verification_service"
+    },
+    {
+      "from": "app/services/standalone_verification_service.py",
+      "to": "app/services/pan_verification_service.py",
+      "import": "app.services.pan_verification_service"
+    },
+    {
+      "from": "tests/conftest.py",
+      "to": "app/core/database.py",
+      "import": "app.core.database"
+    },
+    {
+      "from": "tests/conftest.py",
+      "to": "app/main.py",
+      "import": "app.main"
+    },
+    {
+      "from": "tests/conftest.py",
+      "to": "app/models/base.py",
+      "import": "app.models.base"
+    },
+    {
+      "from": "tests/test_auth.py",
+      "to": "app/main.py",
+      "import": "app.main"
+    }
+  ],
+  "risk": {
+    "score": 55,
+    "band": "medium",
+    "factors": {
+      "avg_lines_per_file": 30.728813559322035,
+      "dependency_count": 13,
+      "secret_pattern_hits": 0,
+      "test_files": 8,
+      "test_ratio": 0.13559322033898305,
+      "total_files": 59
+    }
+  },
+  "scan_duration_ms": 84
+}

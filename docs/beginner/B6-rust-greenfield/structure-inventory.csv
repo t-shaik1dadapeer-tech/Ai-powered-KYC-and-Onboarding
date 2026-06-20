@@ -1,0 +1,16 @@
+category,path,purpose
+entry_point,src/main.rs,CLI binary (clap subcommands)
+library,src/lib.rs,Module exports
+module,src/scan.rs,Orchestration scan_repository
+module,src/file_walker.rs,Directory walk with skip rules
+module,src/graph/mod.rs,Import graph builder
+module,src/parser/mod.rs,Parser facade
+module,src/parser/python.rs,Python import/symbol extraction
+module,src/parser/universal.rs,JS/TS/generic parsing
+module,src/risk/mod.rs,Risk score calculator
+module,src/error.rs,AnalyzerError types
+test,tests/integration_test.rs,CLI integration tests (2)
+bench,benches/scan_benchmark.rs,Criterion scan benchmark
+config,Cargo.toml,Package manifest dependencies
+container,Dockerfile,Rust multi-stage build
+docs,README.md,Build CLI test benchmark schema
