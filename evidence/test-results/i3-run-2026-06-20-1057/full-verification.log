@@ -1,0 +1,24 @@
+=== full verification run 2026-06-20T05:30Z ===
+onboarding-api pytest: 26/26 PASS
+make test: 5/5 suites PASS
+make safe-change-check: ALL PASS
+Manifest count: 2
+✅ Kubernetes verification complete
+Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify.txt
+  ✅ k8s passed
+▶ 4/5 docker compose config
+  ✅ docker compose config valid
+▶ 5/5 load test (in-process)
+Load Test — 2026-06-20T05:30:59Z
+======================
+requests=200 concurrency=20
+duration_s=0.432 rps=462.5
+p50_ms=31.83 p95_ms=66.49 errors=0
+PASS
+
+✅ Load test complete
+Evidence: /Users/shaikdadapeer/agent development/evidence/performance/load-test.txt
+  ✅ load test passed
+
+✅ Safe change check complete — safe to open PR
+Evidence: /Users/shaikdadapeer/agent development/evidence/safe-change/safe-change-check.txt

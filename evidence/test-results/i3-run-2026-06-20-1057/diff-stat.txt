@@ -1,0 +1,3 @@
+ services/onboarding-api/app/schemas/customer.py |  5 +++++
+ services/onboarding-api/tests/test_customers.py | 25 +++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+)

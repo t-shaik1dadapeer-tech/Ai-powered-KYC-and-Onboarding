@@ -1,0 +1,52 @@
+diff --git a/services/onboarding-api/app/schemas/customer.py b/services/onboarding-api/app/schemas/customer.py
+index e617b8c..efadaae 100644
+--- a/services/onboarding-api/app/schemas/customer.py
++++ b/services/onboarding-api/app/schemas/customer.py
+@@ -18,6 +18,11 @@ class CustomerCreate(BaseModel):
+     def strip_name(cls, value: str) -> str:
+         return value.strip()
+ 
++    @field_validator("email")
++    @classmethod
++    def normalize_email(cls, value: str) -> str:
++        return value.strip().lower()
++
+ 
+ class CustomerResponse(BaseModel):
+     model_config = ConfigDict(from_attributes=True)
+diff --git a/services/onboarding-api/tests/test_customers.py b/services/onboarding-api/tests/test_customers.py
+index 9bf9e9e..0ff3fa8 100644
+--- a/services/onboarding-api/tests/test_customers.py
++++ b/services/onboarding-api/tests/test_customers.py
+@@ -26,6 +26,31 @@ def test_create_customer_duplicate_email(client, sample_customer):
+     assert response.status_code == 409
+ 
+ 
++def test_create_customer_normalizes_email_case(client):
++    response = client.post(
++        "/customers",
++        json={
++            "full_name": "Case Test",
++            "email": "Case.User@Example.COM",
++            "phone": "9876543210",
++        },
++    )
++    assert response.status_code == 201
++    assert response.json()["email"] == "case.user@example.com"
++
++
++def test_create_customer_duplicate_email_different_case(client, sample_customer):
++    response = client.post(
++        "/customers",
++        json={
++            "full_name": "Jane Duplicate",
++            "email": "JANE@EXAMPLE.COM",
++            "phone": "9876543211",
++        },
++    )
++    assert response.status_code == 409
++
++
+ def test_create_customer_invalid_email(client):
+     response = client.post(
+         "/customers",

@@ -1,0 +1,3 @@
+file,change_type,lines_added,lines_removed,reason
+services/onboarding-api/app/schemas/customer.py,modified,5,0,Normalize email to lowercase at validation boundary
+services/onboarding-api/tests/test_customers.py,modified,25,0,Regression tests for case normalization and duplicate detection

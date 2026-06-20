@@ -18,6 +18,11 @@ class CustomerCreate(BaseModel):
     def strip_name(cls, value: str) -> str:
         return value.strip()
 
+    @field_validator("email")
+    @classmethod
+    def normalize_email(cls, value: str) -> str:
+        return value.strip().lower()
+
 
 class CustomerResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

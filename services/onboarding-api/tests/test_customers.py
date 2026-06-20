@@ -26,6 +26,31 @@ def test_create_customer_duplicate_email(client, sample_customer):
     assert response.status_code == 409
 
 
+def test_create_customer_normalizes_email_case(client):
+    response = client.post(
+        "/customers",
+        json={
+            "full_name": "Case Test",
+            "email": "Case.User@Example.COM",
+            "phone": "9876543210",
+        },
+    )
+    assert response.status_code == 201
+    assert response.json()["email"] == "case.user@example.com"
+
+
+def test_create_customer_duplicate_email_different_case(client, sample_customer):
+    response = client.post(
+        "/customers",
+        json={
+            "full_name": "Jane Duplicate",
+            "email": "JANE@EXAMPLE.COM",
+            "phone": "9876543211",
+        },
+    )
+    assert response.status_code == 409
+
+
 def test_create_customer_invalid_email(client):
     response = client.post(
         "/customers",
