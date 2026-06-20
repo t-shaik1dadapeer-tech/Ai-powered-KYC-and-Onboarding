@@ -1,0 +1,9 @@
+# D6 — structured log sample (docker onboarding-api)
+# Date: 2026-06-20T07:31Z
+
+{"customer_id": "43503ec8-de6d-47e7-b966-77d9b8747e87", "email": "d6-4@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:31:31.957822Z"}
+{"customer_id": "6560a280-b1ff-4836-a8d2-1d29adda5795", "email": "d6-5@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:31:31.985110Z"}
+
+Also uvicorn access lines:
+INFO: ... "POST /customers HTTP/1.1" 201 Created
+INFO: ... "GET /metrics HTTP/1.1" 200 OK

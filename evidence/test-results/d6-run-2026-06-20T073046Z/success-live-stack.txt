@@ -1,0 +1,26 @@
+# D6 — live compose stack + traffic
+# Date: 2026-06-20T07:31Z
+# Ports: API 8101, Prometheus 9191, Grafana 3003
+
+Stack: docker compose up -d postgres onboarding-api prometheus grafana
+Health: all services healthy after 4 attempts
+
+Traffic:
+  POST /customers x5 → 201
+  GET /health → 200
+  GET /health x50 burst → 200 x50
+
+/metrics samples:
+  http_requests_total{method="GET",path="/health",status="200"} 58.0
+  http_requests_total{method="POST",path="/customers",status="201"} 5.0
+  customers_created_total{status="pending"} 5.0
+
+Prometheus:
+  target onboarding-api: up
+  query http_requests_total{path="/health"} → 59
+  query customers_created_total → 5
+
+Grafana:
+  datasource: Prometheus (uid=prometheus) @ http://prometheus:9090
+  dashboard: AI-Powered KYC Platform API (uid=ai-powered-kyc-platform-api)
+  panel datasource uids: kyc-prometheus (MISMATCH with provisioned uid)

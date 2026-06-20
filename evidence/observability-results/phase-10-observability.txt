@@ -1,24 +1,24 @@
-Observability Verification — 2026-06-19T07:26:40Z
+Observability Verification — 2026-06-20T07:43:11Z
 ========================================
 
 ▶ Generate sample traffic + scrape /metrics
-{"event": "application_started", "level": "info", "timestamp": "2026-06-19T07:26:40.942495Z"}
-{"customer_id": "d04836a7-4bce-4cb4-92da-51070115216b", "email": "obs0@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-19T07:26:40.955820Z"}
-{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-19T07:26:40.961182Z"}
-{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-19T07:26:40.962962Z"}
-{"customer_id": "d04836a7-4bce-4cb4-92da-51070115216b", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-19T07:26:40.966646Z"}
-{"customer_id": "d04836a7-4bce-4cb4-92da-51070115216b", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-19T07:26:40.975115Z"}
-{"customer_id": "529ea72d-07fe-4d2b-a75d-de29748862d0", "email": "obs1@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-19T07:26:40.978235Z"}
-{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-19T07:26:40.980868Z"}
-{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-19T07:26:40.981355Z"}
-{"customer_id": "529ea72d-07fe-4d2b-a75d-de29748862d0", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-19T07:26:40.983101Z"}
-{"customer_id": "529ea72d-07fe-4d2b-a75d-de29748862d0", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-19T07:26:40.987147Z"}
-{"customer_id": "f523fc67-8316-4097-adad-1130ae5f2fca", "email": "obs2@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-19T07:26:40.989654Z"}
-{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-19T07:26:40.993274Z"}
-{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-19T07:26:40.993772Z"}
-{"customer_id": "f523fc67-8316-4097-adad-1130ae5f2fca", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-19T07:26:40.995530Z"}
-{"customer_id": "f523fc67-8316-4097-adad-1130ae5f2fca", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-19T07:26:41Z"}
-{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-19T07:26:41.003469Z"}
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T07:43:13.101578Z"}
+{"customer_id": "637fae6f-768f-4f78-b7c9-3a515d54b49c", "email": "obs0@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:43:13.128856Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T07:43:13.137956Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T07:43:13.140851Z"}
+{"customer_id": "637fae6f-768f-4f78-b7c9-3a515d54b49c", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T07:43:13.148042Z"}
+{"customer_id": "637fae6f-768f-4f78-b7c9-3a515d54b49c", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-20T07:43:13.161953Z"}
+{"customer_id": "14007686-aac9-4a0a-8910-6e3efd1ec221", "email": "obs1@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:43:13.168023Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T07:43:13.172223Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T07:43:13.172996Z"}
+{"customer_id": "14007686-aac9-4a0a-8910-6e3efd1ec221", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T07:43:13.175804Z"}
+{"customer_id": "14007686-aac9-4a0a-8910-6e3efd1ec221", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-20T07:43:13.182885Z"}
+{"customer_id": "62cf255e-266c-4039-9a82-c922054e0bef", "email": "obs2@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:43:13.187170Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T07:43:13.191157Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T07:43:13.191911Z"}
+{"customer_id": "62cf255e-266c-4039-9a82-c922054e0bef", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T07:43:13.194679Z"}
+{"customer_id": "62cf255e-266c-4039-9a82-c922054e0bef", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-20T07:43:13.202960Z"}
+{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-20T07:43:13.209937Z"}
   ✅ All domain metrics present
 
 ▶ Generate dashboard SVG evidence
@@ -30,15 +30,15 @@ Observability Verification — 2026-06-19T07:26:40Z
 
 ▶ Key metric samples
 customers_created_total{status="pending"} 3.0
-customers_created_created{status="pending"} 1.781854000955742e+09
+customers_created_created{status="pending"} 1.7819413931288161e+09
 kyc_submissions_total{status="verified"} 3.0
-kyc_submissions_created{status="verified"} 1.781854000966628e+09
+kyc_submissions_created{status="verified"} 1.781941393148003e+09
 pan_verifications_total{status="verified"} 3.0
-pan_verifications_created{status="verified"} 1.781854000961235e+09
+pan_verifications_created{status="verified"} 1.781941393138033e+09
 bank_verifications_total{status="verified"} 3.0
-bank_verifications_created{status="verified"} 1.7818540009629939e+09
+bank_verifications_created{status="verified"} 1.781941393140906e+09
 risk_assessments_total{band="low"} 3.0
-risk_assessments_created{band="low"} 1.781854000975084e+09
+risk_assessments_created{band="low"} 1.78194139316192e+09
 kyc_submissions_active 3.0
 
 ========================================

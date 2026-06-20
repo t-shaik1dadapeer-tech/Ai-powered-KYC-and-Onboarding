@@ -1,0 +1,20 @@
+# D6 — make observability-verify
+# Date: 2026-06-20T07:30:46Z
+
+✅ All domain metrics present
+✅ Dashboard SVG: evidence/screenshots/kyc-platform-dashboard.svg
+✅ metrics unit tests: 1 passed
+✅ Observability verification complete
+
+Key metrics in snapshot:
+  customers_created_total{status="pending"} 3.0
+  kyc_submissions_total{status="verified"} 3.0
+  pan_verifications_total{status="verified"} 3.0
+  bank_verifications_total{status="verified"} 3.0
+  risk_assessments_total{band="low"} 3.0
+
+Structured logs (JSON):
+  {"event": "application_started", "level": "info", ...}
+  {"event": "customer_created", "customer_id": "...", ...}
+  {"event": "kyc_submitted", "status": "verified", ...}
+  {"event": "risk_score_calculated", "band": "low", ...}

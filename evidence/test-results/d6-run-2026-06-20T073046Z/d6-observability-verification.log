@@ -1,0 +1,222 @@
+D6 Observability Verification — 2026-06-20T073046Z
+======================================
+
+=== 1. make observability-verify ===
+bash "/Users/shaikdadapeer/agent development/scripts/observability-verify.sh"
+Observability Verification — 2026-06-20T07:30:46Z
+========================================
+
+▶ Generate sample traffic + scrape /metrics
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T07:30:48.248020Z"}
+{"customer_id": "1d1893f8-f777-4bab-81fb-8782eb476abe", "email": "obs0@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:30:48.292815Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T07:30:48.314875Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T07:30:48.318463Z"}
+{"customer_id": "1d1893f8-f777-4bab-81fb-8782eb476abe", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T07:30:48.331063Z"}
+{"customer_id": "1d1893f8-f777-4bab-81fb-8782eb476abe", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-20T07:30:48.352515Z"}
+{"customer_id": "50756b74-4ef4-45af-8ec5-d9d073418b40", "email": "obs1@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:30:48.362574Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T07:30:48.369618Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T07:30:48.371063Z"}
+{"customer_id": "50756b74-4ef4-45af-8ec5-d9d073418b40", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T07:30:48.376060Z"}
+{"customer_id": "50756b74-4ef4-45af-8ec5-d9d073418b40", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-20T07:30:48.385065Z"}
+{"customer_id": "da66684d-3ce7-40f0-9ffc-097cbec23422", "email": "obs2@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:30:48.392674Z"}
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T07:30:48.399129Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T07:30:48.400107Z"}
+{"customer_id": "da66684d-3ce7-40f0-9ffc-097cbec23422", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T07:30:48.405655Z"}
+{"customer_id": "da66684d-3ce7-40f0-9ffc-097cbec23422", "score": 15, "band": "low", "event": "risk_score_calculated", "level": "info", "timestamp": "2026-06-20T07:30:48.414110Z"}
+{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-20T07:30:48.420495Z"}
+  ✅ All domain metrics present
+
+▶ Generate dashboard SVG evidence
+  ✅ Dashboard SVG: /Users/shaikdadapeer/agent development/evidence/screenshots/kyc-platform-dashboard.svg
+
+▶ Run metrics unit tests
+.                                                                        [100%]
+1 passed in 0.08s
+
+▶ Key metric samples
+customers_created_total{status="pending"} 3.0
+customers_created_created{status="pending"} 1.781940648292737e+09
+kyc_submissions_total{status="verified"} 3.0
+kyc_submissions_created{status="verified"} 1.781940648331021e+09
+pan_verifications_total{status="verified"} 3.0
+pan_verifications_created{status="verified"} 1.781940648314975e+09
+bank_verifications_total{status="verified"} 3.0
+bank_verifications_created{status="verified"} 1.781940648318537e+09
+risk_assessments_total{band="low"} 3.0
+risk_assessments_created{band="low"} 1.781940648352472e+09
+kyc_submissions_active 3.0
+
+========================================
+✅ Observability verification complete
+Metrics: /Users/shaikdadapeer/agent development/evidence/observability-results/metrics-snapshot.txt
+Dashboard: /Users/shaikdadapeer/agent development/evidence/screenshots/kyc-platform-dashboard.svg
+Grafana JSON: infra/grafana/dashboards/kyc-platform.json
+
+=== 2. Bring up compose stack (api + prometheus + grafana) ===
+ Network docker_kyc-net  Creating
+ Network docker_kyc-net  Created
+ Container docker-postgres-1  Creating
+ Container docker-postgres-1  Created
+ Container docker-onboarding-api-1  Creating
+ Container docker-onboarding-api-1  Created
+ Container docker-prometheus-1  Creating
+ Container docker-prometheus-1  Created
+ Container docker-grafana-1  Creating
+ Container docker-grafana-1  Created
+ Container docker-postgres-1  Starting
+ Container docker-postgres-1  Started
+ Container docker-postgres-1  Waiting
+ Container docker-postgres-1  Healthy
+ Container docker-onboarding-api-1  Starting
+ Container docker-onboarding-api-1  Started
+ Container docker-onboarding-api-1  Waiting
+ Container docker-onboarding-api-1  Healthy
+ Container docker-prometheus-1  Starting
+ Container docker-prometheus-1  Started
+ Container docker-prometheus-1  Waiting
+ Container docker-prometheus-1  Healthy
+ Container docker-grafana-1  Starting
+ Container docker-grafana-1  Started
+
+=== 3. Wait for health ===
+All services healthy after 4 attempts
+
+=== 4. Sample traffic to API ===
+{"id":"37ab4a86-06b7-4563-bae7-f8d7999fd59d","full_name":"D6 User 1","email":"d6
+{"id":"2b8f0d44-c7da-4033-ac87-7c422f0bd8d5","full_name":"D6 User 2","email":"d6
+{"id":"88178ff3-74b1-468e-9bc7-1c50a23b0522","full_name":"D6 User 3","email":"d6
+{"id":"43503ec8-de6d-47e7-b966-77d9b8747e87","full_name":"D6 User 4","email":"d6
+{"id":"6560a280-b1ff-4836-a8d2-1d29adda5795","full_name":"D6 User 5","email":"d6
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+
+=== 5. /metrics endpoint ===
+http_requests_total{method="GET",path="/health",status="200"} 7.0
+http_requests_total{method="POST",path="/customers",status="201"} 5.0
+customers_created_total{status="pending"} 5.0
+
+=== 6. Prometheus targets ===
+onboarding-api up 
+
+=== 7. Prometheus query (http_requests_total) ===
+{
+    "status": "success",
+    "data": {
+        "resultType": "vector",
+        "result": [
+            {
+                "metric": {},
+                "value": [
+                    1781940692.172,
+                    "3"
+                ]
+            }
+        ]
+    }
+}
+
+=== 8. Grafana datasources ===
+[
+    {
+        "id": 1,
+        "uid": "prometheus",
+        "orgId": 1,
+        "name": "Prometheus",
+        "type": "prometheus",
+        "typeName": "Prometheus",
+        "typeLogoUrl": "public/app/plugins/datasource/prometheus/img/prometheus_logo.svg",
+        "access": "proxy",
+        "url": "http://prometheus:9090",
+        "user": "",
+        "database": "",
+        "basicAuth": false,
+        "isDefault": true,
+        "jsonData": {},
+        "readOnly": true
+    }
+]
+
+=== 9. Grafana dashboards ===
+(eval):63: no matches found: http://127.0.0.1:3003/api/search?type=dash-db
+Expecting value: line 1 column 1 (char 0)
+=== 9. Grafana dashboards (quoted URL) ===
+[
+    {
+        "id": 2,
+        "uid": "ai-powered-kyc-platform-api",
+        "title": "AI-Powered KYC Platform API",
+        "uri": "db/ai-powered-kyc-platform-api",
+        "url": "/d/ai-powered-kyc-platform-api/ai-powered-kyc-platform-api",
+        "slug": "",
+        "type": "dash-db",
+        "tags": [
+            "ai-powered",
+            "d6",
+            "kyc-platform",
+            "onboarding-api"
+        ],
+        "isStarred": false,
+        "folderId": 1,
+        "folderUid": "cfpoo7rxc2zgga",
+        "folderTitle": "AI-Powered KYC Platform",
+        "folderUrl": "/dashboards/f/cfpoo7rxc2zgga/AI-Powered KYC Platform",
+        "sortMeta": 0,
+        "isDeleted": false
+    }
+]
+
+=== 9b. Prometheus domain metrics after traffic ===
+{
+    "status": "success",
+    "data": {
+        "resultType": "vector",
+        "result": []
+    }
+}
+{
+    "status": "success",
+    "data": {
+        "resultType": "vector",
+        "result": []
+    }
+}
+
+=== 10. Container logs (structured JSON) ===
+onboarding-api-1  | INFO:     172.21.0.1:50690 - "POST /customers HTTP/1.1" 201 Created
+onboarding-api-1  | {"customer_id": "43503ec8-de6d-47e7-b966-77d9b8747e87", "email": "d6-4@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:31:31.957822Z"}
+onboarding-api-1  | INFO:     172.21.0.1:50706 - "POST /customers HTTP/1.1" 201 Created
+onboarding-api-1  | {"customer_id": "6560a280-b1ff-4836-a8d2-1d29adda5795", "email": "d6-5@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T07:31:31.985110Z"}
+onboarding-api-1  | INFO:     172.21.0.1:50714 - "POST /customers HTTP/1.1" 201 Created
+onboarding-api-1  | INFO:     172.21.0.1:50716 - "GET /health HTTP/1.1" 200 OK
+onboarding-api-1  | INFO:     172.21.0.1:50726 - "GET /metrics HTTP/1.1" 200 OK
+onboarding-api-1  | INFO:     127.0.0.1:48036 - "GET /health HTTP/1.1" 200 OK
+
+=== 11. Load generation (health burst) ===
+200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 200 
+
+=== 12. Metrics after load ===
+http_requests_total{method="GET",path="/health",status="200"} 58.0
+
+=== 13. Prometheus scrape after load ===
+{
+    "status": "success",
+    "data": {
+        "resultType": "vector",
+        "result": [
+            {
+                "metric": {
+                    "__name__": "http_requests_total",
+                    "instance": "onboarding-api:8000",
+                    "job": "onboarding-api",
+                    "method": "GET",
+                    "path": "/health",
+                    "service": "onboarding-api",
+                    "status": "200"
+                },
+                "value": [
+                    1781940722.18,
+                    "59"
+                ]
+            }
+        ]
+    }
+}
