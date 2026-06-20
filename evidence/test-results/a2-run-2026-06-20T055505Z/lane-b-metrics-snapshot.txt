@@ -1,0 +1,56 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 1044.0
+python_gc_objects_collected_total{generation="1"} 433.0
+python_gc_objects_collected_total{generation="2"} 35.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 225.0
+python_gc_collections_total{generation="1"} 20.0
+python_gc_collections_total{generation="2"} 1.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="9",patchlevel="6",version="3.9.6"} 1.0
+# HELP http_requests_total Total HTTP requests
+# TYPE http_requests_total counter
+http_requests_total{method="GET",path="/health",status="200"} 3.0
+# HELP http_requests_created Total HTTP requests
+# TYPE http_requests_created gauge
+http_requests_created{method="GET",path="/health",status="200"} 1.781934969710646e+09
+# HELP http_request_duration_seconds HTTP request latency in seconds
+# TYPE http_request_duration_seconds histogram
+http_request_duration_seconds_bucket{le="0.01",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="0.025",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="0.05",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="0.1",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="0.25",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="0.5",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="1.0",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="2.5",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="5.0",method="GET",path="/health"} 3.0
+http_request_duration_seconds_bucket{le="+Inf",method="GET",path="/health"} 3.0
+http_request_duration_seconds_count{method="GET",path="/health"} 3.0
+http_request_duration_seconds_sum{method="GET",path="/health"} 0.013654582999999887
+# HELP http_request_duration_seconds_created HTTP request latency in seconds
+# TYPE http_request_duration_seconds_created gauge
+http_request_duration_seconds_created{method="GET",path="/health"} 1.781934969710725e+09
+# HELP customers_created_total Total customers created
+# TYPE customers_created_total counter
+# HELP kyc_submissions_total Total KYC submissions
+# TYPE kyc_submissions_total counter
+# HELP pan_verifications_total Total PAN verification attempts
+# TYPE pan_verifications_total counter
+# HELP bank_verifications_total Total bank verification attempts
+# TYPE bank_verifications_total counter
+# HELP risk_assessments_total Total risk score calculations
+# TYPE risk_assessments_total counter
+# HELP risk_score_histogram Observed risk scores
+# TYPE risk_score_histogram histogram
+# HELP kyc_submissions_active KYC submissions currently in verified status (cumulative successful count proxy)
+# TYPE kyc_submissions_active gauge
+kyc_submissions_active 0.0

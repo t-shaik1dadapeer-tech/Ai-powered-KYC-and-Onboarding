@@ -1,0 +1,4 @@
+=== Step 4: Lane B independent tests ===
+Note: worktrees omit gitignored .venv; using main repo venv against lane checkout
+metrics lines: 56
+PASS: observability metrics scrape

@@ -1,0 +1,72 @@
+=== Step 7: Final verification — make test ===
+bash "/Users/shaikdadapeer/agent development/scripts/run-all-tests.sh"
+Platform Test Run — 2026-06-20T05:56:33Z
+========================================
+
+▶ onboarding-api pytest + coverage
+  ✅ PASS: onboarding-api pytest + coverage
+
+▶ intelligence pytest + coverage
+  ✅ PASS: intelligence pytest + coverage
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e tests
+  ✅ PASS: platform e2e tests
+
+========================================
+TOTAL: 5 passed, 0 failed
+
+
+=== Step 7: Final verification — make ci-local ===
+bash "/Users/shaikdadapeer/agent development/scripts/ci-local.sh"
+Local CI Run — 2026-06-20T05:57:08Z
+=========================
+
+▶ ruff onboarding-api
+  ✅ PASS: ruff onboarding-api
+
+▶ ruff intelligence
+  ✅ PASS: ruff intelligence
+
+▶ node lint
+  ✅ PASS: node lint
+
+▶ rust fmt + clippy
+  ✅ PASS: rust fmt + clippy
+
+▶ onboarding-api pytest
+  ✅ PASS: onboarding-api pytest
+
+▶ intelligence pytest
+  ✅ PASS: intelligence pytest
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e
+  ✅ PASS: platform e2e
+
+▶ load test
+  ✅ PASS: load test
+
+▶ terraform validate
+  ❌ FAIL: terraform validate
+
+▶ kubernetes dry-run
+  ✅ PASS: kubernetes dry-run
+
+▶ docker compose build
+  ❌ FAIL: docker compose build
+
+=========================
+TOTAL: 11 passed, 2 failed
+
+make: *** [ci-local] Error 1
