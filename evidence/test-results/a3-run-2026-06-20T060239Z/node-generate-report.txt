@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "outputDir": "/Users/shaikdadapeer/agent development/evidence/test-results/a3-run-2026-06-20T060239Z/reports",
+  "summary": {
+    "repository": "/Users/shaikdadapeer/agent development/services/onboarding-api",
+    "framework": "fastapi",
+    "confidence": 1,
+    "services": 6,
+    "controllers": 6,
+    "apis": 9,
+    "models": 5,
+    "tests": 26,
+    "dependencies": 19,
+    "flow_traces": 9,
+    "output_dir": "/Users/shaikdadapeer/agent development/evidence/test-results/a3-run-2026-06-20T060239Z/reports"
+  }
+}

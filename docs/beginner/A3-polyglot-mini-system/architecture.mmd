@@ -1,0 +1,26 @@
+```mermaid
+flowchart TB
+    subgraph operational["Operational KYC path"]
+        NC[Node CLI<br/>clients/node-cli]
+        API[FastAPI<br/>services/onboarding-api]
+        PYRISK[Python RiskScoreService<br/>app/services/risk_score_service.py]
+        DB[(SQLite / Postgres)]
+        NC -->|HTTP JSON<br/>POST /customers, /kyc| API
+        API --> DB
+        API --> PYRISK
+        PYRISK --> DB
+    end
+
+    subgraph intelligence["Repository intelligence path"]
+        NC2[Node CLI<br/>generate-report]
+        INTEL[Python Intelligence<br/>engines/intelligence]
+        RUST[Rust Analyzer<br/>engines/rust-analyzer]
+        REPORTS[Report artifacts<br/>api-map, er-diagram, flow-traces]
+        NC2 -->|spawnSync python -m intelligence.cli| INTEL
+        INTEL -->|subprocess rust-analyzer scan| RUST
+        RUST -->|JSON ScanResult| INTEL
+        INTEL --> REPORTS
+    end
+
+    NC -.->|same binary| NC2
+```

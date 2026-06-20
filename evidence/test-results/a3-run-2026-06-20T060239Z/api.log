@@ -1,0 +1,13 @@
+INFO:     Started server process [38089]
+INFO:     Waiting for application startup.
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T06:02:40.200597Z"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8113 (Press CTRL+C to quit)
+INFO:     127.0.0.1:62874 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62875 - "GET /health HTTP/1.1" 200 OK
+{"customer_id": "92343be3-7195-41fb-9266-2c2bbd8d6be3", "email": "a3-1781935360@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T06:02:40.520881Z"}
+INFO:     127.0.0.1:62876 - "POST /customers HTTP/1.1" 201 Created
+{"pan_hash": "6442fd73", "event": "pan_verification_success", "level": "info", "timestamp": "2026-06-20T06:02:40.781930Z"}
+{"ifsc": "HDFC0001234", "event": "bank_verification_success", "level": "info", "timestamp": "2026-06-20T06:02:40.786046Z"}
+{"customer_id": "92343be3-7195-41fb-9266-2c2bbd8d6be3", "status": "verified", "event": "kyc_submitted", "level": "info", "timestamp": "2026-06-20T06:02:40.799024Z"}
+INFO:     127.0.0.1:62877 - "POST /kyc HTTP/1.1" 201 Created

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "customerId": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+  "kycSubmissionId": "ab6a809d-783d-4c13-8229-f11730bb4537",
+  "status": "verified",
+  "panStatus": "verified",
+  "bankStatus": "verified",
+  "raw": {
+    "customer_id": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+    "kyc_submission_id": "ab6a809d-783d-4c13-8229-f11730bb4537",
+    "status": "verified",
+    "rejection_reason": null,
+    "pan_verification_status": "verified",
+    "bank_verification_status": "verified",
+    "submitted_at": "2026-06-20T06:02:40.777229",
+    "verified_at": "2026-06-20T06:02:40.792565"
+  }
+}

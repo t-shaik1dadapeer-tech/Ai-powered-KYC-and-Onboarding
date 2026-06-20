@@ -1,0 +1,16 @@
+total 152
+drwxr-xr-x  15 shaikdadapeer  staff    480 Jun 20 11:32 .
+drwxr-xr-x  11 shaikdadapeer  staff    352 Jun 20 11:32 ..
+-rw-r--r--   1 shaikdadapeer  staff  29174 Jun 20 11:32 analysis-manifest.json
+-rw-r--r--   1 shaikdadapeer  staff    732 Jun 20 11:32 api-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff    961 Jun 20 11:32 api-map.md
+-rw-r--r--   1 shaikdadapeer  staff    382 Jun 20 11:32 controller-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff    893 Jun 20 11:32 dependency-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff    516 Jun 20 11:32 er-diagram.mmd
+drwxr-xr-x  11 shaikdadapeer  staff    352 Jun 20 11:32 flow-docs
+-rw-r--r--   1 shaikdadapeer  staff   5852 Jun 20 11:32 flow-tracing-report.md
+-rw-r--r--   1 shaikdadapeer  staff    378 Jun 20 11:32 model-inventory.md
+drwxr-xr-x  11 shaikdadapeer  staff    352 Jun 20 11:32 sequence-diagrams
+-rw-r--r--   1 shaikdadapeer  staff    492 Jun 20 11:32 service-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff   1716 Jun 20 11:32 test-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff   1440 Jun 20 11:32 uncertainty-report.md

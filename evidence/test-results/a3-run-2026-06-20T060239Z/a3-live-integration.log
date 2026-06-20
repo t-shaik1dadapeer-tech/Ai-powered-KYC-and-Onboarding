@@ -1,0 +1,92 @@
+=== A3 Live Integration ===
+Timestamp: 2026-06-20T06:02:39Z
+
+=== 1. FastAPI startup ===
+API healthy on :8113 after 3s
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+=== 2. Node CLI → FastAPI (KYC path) ===
+{
+  "ok": true,
+  "customerId": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+  "status": "pending",
+  "email": "a3-1781935360@example.com",
+  "raw": {
+    "id": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+    "full_name": "A3 User",
+    "email": "a3-1781935360@example.com",
+    "phone": "9876543210",
+    "status": "pending",
+    "created_at": "2026-06-20T06:02:40",
+    "updated_at": "2026-06-20T06:02:40"
+  }
+}
+Customer ID: 92343be3-7195-41fb-9266-2c2bbd8d6be3
+{
+  "ok": true,
+  "customerId": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+  "kycSubmissionId": "ab6a809d-783d-4c13-8229-f11730bb4537",
+  "status": "verified",
+  "panStatus": "verified",
+  "bankStatus": "verified",
+  "raw": {
+    "customer_id": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+    "kyc_submission_id": "ab6a809d-783d-4c13-8229-f11730bb4537",
+    "status": "verified",
+    "rejection_reason": null,
+    "pan_verification_status": "verified",
+    "bank_verification_status": "verified",
+    "submitted_at": "2026-06-20T06:02:40.777229",
+    "verified_at": "2026-06-20T06:02:40.792565"
+  }
+}
+
+=== 3. Rust scoring engine (repository risk) ===
+{
+  "score": 55,
+  "band": "medium",
+  "factors": {
+    "avg_lines_per_file": 31.15,
+    "dependency_count": 13,
+    "secret_pattern_hits": 0,
+    "test_files": 9,
+    "test_ratio": 0.15,
+    "total_files": 60
+  }
+}
+
+=== 4. Node → Python intelligence → Rust (generate-report) ===
+{
+  "ok": true,
+  "outputDir": "/Users/shaikdadapeer/agent development/evidence/test-results/a3-run-2026-06-20T060239Z/reports",
+  "summary": {
+    "repository": "/Users/shaikdadapeer/agent development/services/onboarding-api",
+    "framework": "fastapi",
+    "confidence": 1,
+    "services": 6,
+    "controllers": 6,
+    "apis": 9,
+    "models": 5,
+    "tests": 26,
+    "dependencies": 19,
+    "flow_traces": 9,
+    "output_dir": "/Users/shaikdadapeer/agent development/evidence/test-results/a3-run-2026-06-20T060239Z/reports"
+  }
+}
+total 152
+drwxr-xr-x  15 shaikdadapeer  staff    480 Jun 20 11:32 .
+drwxr-xr-x  11 shaikdadapeer  staff    352 Jun 20 11:32 ..
+-rw-r--r--   1 shaikdadapeer  staff  29174 Jun 20 11:32 analysis-manifest.json
+-rw-r--r--   1 shaikdadapeer  staff    732 Jun 20 11:32 api-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff    961 Jun 20 11:32 api-map.md
+-rw-r--r--   1 shaikdadapeer  staff    382 Jun 20 11:32 controller-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff    893 Jun 20 11:32 dependency-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff    516 Jun 20 11:32 er-diagram.mmd
+drwxr-xr-x  11 shaikdadapeer  staff    352 Jun 20 11:32 flow-docs
+-rw-r--r--   1 shaikdadapeer  staff   5852 Jun 20 11:32 flow-tracing-report.md
+-rw-r--r--   1 shaikdadapeer  staff    378 Jun 20 11:32 model-inventory.md
+drwxr-xr-x  11 shaikdadapeer  staff    352 Jun 20 11:32 sequence-diagrams
+-rw-r--r--   1 shaikdadapeer  staff    492 Jun 20 11:32 service-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff   1716 Jun 20 11:32 test-inventory.md
+-rw-r--r--   1 shaikdadapeer  staff   1440 Jun 20 11:32 uncertainty-report.md
+
+EVIDENCE_DIR=/Users/shaikdadapeer/agent development/evidence/test-results/a3-run-2026-06-20T060239Z

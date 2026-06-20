@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "customerId": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+  "status": "pending",
+  "email": "a3-1781935360@example.com",
+  "raw": {
+    "id": "92343be3-7195-41fb-9266-2c2bbd8d6be3",
+    "full_name": "A3 User",
+    "email": "a3-1781935360@example.com",
+    "phone": "9876543210",
+    "status": "pending",
+    "created_at": "2026-06-20T06:02:40",
+    "updated_at": "2026-06-20T06:02:40"
+  }
+}

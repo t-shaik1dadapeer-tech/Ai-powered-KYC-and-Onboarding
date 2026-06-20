@@ -1,0 +1,30 @@
+# A3 Polyglot Mini-System — Test Results
+
+**Run:** 2026-06-20T06:02:39Z
+
+## Build
+
+```
+cargo build --release → Finished release profile
+```
+
+## Test suites
+
+| Suite | Result |
+|-------|--------|
+| make test-api | 28 passed, 98% cov |
+| make test-node | 17 passed |
+| make test-rust | 10 passed (8 unit + 2 integration) |
+| make test-intelligence | 18 passed |
+| make test-e2e | 4 passed |
+| **Total** | **77 passed, 0 failed** |
+
+## Live integration
+
+| Step | Result |
+|------|--------|
+| FastAPI :8113 health | healthy |
+| Node customer-create | ok, UUID 92343be3-... |
+| Node submit-kyc | verified |
+| rust-analyzer risk | score 55, medium |
+| generate-report | 13 files, rust_scan in manifest |
