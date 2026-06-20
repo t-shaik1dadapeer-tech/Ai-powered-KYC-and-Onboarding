@@ -27,7 +27,8 @@ pub fn parse_python(relative: &str, content: &str) -> ParsedFile {
             .filter_map(|c| c.get(1).map(|m| m.as_str().to_string())),
     );
 
-    let test_file = Path::new(relative).file_name()
+    let test_file = Path::new(relative)
+        .file_name()
         .and_then(|n| n.to_str())
         .map(|n| n.starts_with("test_") || relative.contains("/tests/"))
         .unwrap_or(false);

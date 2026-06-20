@@ -6,7 +6,10 @@ use clap::{Parser, Subcommand};
 use rust_analyzer::scan_repository;
 
 #[derive(Parser)]
-#[command(name = "rust-analyzer", about = "Repository parser and risk calculator")]
+#[command(
+    name = "rust-analyzer",
+    about = "Repository parser and risk calculator"
+)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,

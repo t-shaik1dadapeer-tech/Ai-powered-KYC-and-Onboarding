@@ -54,7 +54,10 @@ pub fn calculate_risk(
     if dependency_count > 30 {
         score += 5.0;
     }
-    factors.insert("dependency_count".into(), serde_json::json!(dependency_count));
+    factors.insert(
+        "dependency_count".into(),
+        serde_json::json!(dependency_count),
+    );
 
     factors.insert("total_files".into(), serde_json::json!(total));
     factors.insert("test_files".into(), serde_json::json!(test_count));

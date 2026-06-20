@@ -17,7 +17,12 @@ log "======================"
 
 cd "$ROOT/services/onboarding-api"
 
-PYTHONPATH=. .venv/bin/python3 - <<'PY' | tee -a "$LOG"
+PYTHON="$ROOT/services/onboarding-api/.venv/bin/python3"
+if [[ ! -x "$PYTHON" ]]; then
+  PYTHON="python3"
+fi
+
+PYTHONPATH=. "$PYTHON" - <<'PY' | tee -a "$LOG"
 import asyncio
 import time
 from httpx import ASGITransport, AsyncClient

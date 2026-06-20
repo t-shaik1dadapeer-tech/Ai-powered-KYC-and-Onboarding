@@ -71,8 +71,14 @@ mod tests {
     #[test]
     fn builds_edges_between_files() {
         let files = vec![
-            pf("app/routers/customers.py", vec!["app.services.customer_service"]),
-            pf("app/services/customer_service.py", vec!["app.repositories.customer_repository"]),
+            pf(
+                "app/routers/customers.py",
+                vec!["app.services.customer_service"],
+            ),
+            pf(
+                "app/services/customer_service.py",
+                vec!["app.repositories.customer_repository"],
+            ),
             pf("app/repositories/customer_repository.py", vec![]),
         ];
         let edges = build_import_graph(&files);

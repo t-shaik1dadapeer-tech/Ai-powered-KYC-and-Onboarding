@@ -119,7 +119,10 @@ fn should_skip_dir(path: &Path, root: &Path, ignore_patterns: &[String]) -> bool
         if SKIP_DIRS.contains(&name) {
             return true;
         }
-        if ignore_patterns.iter().any(|p| name == p.trim_end_matches('/')) {
+        if ignore_patterns
+            .iter()
+            .any(|p| name == p.trim_end_matches('/'))
+        {
             return true;
         }
     }
