@@ -1,0 +1,6 @@
+lane_id,branch,worktree_path,scope,deliverables,dependencies,files_likely,merge_order,conflict_risk
+L1-analysis,analysis-worktree,.worktrees/analysis,Repository intelligence and Rust analyzer,CLI reports flow traces API maps,none,engines/intelligence/; engines/rust-analyzer/; evidence/api-maps/,1,low
+L2-observability,observability-worktree,.worktrees/observability,Metrics Grafana Prometheus dashboards,metrics catalog dashboard JSON,none,infra/grafana/; infra/prometheus/; docs/observability/; app/core/metrics.py,2,medium
+L3-api-migrations,feature/api-migrations,.worktrees/api-migrations,Alembic schema migrations for onboarding-api,alembic/ revisions migration tests,services/onboarding-api models stable,services/onboarding-api/alembic/; app/models/,3,medium
+L4-cli-auth,feature/cli-auth,.worktrees/cli-auth,Node CLI API key header support,--api-key flag tests README,L3 optional (API auth contract),clients/node-cli/lib/api-client.js; bin/kyc-cli.js,4,low
+L5-infra-secrets,feature/devops,.worktrees/devops,Docker/K8s secrets for DB and API_KEY,compose env k8s secret refs,L3 L4 env contract,infra/docker/; infra/kubernetes/; .github/workflows/,5,low

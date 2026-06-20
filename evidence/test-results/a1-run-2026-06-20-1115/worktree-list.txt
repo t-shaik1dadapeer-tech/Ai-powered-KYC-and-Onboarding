@@ -1,0 +1,3 @@
+/Users/shaikdadapeer/agent development                           40f00f6 [main]
+/Users/shaikdadapeer/agent development/.worktrees/analysis       71fdac1 [analysis-worktree]
+/Users/shaikdadapeer/agent development/.worktrees/observability  3f1395e [observability-worktree]

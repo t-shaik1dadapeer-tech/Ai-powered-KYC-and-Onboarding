@@ -1,0 +1,7 @@
+=== A1 planning verification ===
+merge-strategy.md: PASS
+parallel-development.md: PASS
+worktree-demo.sh: PASS
+     125 docs/parallel-development.md
+     116 docs/worktrees/merge-strategy.md
+     241 total
