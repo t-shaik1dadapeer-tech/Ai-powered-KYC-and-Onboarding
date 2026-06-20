@@ -1,0 +1,4 @@
+file,change_type,reason
+services/onboarding-api/tests/test_bug001_regression.py,added,I6 regression guard for BUG-001 per-test DB isolation
+docs/beginner/I6-bug-diagnosis/I6_REPORT.md,added,I6 verification report
+evidence/test-results/i6-run-2026-06-20-1112/,added,Reproduction and verification evidence

@@ -1,0 +1,9 @@
+--- Run 1: POST /customers (no get_db override) ---
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T05:42:30.711297Z"}
+{"customer_id": "95b390a0-7d06-41e8-9e00-395467bfadbe", "email": "integration@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T05:42:30.728026Z"}
+status=201 body={"id":"95b390a0-7d06-41e8-9e00-395467bfadbe","full_name":"Repro User","email":"integration@example.com","phone":"9876543
+{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-20T05:42:30.731280Z"}
+--- Run 2: new TestClient, same email (BUG-001 symptom) ---
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T05:42:30.733032Z"}
+status=409 body={"error":{"code":"conflict","message":"Customer with email integration@example.com already exists"}}
+{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-20T05:42:30.736233Z"}
