@@ -1,0 +1,6 @@
+entity_name,table_name,source_file,line,purpose,primary_key,columns
+Customer,customers,services/onboarding-api/app/models/customer.py,11,Core onboarding customer profile,id (UUID),full_name:String(255); email:String(255) UK; phone:String(20); status:String(32); created_at:DateTime TZ; updated_at:DateTime TZ
+KycSubmission,kyc_submissions,services/onboarding-api/app/models/kyc.py,13,KYC application lifecycle per customer,id (UUID),customer_id:UUID FK; status:String(32); rejection_reason:String(512)?; submitted_at:DateTime TZ; verified_at:DateTime TZ?
+PanRecord,pan_records,services/onboarding-api/app/models/kyc.py,34,PAN verification result for a submission,id (UUID),kyc_submission_id:UUID FK UK; pan_hash:String(64); verification_status:String(32); provider_response:JSON?
+BankRecord,bank_records,services/onboarding-api/app/models/kyc.py,48,Bank account verification for a submission,id (UUID),kyc_submission_id:UUID FK UK; account_hash:String(64); ifsc:String(11); verification_status:String(32); provider_response:JSON?
+RiskAssessment,risk_assessments,services/onboarding-api/app/models/risk.py,12,Risk score snapshot for a customer,id (UUID),customer_id:UUID FK; score:Integer; band:String(16); factors:JSON; calculated_at:DateTime TZ

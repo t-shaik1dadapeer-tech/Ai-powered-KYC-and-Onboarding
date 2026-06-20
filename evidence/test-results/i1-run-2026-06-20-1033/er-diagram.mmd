@@ -1,0 +1,50 @@
+erDiagram
+    CUSTOMERS ||--o{ KYC_SUBMISSIONS : "has (customer_id FK)"
+    CUSTOMERS ||--o{ RISK_ASSESSMENTS : "has (customer_id FK)"
+    KYC_SUBMISSIONS ||--o| PAN_RECORDS : "has (kyc_submission_id FK UK)"
+    KYC_SUBMISSIONS ||--o| BANK_RECORDS : "has (kyc_submission_id FK UK)"
+
+    CUSTOMERS {
+        uuid id PK
+        string full_name
+        string email UK
+        string phone
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+
+    KYC_SUBMISSIONS {
+        uuid id PK
+        uuid customer_id FK
+        string status
+        string rejection_reason
+        datetime submitted_at
+        datetime verified_at
+    }
+
+    PAN_RECORDS {
+        uuid id PK
+        uuid kyc_submission_id FK_UK
+        string pan_hash
+        string verification_status
+        json provider_response
+    }
+
+    BANK_RECORDS {
+        uuid id PK
+        uuid kyc_submission_id FK_UK
+        string account_hash
+        string ifsc
+        string verification_status
+        json provider_response
+    }
+
+    RISK_ASSESSMENTS {
+        uuid id PK
+        uuid customer_id FK
+        int score
+        string band
+        json factors
+        datetime calculated_at
+    }

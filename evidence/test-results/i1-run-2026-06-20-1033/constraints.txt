@@ -1,0 +1,5 @@
+services/onboarding-api/app/models/customer.py:16:    email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False, index=True)
+services/onboarding-api/app/models/kyc.py:18:        ForeignKey("customers.id"), nullable=False, index=True
+services/onboarding-api/app/models/kyc.py:39:        ForeignKey("kyc_submissions.id"), unique=True, nullable=False
+services/onboarding-api/app/models/kyc.py:53:        ForeignKey("kyc_submissions.id"), unique=True, nullable=False
+services/onboarding-api/app/models/risk.py:17:        ForeignKey("customers.id"), nullable=False, index=True

@@ -1,0 +1,5 @@
+source_entity,target_entity,relationship_type,fk_column,target_column,explicit_or_inferred,source_file,evidence
+Customer,KycSubmission,One-to-Many,customer_id,customers.id,explicit,services/onboarding-api/app/models/kyc.py,ForeignKey(customers.id) line 17-18; relationship back_populates lines 20-22 25
+Customer,RiskAssessment,One-to-Many,customer_id,customers.id,explicit,services/onboarding-api/app/models/risk.py,ForeignKey(customers.id) line 16-17; relationship back_populates lines 23-24
+KycSubmission,PanRecord,One-to-One,kyc_submission_id,kyc_submissions.id,explicit,services/onboarding-api/app/models/kyc.py,ForeignKey unique line 38-39; uselist=False line 26-27
+KycSubmission,BankRecord,One-to-One,kyc_submission_id,kyc_submissions.id,explicit,services/onboarding-api/app/models/kyc.py,ForeignKey unique line 52-53; uselist=False line 29-30

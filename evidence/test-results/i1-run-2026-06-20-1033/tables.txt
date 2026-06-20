@@ -1,0 +1,5 @@
+services/onboarding-api/app/models/customer.py:12:    __tablename__ = "customers"
+services/onboarding-api/app/models/kyc.py:14:    __tablename__ = "kyc_submissions"
+services/onboarding-api/app/models/kyc.py:35:    __tablename__ = "pan_records"
+services/onboarding-api/app/models/kyc.py:49:    __tablename__ = "bank_records"
+services/onboarding-api/app/models/risk.py:13:    __tablename__ = "risk_assessments"
