@@ -1,0 +1,13 @@
+id,severity,blocking,file,category,summary
+A5-001,high,yes-prod,services/onboarding-api/app/core/config.py,security,API auth disabled when API_KEY empty
+A5-002,high,yes-prod,services/onboarding-api/app/main.py,reliability,No Alembic migrations create_all only
+A5-003,medium,no,clients/node-cli/bin/kyc-cli.js,security,API key visible in process argv
+A5-004,medium,no,tests/e2e/test_platform_e2e.py,testing,No E2E CLI with API_KEY
+A5-005,medium,no,clients/node-cli/tests/commands.test.js,testing,submit-kyc auth untested
+A5-006,medium,no,clients/node-cli/lib/api-client.js,error-handling,401 not mapped to auth_error
+A5-007,medium,no,services/onboarding-api/app/main.py,performance,Prometheus path cardinality
+A5-008,medium,no,engines/intelligence/src/intelligence/cli.py,testing,CLI lacks unit tests
+A5-009,low,no,clients/node-cli/bin/kyc-cli.js,maintainability,Duplicated --api-key option
+A5-010,low,no,scripts/modernization-rollback-m1.sh,reliability,No dirty-tree guard on rollback
+A5-011,low,no,services/onboarding-api/app/repositories/customer_repository.py,correctness,Legacy mixed-case emails
+A5-012,low,no,engines/intelligence/WORKTREE_MARKER.md,maintainability,Demo markers on main
