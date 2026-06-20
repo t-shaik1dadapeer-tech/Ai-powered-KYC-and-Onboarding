@@ -1,0 +1,106 @@
+=== D3 CI Pipeline Verification ===
+Started: 2026-06-20T06:40:17Z
+
+=== CI asset discovery ===
+GitHub Actions: .github/workflows/ci.yml
+total 16
+drwxr-xr-x  3 shaikdadapeer  staff    96 Jun 16 23:45 .
+drwxr-xr-x  6 shaikdadapeer  staff   192 Jun 18 15:16 ..
+-rw-r--r--  1 shaikdadapeer  staff  7995 Jun 19 10:15 ci.yml
+act: not installed
+GitLab CI: none
+Jenkins: none
+
+=== SUCCESS RUN: make ci-local ===
+Local CI Run — 2026-06-20T06:40:17Z
+=========================
+
+▶ ruff onboarding-api
+  ✅ PASS: ruff onboarding-api
+
+▶ ruff intelligence
+  ✅ PASS: ruff intelligence
+
+▶ node lint
+  ✅ PASS: node lint
+
+▶ rust fmt + clippy
+  ✅ PASS: rust fmt + clippy
+
+▶ onboarding-api pytest
+  ✅ PASS: onboarding-api pytest
+
+▶ intelligence pytest
+  ✅ PASS: intelligence pytest
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e
+  ✅ PASS: platform e2e
+
+▶ load test
+  ✅ PASS: load test
+
+▶ terraform validate
+  ✅ PASS: terraform validate
+
+▶ kubernetes dry-run
+  ✅ PASS: kubernetes dry-run
+
+▶ docker compose build
+  ✅ PASS: docker compose build
+
+=========================
+TOTAL: 13 passed, 0 failed
+
+✅ Local CI complete — evidence: /Users/shaikdadapeer/agent development/evidence/ci-results/phase-9-ci-local.txt
+ci-local exit: 0
+
+=== FAILURE SIMULATION 1: ruff unused import (lint stage) ===
+[1m[91mF401 [0m[[1m[96m*[0m] [1m`shutil` imported but unused[0m
+ [1m[94m-->[0m src/intelligence/_d3_lint_trap.py:2:8
+  [1m[94m|[0m
+[1m[94m1 |[0m """D3 failure simulation — removed after test."""
+[1m[94m2 |[0m import shutil  # intentional unused import for CI failure demo
+  [1m[94m|[0m        [1m[91m^^^^^^[0m
+  [1m[94m|[0m
+[1m[96mhelp[0m: [1mRemove unused import: `shutil`[0m
+
+Found 1 error.
+[[36m*[0m] 1 fixable with the `--fix` option.
+EXPECTED FAIL: ruff caught unused import (exit 1)
+
+=== FAILURE SIMULATION 2: pytest assertion (test stage) ===
+
+28 deselected in 0.03s
+EXPECTED FAIL: no tests matched / collection behavior (exit 5)
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________________ test_d3_intentional_failure __________________________
+
+    def test_d3_intentional_failure():
+>       assert 1 == 2, "D3 failure simulation"
+E       AssertionError: D3 failure simulation
+E       assert 1 == 2
+
+tests/_d3_test_trap.py:3: AssertionError
+=========================== short test summary info ============================
+FAILED tests/_d3_test_trap.py::test_d3_intentional_failure - AssertionError: ...
+1 failed in 0.24s
+
+
+pytest exit: 1
+
+=== Core stages spot-check (lint+test only) ===
+[1;32mAll checks passed![0m
+api ruff: OK
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1125.945959
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+EVIDENCE_DIR=/Users/shaikdadapeer/agent development/evidence/test-results/d3-run-2026-06-20T064017Z

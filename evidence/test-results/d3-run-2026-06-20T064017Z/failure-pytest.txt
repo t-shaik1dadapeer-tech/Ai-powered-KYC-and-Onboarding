@@ -1,0 +1,11 @@
+# D3 CI Pipeline Verification — test failure simulation
+# Date: 2026-06-20T06:40:17Z
+# Stage: test-onboarding-api (pytest) — mirrors docs/ci/failure-examples.md §2 pattern
+
+FAILED tests/_d3_test_trap.py::test_d3_intentional_failure - AssertionError: D3 failure simulation
+assert 1 == 2
+
+1 failed in 0.24s
+exit code: 1
+
+# GitHub Actions job that would fail: Test — onboarding-api

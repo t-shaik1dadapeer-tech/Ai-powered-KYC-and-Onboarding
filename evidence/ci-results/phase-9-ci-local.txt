@@ -1,4 +1,4 @@
-Local CI Run — 2026-06-19T07:26:13Z
+Local CI Run — 2026-06-20T06:40:17Z
 =========================
 
 ▶ ruff onboarding-api
@@ -57,20 +57,7 @@ Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/parser/
          .and_then(|n| n.to_str())
          .map(|n| n.starts_with("test_") || relative.contains("/tests/"))
          .unwrap_or(false);
-Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/risk/mod.rs:14:
-     pub factors: BTreeMap<String, serde_json::Value>,
- }
- 
--pub fn calculate_risk(repo_path: &Path, files: &[RepoFile], parsed: &[ParsedFile]) -> RiskAssessment {
-+pub fn calculate_risk(
-+    repo_path: &Path,
-+    files: &[RepoFile],
-+    parsed: &[ParsedFile],
-+) -> RiskAssessment {
-     let total = files.len().max(1);
-     let test_count = parsed.iter().filter(|p| p.test_file).count();
-     let test_ratio = test_count as f64 / total as f64;
-Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/risk/mod.rs:48:
+Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/risk/mod.rs:54:
      if dependency_count > 30 {
          score += 5.0;
      }
@@ -82,19 +69,6 @@ Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/risk/mo
  
      factors.insert("total_files".into(), serde_json::json!(total));
      factors.insert("test_files".into(), serde_json::json!(test_count));
-Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/risk/mod.rs:72:
- }
- 
- fn count_secret_patterns(files: &[RepoFile]) -> usize {
--    let secret_re = Regex::new(
--        r#"(?i)(api[_-]?key|password|secret|token)\s*=\s*["'][^"']+["']"#,
--    )
--    .unwrap();
-+    let secret_re =
-+        Regex::new(r#"(?i)(api[_-]?key|password|secret|token)\s*=\s*["'][^"']+["']"#).unwrap();
-     let mut hits = 0;
-     for file in files {
-         if let Ok(content) = std::fs::read_to_string(&file.path) {
 Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/main.rs:6:
  use rust_analyzer::scan_repository;
  
@@ -107,11 +81,12 @@ Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/main.rs
  struct Cli {
      #[command(subcommand)]
      command: Commands,
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s
+    Checking rust-analyzer v0.1.0 (/Users/shaikdadapeer/agent development/engines/rust-analyzer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.06s
   ✅ PASS: rust fmt + clippy
 
 ▶ onboarding-api pytest
-........................                                                 [100%]
+............................                                             [100%]
 ================================ tests coverage ================================
 _______________ coverage: platform darwin, python 3.9.6-final-0 ________________
 
@@ -139,7 +114,7 @@ app/routers/health.py                                11      0   100%
 app/routers/kyc.py                                   13      0   100%
 app/routers/risk.py                                   9      0   100%
 app/routers/verification.py                          12      0   100%
-app/schemas/customer.py                              23      0   100%
+app/schemas/customer.py                              27      0   100%
 app/schemas/kyc.py                                   43      3    93%   24, 32, 40
 app/schemas/risk.py                                  13      0   100%
 app/schemas/validators.py                             3      0   100%
@@ -151,56 +126,58 @@ app/services/pan_verification_service.py             16      0   100%
 app/services/risk_score_service.py                   49      1    98%   24
 app/services/standalone_verification_service.py      21      0   100%
 -------------------------------------------------------------------------------
-TOTAL                                               656     15    98%
-24 passed in 0.69s
+TOTAL                                               660     15    98%
+28 passed in 1.35s
   ✅ PASS: onboarding-api pytest
 
 ▶ intelligence pytest
 ..................                                                       [100%]
-18 passed in 1.34s
+18 passed in 4.63s
   ✅ PASS: intelligence pytest
 
 ▶ node-cli tests
 ▶ ApiClient
-  ✔ creates customer via POST /customers (0.980209ms)
-  ✔ throws ApiError on HTTP error response (0.462291ms)
-  ✔ throws ApiError on network failure (0.216208ms)
-✔ ApiClient (2.556833ms)
+  ✔ creates customer via POST /customers (3.07675ms)
+  ✔ throws ApiError on HTTP error response (1.218417ms)
+  ✔ throws ApiError on network failure (0.547375ms)
+  ✔ sends X-API-Key header when apiKey is configured (0.29925ms)
+✔ ApiClient (8.443125ms)
 ▶ commands
-  ✔ customer-create validates before API call (0.8495ms)
-  ✔ customer-create calls API with validated payload (0.432334ms)
-  ✔ submit-kyc validates PAN and IFSC (0.19875ms)
-  ✔ submit-kyc submits to API (0.302209ms)
-✔ commands (2.635958ms)
+  ✔ customer-create validates before API call (4.504958ms)
+  ✔ customer-create calls API with validated payload (1.212583ms)
+  ✔ customer-create passes api key to ApiClient (4.057583ms)
+  ✔ submit-kyc validates PAN and IFSC (1.807833ms)
+  ✔ submit-kyc submits to API (0.751833ms)
+✔ commands (17.7125ms)
 ▶ generate-report command
-  ✔ runs intelligence analyzer on onboarding-api (390.634458ms)
-✔ generate-report command (391.430584ms)
+  ✔ runs intelligence analyzer on onboarding-api (792.582209ms)
+✔ generate-report command (795.030125ms)
 ▶ validators
-  ✔ validates PAN format (0.668625ms)
-  ✔ rejects invalid PAN (0.932417ms)
-  ✔ validates IFSC format (0.113375ms)
-  ✔ rejects invalid IFSC (0.11825ms)
-  ✔ validates account number (0.118791ms)
-  ✔ rejects non-numeric account (0.087333ms)
-  ✔ validates email and phone (0.111042ms)
-  ✔ validates full name length (0.083416ms)
-  ✔ validates customer UUID (0.176583ms)
-✔ validators (3.832916ms)
-ℹ tests 17
+  ✔ validates PAN format (1.599709ms)
+  ✔ rejects invalid PAN (2.65175ms)
+  ✔ validates IFSC format (0.316291ms)
+  ✔ rejects invalid IFSC (2.045458ms)
+  ✔ validates account number (0.367917ms)
+  ✔ rejects non-numeric account (0.212917ms)
+  ✔ validates email and phone (0.257334ms)
+  ✔ validates full name length (0.423625ms)
+  ✔ validates customer UUID (0.629125ms)
+✔ validators (16.646542ms)
+ℹ tests 19
 ℹ suites 4
-ℹ pass 17
+ℹ pass 19
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 549.778834
+ℹ duration_ms 1182.857042
   ✅ PASS: node-cli tests
 
 ▶ rust-analyzer cargo test
 
 running 8 tests
 ........
-test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.58s
 
 
 running 0 tests
@@ -210,7 +187,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 running 2 tests
 ..
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.25s
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.72s
 
 
 running 0 tests
@@ -221,15 +198,15 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ▶ platform e2e
 ....                                                                     [100%]
-4 passed in 1.17s
+4 passed in 5.39s
   ✅ PASS: platform e2e
 
 ▶ load test
-Load Test — 2026-06-19T07:26:23Z
+Load Test — 2026-06-20T06:40:50Z
 ======================
 requests=200 concurrency=20
-duration_s=0.377 rps=531.2
-p50_ms=31.40 p95_ms=56.15 errors=0
+duration_s=1.085 rps=184.4
+p50_ms=76.57 p95_ms=264.41 errors=0
 PASS
 
 ✅ Load test complete
@@ -237,7 +214,7 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/performance/load-test.
   ✅ PASS: load test
 
 ▶ terraform validate
-Terraform Verification — 2026-06-19T07:26:25Z
+Terraform Verification — 2026-06-20T06:40:55Z
 =====================================
 ▶ terraform init
   ✅ init OK
@@ -253,7 +230,7 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/terraform-results/terr
   ✅ PASS: terraform validate
 
 ▶ kubernetes dry-run
-Kubernetes Verification — 2026-06-19T07:26:27Z
+Kubernetes Verification — 2026-06-20T06:40:58Z
 ======================================
 ▶ found: kyc-platform.yaml
 ▶ found: onboarding-api-deployment.yaml
@@ -273,21 +250,21 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify
 #1 DONE 0.0s
 
 #2 [onboarding-api internal] load metadata for docker.io/library/python:3.12-slim
-#2 DONE 1.0s
+#2 DONE 1.4s
 
-#3 [onboarding-api] resolving provenance for metadata file
+#3 [onboarding-api internal] load .dockerignore
+#3 transferring context: 121B done
 #3 DONE 0.0s
 
-#4 [onboarding-api internal] load .dockerignore
-#4 transferring context: 121B done
+#4 [onboarding-api 1/6] FROM docker.io/library/python:3.12-slim@sha256:d764629ce0ddd8c71fd371e9901efb324a95789d2315a47db7e4d27e78f1b0e9
 #4 DONE 0.0s
 
-#5 [onboarding-api 1/6] FROM docker.io/library/python:3.12-slim@sha256:d764629ce0ddd8c71fd371e9901efb324a95789d2315a47db7e4d27e78f1b0e9
+#5 [onboarding-api internal] load build context
+#5 transferring context: 1.72kB done
 #5 DONE 0.0s
 
-#6 [onboarding-api internal] load build context
-#6 transferring context: 1.72kB done
-#6 DONE 0.0s
+#6 [onboarding-api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
 
 #7 [onboarding-api 2/6] WORKDIR /app
 #7 CACHED
@@ -295,19 +272,19 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify
 #8 [onboarding-api 4/6] COPY requirements.txt .
 #8 CACHED
 
-#9 [onboarding-api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#9 [onboarding-api 5/6] RUN pip install -r requirements.txt
 #9 CACHED
 
-#10 [onboarding-api 5/6] RUN pip install -r requirements.txt
+#10 [onboarding-api 6/6] COPY app ./app
 #10 CACHED
 
-#11 [onboarding-api 6/6] COPY app ./app
-#11 CACHED
+#11 [onboarding-api] exporting to image
+#11 exporting layers done
+#11 writing image sha256:d4635102b25fbb2318103f609c4cf734f24dfd7f9a56ecfb4efbab3209477b2c done
+#11 naming to docker.io/library/docker-onboarding-api done
+#11 DONE 0.0s
 
-#12 [onboarding-api] exporting to image
-#12 exporting layers done
-#12 writing image sha256:4f2b0676e81c3eb09a28c40bd9edd7cf7f95ad8c0ea542f5c6a9ba71b02f9746 done
-#12 naming to docker.io/library/docker-onboarding-api done
+#12 [onboarding-api] resolving provenance for metadata file
 #12 DONE 0.0s
  onboarding-api  Built
   ✅ PASS: docker compose build
