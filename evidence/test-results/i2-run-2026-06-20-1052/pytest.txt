@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/shaikdadapeer/agent development/services/onboarding-api/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/shaikdadapeer/agent development/services/onboarding-api
+configfile: pyproject.toml
+plugins: anyio-4.12.1, asyncio-1.2.0, cov-7.1.0
+asyncio: mode=auto, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 7 items
+
+tests/test_integration.py::test_full_kyc_onboarding_flow PASSED          [ 14%]
+tests/test_integration.py::test_health_and_metrics_available PASSED      [ 28%]
+tests/test_kyc.py::test_submit_kyc_success PASSED                        [ 42%]
+tests/test_kyc.py::test_submit_kyc_invalid_pan PASSED                    [ 57%]
+tests/test_kyc.py::test_submit_kyc_rejected_pan PASSED                   [ 71%]
+tests/test_kyc.py::test_get_kyc_status PASSED                            [ 85%]
+tests/test_kyc.py::test_get_kyc_status_not_found PASSED                  [100%]
+
+============================== 7 passed in 0.15s ===============================

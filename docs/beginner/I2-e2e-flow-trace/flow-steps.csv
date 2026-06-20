@@ -1,0 +1,26 @@
+step,layer,file,function,purpose,input,output,verified
+1,middleware,services/onboarding-api/app/main.py,MetricsMiddleware.dispatch,HTTP metrics timing,Request,Response + counter/histogram,yes
+2,middleware,services/onboarding-api/app/core/auth.py,ApiKeyMiddleware.dispatch,Optional API key gate,Request headers,401 or pass-through,yes
+3,validation,services/onboarding-api/app/schemas/kyc.py,KycSubmitRequest,Parse and validate JSON body,HTTP JSON body,KycSubmitRequest model,yes
+4,router,services/onboarding-api/app/routers/kyc.py,submit_kyc,HTTP entry POST /kyc,KycSubmitRequest + Session,KycStatusResponse,yes
+5,service,services/onboarding-api/app/services/kyc_service.py,KycService.submit_kyc,Orchestrate KYC flow,KycSubmitRequest,KycStatusResponse,yes
+6,repository,services/onboarding-api/app/repositories/customer_repository.py,CustomerRepository.get_by_id,Verify customer exists,customer_id UUID,Customer OR NotFoundError,yes
+7,database,services/onboarding-api/app/repositories/customer_repository.py,Session.get,SELECT customers,id,Customer row, yes
+8,repository,services/onboarding-api/app/repositories/kyc_repository.py,KycRepository.create_submission,Create pending submission,customer_id,KycSubmission pending, yes
+9,database,services/onboarding-api/app/repositories/kyc_repository.py,Session.add/commit,INSERT kyc_submissions,KycSubmission,committed row, yes
+10,external,services/onboarding-api/app/services/pan_verification_service.py,PanVerificationService.verify,Mock PAN provider check,pan str,status + provider_response OR VerificationError, yes
+11,metrics,services/onboarding-api/app/core/metrics.py,PAN_VERIFICATIONS_TOTAL.inc,Prometheus counter,status label,counter increment, yes
+12,repository,services/onboarding-api/app/repositories/kyc_repository.py,KycRepository.save_pan_record,Persist PAN hash and status,submission + hash + status,PanRecord, yes
+13,database,services/onboarding-api/app/repositories/kyc_repository.py,Session.add/commit,INSERT pan_records,PanRecord,committed row, yes
+14,external,services/onboarding-api/app/services/bank_verification_service.py,BankVerificationService.verify,Mock bank provider check,account_number + ifsc,status + response OR VerificationError, yes
+15,metrics,services/onboarding-api/app/core/metrics.py,BANK_VERIFICATIONS_TOTAL.inc,Prometheus counter,status label,counter increment, yes
+16,repository,services/onboarding-api/app/repositories/kyc_repository.py,KycRepository.save_bank_record,Persist bank hash and IFSC,submission + hash + ifsc,BankRecord, yes
+17,database,services/onboarding-api/app/repositories/kyc_repository.py,Session.add/commit,INSERT bank_records,BankRecord,committed row, yes
+18,repository,services/onboarding-api/app/repositories/kyc_repository.py,KycRepository.update_submission_status,Mark submission verified,submission + verified,updated KycSubmission, yes
+19,database,services/onboarding-api/app/repositories/kyc_repository.py,Session.add/commit,UPDATE kyc_submissions,status + verified_at,committed row, yes
+20,repository,services/onboarding-api/app/repositories/customer_repository.py,CustomerRepository.update_status,Set customer kyc_verified,Customer + status,updated Customer, yes
+21,database,services/onboarding-api/app/repositories/customer_repository.py,Session.add/commit,UPDATE customers,status kyc_verified,committed row, yes
+22,metrics,services/onboarding-api/app/core/metrics.py,KYC_SUBMISSIONS_TOTAL.inc + ACTIVE_KYC_SUBMISSIONS.inc,KYC success metrics,status verified,gauge/counter, yes
+23,logging,services/onboarding-api/app/services/kyc_service.py,logger.info kyc_submitted,Structured log event,customer_id,log line, yes
+24,service,services/onboarding-api/app/services/kyc_service.py,KycService._build_status_response,Map ORM to response DTO,KycSubmission,KycStatusResponse, yes
+25,router,services/onboarding-api/app/routers/kyc.py,submit_kyc return,HTTP 201 response,KycStatusResponse,JSON to client, yes

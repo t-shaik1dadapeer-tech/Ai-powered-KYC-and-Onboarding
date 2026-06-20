@@ -1,0 +1,54 @@
+sequenceDiagram
+    autonumber
+    actor Client
+    participant MW as MetricsMiddleware
+    participant Auth as ApiKeyMiddleware
+    participant Router as kyc.submit_kyc
+    participant Schema as KycSubmitRequest
+    participant Service as KycService.submit_kyc
+    participant CustRepo as CustomerRepository
+    participant KycRepo as KycRepository
+    participant Pan as PanVerificationService
+    participant Bank as BankVerificationService
+    participant DB as SQLAlchemy Session
+    participant Metrics as Prometheus counters
+    participant Log as structlog
+
+    Client->>MW: POST /kyc JSON body
+    MW->>Auth: forward request
+    Auth->>Router: pass (or 401 if API_KEY set)
+    Router->>Schema: validate pan/account/ifsc
+    Schema-->>Router: KycSubmitRequest
+    Router->>Service: submit_kyc(data)
+
+    Service->>CustRepo: get_by_id(customer_id)
+    CustRepo->>DB: SELECT customers
+    DB-->>CustRepo: Customer row
+
+    Service->>KycRepo: create_submission(customer_id)
+    KycRepo->>DB: INSERT kyc_submissions (pending)
+    DB-->>KycRepo: submission
+
+    Service->>Pan: verify(pan)
+    Pan-->>Service: verified + provider_response
+    Service->>Metrics: PAN_VERIFICATIONS_TOTAL.inc
+    Service->>KycRepo: save_pan_record(hash status)
+    KycRepo->>DB: INSERT pan_records
+    DB-->>KycRepo: PanRecord
+
+    Service->>Bank: verify(account_number ifsc)
+    Bank-->>Service: verified + provider_response
+    Service->>Metrics: BANK_VERIFICATIONS_TOTAL.inc
+    Service->>KycRepo: save_bank_record(hash ifsc status)
+    KycRepo->>DB: INSERT bank_records
+    DB-->>KycRepo: BankRecord
+
+    Service->>KycRepo: update_submission_status(verified)
+    KycRepo->>DB: UPDATE kyc_submissions
+    Service->>CustRepo: update_status(kyc_verified)
+    CustRepo->>DB: UPDATE customers
+
+    Service->>Metrics: KYC_SUBMISSIONS_TOTAL + ACTIVE_KYC_SUBMISSIONS
+    Service->>Log: kyc_submitted
+    Service-->>Router: KycStatusResponse
+    Router-->>Client: 201 Created JSON
