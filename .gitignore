@@ -19,6 +19,7 @@ target/
 *.db
 .env
 .env.local
+.github-credentials.env
 
 # IDE / OS
 .DS_Store
@@ -33,3 +34,11 @@ target/
 
 # Large generated coverage HTML (XML summaries kept in evidence/)
 evidence/test-results/*-coverage-html/
+
+# Timestamped full-24-audit runs (canonical: full-24-audit-latest.txt + baseline snapshot)
+evidence/evaluation-results/full-24-audit-*.txt
+!evidence/evaluation-results/full-24-audit-latest.txt
+!evidence/evaluation-results/full-24-audit-2026-06-20-1310.txt
+
+# Incomplete criterion run stubs
+evidence/test-results/d4-run-2026-06-20T064733Z/

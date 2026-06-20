@@ -1,4 +1,4 @@
-Platform Test Run — 2026-06-20T07:42:54Z
+Platform Test Run — 2026-06-20T07:49:35Z
 ========================================
 
 ▶ onboarding-api pytest + coverage
@@ -45,7 +45,7 @@ app/services/standalone_verification_service.py      21      0   100%
 TOTAL                                               660     19    97%
 Coverage HTML written to dir /Users/shaikdadapeer/agent development/evidence/test-results/onboarding-api-coverage-html
 Coverage XML written to file /Users/shaikdadapeer/agent development/evidence/test-results/onboarding-api-coverage.xml
-28 passed in 3.21s
+28 passed in 1.46s
   ✅ PASS: onboarding-api pytest + coverage
 
 ▶ intelligence pytest + coverage
@@ -85,37 +85,37 @@ src/intelligence/walker.py                      43     10    77%   30-33, 46, 55
 TOTAL                                         1072    126    88%
 Coverage HTML written to dir /Users/shaikdadapeer/agent development/evidence/test-results/intelligence-coverage-html
 Coverage XML written to file /Users/shaikdadapeer/agent development/evidence/test-results/intelligence-coverage.xml
-18 passed in 2.56s
+18 passed in 2.22s
   ✅ PASS: intelligence pytest + coverage
 
 ▶ node-cli tests
 ▶ ApiClient
-  ✔ creates customer via POST /customers (2.129333ms)
-  ✔ throws ApiError on HTTP error response (0.770625ms)
-  ✔ throws ApiError on network failure (0.361208ms)
-  ✔ sends X-API-Key header when apiKey is configured (0.209209ms)
-✔ ApiClient (6.908166ms)
+  ✔ creates customer via POST /customers (2.306625ms)
+  ✔ throws ApiError on HTTP error response (0.811667ms)
+  ✔ throws ApiError on network failure (0.357833ms)
+  ✔ sends X-API-Key header when apiKey is configured (0.353917ms)
+✔ ApiClient (5.398666ms)
 ▶ commands
-  ✔ customer-create validates before API call (2.519416ms)
-  ✔ customer-create calls API with validated payload (0.725458ms)
-  ✔ customer-create passes api key to ApiClient (0.347458ms)
-  ✔ submit-kyc validates PAN and IFSC (0.329708ms)
-  ✔ submit-kyc submits to API (0.918458ms)
-✔ commands (7.118583ms)
+  ✔ customer-create validates before API call (2.281542ms)
+  ✔ customer-create calls API with validated payload (1.032709ms)
+  ✔ customer-create passes api key to ApiClient (0.511208ms)
+  ✔ submit-kyc validates PAN and IFSC (4.266625ms)
+  ✔ submit-kyc submits to API (0.808667ms)
+✔ commands (11.416625ms)
 ▶ generate-report command
-  ✔ runs intelligence analyzer on onboarding-api (860.278917ms)
-✔ generate-report command (861.614542ms)
+  ✔ runs intelligence analyzer on onboarding-api (705.81525ms)
+✔ generate-report command (707.244083ms)
 ▶ validators
-  ✔ validates PAN format (2.08525ms)
-  ✔ rejects invalid PAN (0.495042ms)
-  ✔ validates IFSC format (0.171083ms)
-  ✔ rejects invalid IFSC (0.155084ms)
-  ✔ validates account number (0.181625ms)
-  ✔ rejects non-numeric account (0.128ms)
-  ✔ validates email and phone (0.178125ms)
-  ✔ validates full name length (0.127167ms)
-  ✔ validates customer UUID (0.265209ms)
-✔ validators (5.985166ms)
+  ✔ validates PAN format (1.90025ms)
+  ✔ rejects invalid PAN (0.673208ms)
+  ✔ validates IFSC format (0.255042ms)
+  ✔ rejects invalid IFSC (0.228917ms)
+  ✔ validates account number (0.276458ms)
+  ✔ rejects non-numeric account (0.207167ms)
+  ✔ validates email and phone (0.279834ms)
+  ✔ validates full name length (0.221958ms)
+  ✔ validates customer UUID (0.578917ms)
+✔ validators (7.492416ms)
 ℹ tests 19
 ℹ suites 4
 ℹ pass 19
@@ -123,14 +123,14 @@ Coverage XML written to file /Users/shaikdadapeer/agent development/evidence/tes
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 1109.46025
+ℹ duration_ms 1000.639417
   ✅ PASS: node-cli tests
 
 ▶ rust-analyzer cargo test
 
 running 8 tests
 ........
-test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
 
 
 running 0 tests
@@ -140,7 +140,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 running 2 tests
 ..
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.50s
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.96s
 
 
 running 0 tests
@@ -151,7 +151,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ▶ platform e2e tests
 ....                                                                     [100%]
-4 passed in 1.50s
+4 passed in 1.65s
   ✅ PASS: platform e2e tests
 
 ========================================

@@ -87,7 +87,7 @@
 | Evidence | Finding |
 |----------|---------|
 | `evidence/performance/load-test.txt` | 200 req, p95 ~157ms, 0 errors (A2 ci-local run) |
-| `evidence/test-results/a3-run-.../reports/analysis-manifest.json` | Rust scan 182ms, 60 files |
+| `evidence/api-maps/onboarding-api/analysis-manifest.json` | Rust scan 182ms, 60 files |
 | `app/core/metrics.py` | Prometheus histograms |
 
 **Assessment:** Adequate for demo scale; no rate limiting on `/kyc` (modernization-report P3).

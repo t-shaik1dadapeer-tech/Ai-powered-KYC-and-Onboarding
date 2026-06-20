@@ -1,7 +1,0 @@
-=== Full 24-Criterion Audit ===
-Started: 2026-06-18T11:35:23Z
-
---- B1 Repo Discovery ---
-CMD: cd engines/intelligence && PYTHONPATH=src .venv/bin/pytest tests/test_analyzer.py -q
-....                                                                     [100%]
-4 passed in 0.51s

@@ -68,6 +68,10 @@ log "FAIL: ${FAIL} / 24"
 log "Finished: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 log "Report: ${AUDIT}"
 
+LATEST="${ROOT}/evidence/evaluation-results/full-24-audit-latest.txt"
+cp "$AUDIT" "$LATEST"
+log "Latest: ${LATEST}"
+
 if [[ "${FAIL}" -gt 0 ]]; then
   exit 1
 fi

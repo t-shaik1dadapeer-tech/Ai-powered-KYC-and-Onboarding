@@ -1,5 +1,5 @@
-Evidence Index Generation — 2026-06-17T07:27:14Z
-Total evidence files (excl. coverage-html): 150
+Evidence Index Generation — 2026-06-20T08:28:01Z
+Total evidence files (excl. coverage-html): 291
 ✅ Generated /Users/shaikdadapeer/agent development/evidence/INDEX.md
 
 ▶ Key artifact validation
@@ -27,6 +27,6 @@ Total evidence files (excl. coverage-html): 150
 
 ========================================
 ✅ Evidence index complete
-Files indexed: 150
+Files indexed: 291
 INDEX: /Users/shaikdadapeer/agent development/evidence/INDEX.md
 Log: /Users/shaikdadapeer/agent development/evidence/phase-13-index-generation.txt

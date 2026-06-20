@@ -1,16 +1,16 @@
-Kubernetes Verification — 2026-06-20T07:42:53Z
+Kubernetes Verification — 2026-06-20T08:07:41Z
 ======================================
 ▶ found: kyc-platform.yaml
 ▶ found: onboarding-api-deployment.yaml
 ▶ kubectl dry-run (client)
-E0620 13:12:53.711542   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
-E0620 13:12:53.775532   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
-E0620 13:12:53.833836   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
-E0620 13:12:53.892192   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
-E0620 13:12:53.949760   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
-E0620 13:12:54.003404   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
-E0620 13:12:54.051599   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
-E0620 13:12:54.102598   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.024448     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.062890     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.091810     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.132582     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.165143     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.190330     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.215919     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:37:42.245275     871 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
 unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
 unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
 unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource

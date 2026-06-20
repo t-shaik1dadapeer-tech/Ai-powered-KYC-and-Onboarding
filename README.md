@@ -24,6 +24,9 @@ A production-grade, phase-gated monorepo demonstrating advanced coding-agent wor
 
 ## Quick Links
 
+- [Documentation map](docs/README.md) — where everything lives (no duplicates)
+- [24-criterion reports](docs/beginner/README.md) — B/I/A/D verification bundle
+- [GitHub Push Setup (one time)](docs/GITHUB_SETUP.md)
 - [Evaluation Matrix (Phase 0)](docs/evaluation/phase-0-evaluation-matrix.md)
 - [Architecture Docs (Phase 1)](docs/architecture/README.md)
 - [Technology Rationale](docs/architecture/07-technology-rationale.md)
@@ -101,6 +104,8 @@ make evidence-index   # regenerate evidence/INDEX.md
 ```
 
 Catalog: [`evidence/INDEX.md`](evidence/INDEX.md) — claim → artifact matrix for all phases
+
+**Layout:** inventories → `evidence/api-maps/` · flow traces → `evidence/flow-traces/` · 24/24 audit → `evidence/evaluation-results/full-24-audit-latest.txt`
 
 ## Final Review (Phase 14)
 

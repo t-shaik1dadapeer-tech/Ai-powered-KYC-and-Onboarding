@@ -13,4 +13,5 @@
 | `rust-risk.json` | Rust `risk` subcommand output |
 | `node-generate-report.txt` | Node → Python → Rust path |
 | `report-files.txt` | Generated analysis artifacts listing |
-| `reports/` | Full intelligence output (incl. `analysis-manifest.json` with `rust_scan`) |
+
+**Analysis output:** consolidated under [`evidence/api-maps/onboarding-api/`](../../api-maps/onboarding-api/) (see `analysis-manifest.json` for `rust_scan` timing).

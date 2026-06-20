@@ -1,8 +1,8 @@
-Worktree Demo — 2026-06-19T07:25:45Z
+Worktree Demo — 2026-06-20T07:48:30Z
 ==========================
 
 ▶ git repo exists
-  ✅ HEAD exists: da66245
+  ✅ HEAD exists: df07bfe
 
 ▶ Create branches (if missing)
   ✅ Branches: analysis-worktree, observability-worktree
@@ -19,52 +19,41 @@ Worktree Demo — 2026-06-19T07:25:45Z
 
 ▶ Merge analysis-worktree → main
 Already on 'main'
-M	.github/workflows/ci.yml
 M	.gitignore
-M	Makefile
 M	README.md
 M	evidence/ci-results/phase-9-ci-local.txt
 M	evidence/docker-results/phase-8-docker-verify.txt
-M	evidence/observability-results/metrics-snapshot.txt
-M	evidence/observability-results/phase-10-observability.txt
+M	evidence/k8s-results/k8s-verify.txt
+M	evidence/performance/load-test.txt
+M	evidence/safe-change/safe-change-check.txt
+M	evidence/terraform-results/infra-registry.json
+M	evidence/terraform-results/terraform-verify.txt
 M	evidence/test-results/intelligence-coverage.xml
 M	evidence/test-results/onboarding-api-coverage.xml
 M	evidence/test-results/phase-7-summary.txt
 M	evidence/worktrees/phase-11-worktree-demo.txt
-M	infra/docker/.env.example
-M	infra/docker/docker-compose.yml
-M	infra/grafana/dashboards/kyc-platform.json
-M	infra/grafana/provisioning/dashboards/dashboards.yml
-M	scripts/ci-local.sh
-M	scripts/docker-verify.sh
-M	services/onboarding-api/app/core/config.py
-M	services/onboarding-api/app/main.py
-M	verification/phase-10.md
-M	verification/phase-11.md
-M	verification/phase-5.md
-M	verification/phase-8.md
-M	verification/phase-9.md
+Your branch is up to date with 'origin/main'.
   ⏭ analysis-worktree already merged
 
 ▶ Merge observability-worktree → main
   ⏭ observability-worktree already merged
 
 ▶ Worktree list
-/Users/shaikdadapeer/agent development                           da66245 [main]
-/Users/shaikdadapeer/agent development/.worktrees/analysis       71fdac1 [analysis-worktree]
-/Users/shaikdadapeer/agent development/.worktrees/observability  3f1395e [observability-worktree]
+/Users/shaikdadapeer/agent development                              df07bfe [main]
+/Users/shaikdadapeer/agent development/.worktrees/a2-analysis       7595a83 [a2-lane-analysis]
+/Users/shaikdadapeer/agent development/.worktrees/a2-observability  5667872 [a2-lane-observability]
+/Users/shaikdadapeer/agent development/.worktrees/analysis          71fdac1 [analysis-worktree]
+/Users/shaikdadapeer/agent development/.worktrees/observability     3f1395e [observability-worktree]
 
 ▶ Recent merge history
-*   da66245 merge: observability-worktree into main
-|\  
-| * 3f1395e docs(observability): observability worktree demo marker
-* |   eb14311 merge: analysis-worktree into main
-|\ \  
-| |/  
-|/|   
-| * 71fdac1 docs(intelligence): analysis worktree demo marker
-|/  
-* 2beb9e8 chore: initial platform snapshot (phases 0-10)
+* df07bfe D6: observability bolt-on verification
+* e6c0d58 D5: reproducible environment verification
+* 4e91ff2 D4: kubernetes manifest verification
+* 8a1de8e D3: ci pipeline verification
+* 119b5ce D2: docker compose stack verification
+* b7edc3b D1: terraform infrastructure verification
+* cce1879 A6: performance profiling
+* c1dede3 A5: agent code review
 
 ==========================
 ✅ Worktree demo complete

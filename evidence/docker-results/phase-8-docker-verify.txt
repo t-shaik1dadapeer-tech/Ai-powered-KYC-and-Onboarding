@@ -1,4 +1,4 @@
-Docker Verification — 2026-06-20T06:33:25Z
+Docker Verification — 2026-06-20T07:47:49Z
 ==================================
 API (host)        : 8101
 Prometheus (host) : 9191
@@ -28,46 +28,46 @@ Grafana external  : http://127.0.0.1:3002  (optional import)
 ▶ docker compose build
 #0 building with "colima" instance using docker driver
 
-#1 [onboarding-api internal] load build definition from Dockerfile
-#1 transferring dockerfile: 557B 0.0s done
+#1 [onboarding-api] resolving provenance for metadata file
 #1 DONE 0.0s
 
-#2 [onboarding-api internal] load metadata for docker.io/library/python:3.12-slim
-#2 DONE 2.2s
+#2 [onboarding-api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 557B 0.0s done
+#2 DONE 0.0s
 
-#3 [onboarding-api internal] load .dockerignore
-#3 transferring context: 121B done
+#3 [onboarding-api internal] load metadata for docker.io/library/python:3.12-slim
 #3 DONE 0.0s
 
-#4 [onboarding-api 1/6] FROM docker.io/library/python:3.12-slim@sha256:d764629ce0ddd8c71fd371e9901efb324a95789d2315a47db7e4d27e78f1b0e9
+#4 [onboarding-api internal] load .dockerignore
+#4 transferring context: 121B done
 #4 DONE 0.0s
 
-#5 [onboarding-api internal] load build context
-#5 transferring context: 1.72kB 0.1s done
-#5 DONE 0.1s
+#5 [onboarding-api 1/6] FROM docker.io/library/python:3.12-slim
+#5 DONE 0.0s
 
-#6 [onboarding-api 2/6] WORKDIR /app
-#6 CACHED
+#6 [onboarding-api internal] load build context
+#6 transferring context: 1.72kB done
+#6 DONE 0.0s
 
-#7 [onboarding-api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
+#7 [onboarding-api 4/6] COPY requirements.txt .
 #7 CACHED
 
-#8 [onboarding-api 4/6] COPY requirements.txt .
+#8 [onboarding-api 2/6] WORKDIR /app
 #8 CACHED
 
-#9 [onboarding-api 5/6] RUN pip install -r requirements.txt
+#9 [onboarding-api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
 #9 CACHED
 
-#10 [onboarding-api 6/6] COPY app ./app
+#10 [onboarding-api 5/6] RUN pip install -r requirements.txt
 #10 CACHED
 
-#11 [onboarding-api] exporting to image
-#11 exporting layers done
-#11 writing image sha256:d4635102b25fbb2318103f609c4cf734f24dfd7f9a56ecfb4efbab3209477b2c 0.0s done
-#11 naming to docker.io/library/docker-onboarding-api done
-#11 DONE 0.0s
+#11 [onboarding-api 6/6] COPY app ./app
+#11 CACHED
 
-#12 [onboarding-api] resolving provenance for metadata file
+#12 [onboarding-api] exporting to image
+#12 exporting layers done
+#12 writing image sha256:d4635102b25fbb2318103f609c4cf734f24dfd7f9a56ecfb4efbab3209477b2c done
+#12 naming to docker.io/library/docker-onboarding-api done
 #12 DONE 0.0s
  onboarding-api  Built
   ✅ BUILD SUCCESS
@@ -110,7 +110,7 @@ python_gc_objects_collected_total{generation="1"} 50.0
 python_gc_objects_collected_total{generation="2"} 10.0
 
 ▶ Create customer via KYC API
-{"id":"55e2c3a0-a216-453e-b49d-1a229b79b5fd","full_name":"Docker User","email":"docker-verify-1781937252@example.com","phone":"9876543210","status":"pending","created_at":"2026-06-20T06:34:13.550410Z","updated_at":"2026-06-20T06:34:13.550410Z"}
+{"id":"06886662-6513-4e8d-93c7-127ba59a3139","full_name":"Docker User","email":"docker-verify-1781941710@example.com","phone":"9876543210","status":"pending","created_at":"2026-06-20T07:48:30.387552Z","updated_at":"2026-06-20T07:48:30.387552Z"}
 
 ▶ Bundled Grafana dashboard
   ✅ Open: http://127.0.0.1:3003/dashboards
@@ -120,10 +120,10 @@ python_gc_objects_collected_total{generation="2"} 10.0
 
 ▶ docker compose ps
 NAME                      IMAGE                     COMMAND                  SERVICE          CREATED          STATUS                            PORTS
-docker-grafana-1          grafana/grafana:11.2.0    "/run.sh"                grafana          40 seconds ago   Up 7 seconds (health: starting)   0.0.0.0:3003->3000/tcp, [::]:3003->3000/tcp
-docker-onboarding-api-1   docker-onboarding-api     "uvicorn app.main:ap…"   onboarding-api   40 seconds ago   Up 29 seconds (healthy)           0.0.0.0:8101->8000/tcp, [::]:8101->8000/tcp
-docker-postgres-1         postgres:16-alpine        "docker-entrypoint.s…"   postgres         40 seconds ago   Up 40 seconds (healthy)           5432/tcp
-docker-prometheus-1       prom/prometheus:v2.54.1   "/bin/prometheus --c…"   prometheus       40 seconds ago   Up 23 seconds (healthy)           0.0.0.0:9191->9090/tcp, [::]:9191->9090/tcp
+docker-grafana-1          grafana/grafana:11.2.0    "/run.sh"                grafana          38 seconds ago   Up 6 seconds (health: starting)   0.0.0.0:3003->3000/tcp, [::]:3003->3000/tcp
+docker-onboarding-api-1   docker-onboarding-api     "uvicorn app.main:ap…"   onboarding-api   38 seconds ago   Up 27 seconds (healthy)           0.0.0.0:8101->8000/tcp, [::]:8101->8000/tcp
+docker-postgres-1         postgres:16-alpine        "docker-entrypoint.s…"   postgres         38 seconds ago   Up 38 seconds (healthy)           5432/tcp
+docker-prometheus-1       prom/prometheus:v2.54.1   "/bin/prometheus --c…"   prometheus       38 seconds ago   Up 21 seconds (healthy)           0.0.0.0:9191->9090/tcp, [::]:9191->9090/tcp
 
 ==================================
 ✅ Docker verification complete

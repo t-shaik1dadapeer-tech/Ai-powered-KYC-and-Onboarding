@@ -1,6 +1,6 @@
 # Evidence Index
 
-**Generated:** 2026-06-17T07:27:14Z  
+**Generated:** 2026-06-20T08:28:01Z  
 **Command:** `make evidence-index` or `bash scripts/evidence-index.sh`
 
 ---
@@ -9,8 +9,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Total artifacts | 150 |
-| Top-level directories | 12 |
+| Total artifacts | 291 |
+| Top-level directories | 17 |
 | Phase-linked claims | 15 phases (0–14) |
 
 ---
@@ -33,7 +33,7 @@
 | Git worktree parallel streams | 11 | [phase-11-worktree-demo.txt](worktrees/phase-11-worktree-demo.txt) | [phase-11.md](../verification/phase-11.md) |
 | Agent vs manual audit | 12 | [phase-12-audit.txt](verification/phase-12-audit.txt) | [phase-12.md](../verification/phase-12.md) |
 | Evidence index (this file) | 13 | [INDEX.md](INDEX.md) | [phase-13.md](../verification/phase-13.md) |
-| Final scorecard | 14 | [final-review.md](../docs/final-review.md) | [phase-14.md](../verification/phase-14.md) |
+| Final scorecard | 14 | [final-evaluation-report.md](../docs/final-evaluation-report.md) | [phase-14.md](../verification/phase-14.md) |
 
 ---
 
@@ -41,11 +41,11 @@
 
 | Dimension | Evidence paths |
 |-----------|----------------|
-| **B1** Repo discovery | `api-maps/onboarding-api/service-inventory.md`, inventories |
+| **B1** Repo discovery | `api-maps/onboarding-api/` (inventories) |
 | **B2** API mapping | `api-maps/onboarding-api/api-map.md` |
 | **B3** ER diagrams | `api-maps/onboarding-api/er-diagram.mmd`, `diagrams/onboarding-api-er.mmd` |
-| **B4** Flow tracing | `flow-traces/onboarding-api/sequence-diagrams/`, flow-docs |
-| **B5** Test discovery | `api-maps/onboarding-api/test-inventory.md`, test-results/ |
+| **B4** Flow tracing | `flow-traces/onboarding-api/sequence-diagrams/`, `flow-docs/` |
+| **B5** Test discovery | `api-maps/onboarding-api/test-inventory.md`, `test-results/` |
 | **B6** KYC domain | test-results/phase-2-pytest.txt, phase-7-summary.txt |
 | **I1** FastAPI | onboarding-api coverage XML |
 | **I2** Node CLI | phase-5-node-tests.txt |
@@ -65,9 +65,10 @@
 
 ## Directory Inventory
 
-### `evidence/api-maps/` (12 files)
+### `evidence/api-maps/` (13 files)
 
 - `evidence/api-maps/.gitkeep`
+- `evidence/api-maps/onboarding-api/README.md`
 - `evidence/api-maps/onboarding-api/analysis-manifest.json`
 - `evidence/api-maps/onboarding-api/api-inventory.md`
 - `evidence/api-maps/onboarding-api/api-map.md`
@@ -96,26 +97,31 @@
 - `evidence/diagrams/.gitkeep`
 - `evidence/diagrams/onboarding-api-er.mmd`
 
-### `evidence/docker-results/` (3 files)
+### `evidence/docker-results/` (4 files)
 
 - `evidence/docker-results/.gitkeep`
+- `evidence/docker-results/docker-compose-resolved.yml`
 - `evidence/docker-results/phase-8-docker-verify.txt`
 - `evidence/docker-results/phase-8-static-validation.txt`
+
+### `evidence/evaluation-results/` (3 files)
+
+- `evidence/evaluation-results/README.md`
+- `evidence/evaluation-results/full-24-audit-2026-06-20-1310.txt`
+- `evidence/evaluation-results/full-24-audit-latest.txt`
 
 ### `evidence/final-review/` (1 files)
 
 - `evidence/final-review/phase-14-final-review.txt`
 
-### `evidence/flow-traces/` (32 files)
+### `evidence/flow-traces/` (27 files)
 
 - `evidence/flow-traces/.gitkeep`
 - `evidence/flow-traces/onboarding-api-flows.md`
 - `evidence/flow-traces/onboarding-api-uncertainty.md`
+- `evidence/flow-traces/onboarding-api/README.md`
 - `evidence/flow-traces/onboarding-api/analysis-manifest.json`
-- `evidence/flow-traces/onboarding-api/api-inventory.md`
 - `evidence/flow-traces/onboarding-api/api-map.md`
-- `evidence/flow-traces/onboarding-api/controller-inventory.md`
-- `evidence/flow-traces/onboarding-api/dependency-inventory.md`
 - `evidence/flow-traces/onboarding-api/er-diagram.mmd`
 - `evidence/flow-traces/onboarding-api/flow-docs/get-customer-customer-id.md`
 - `evidence/flow-traces/onboarding-api/flow-docs/get-health.md`
@@ -127,7 +133,6 @@
 - `evidence/flow-traces/onboarding-api/flow-docs/post-pan-verify.md`
 - `evidence/flow-traces/onboarding-api/flow-docs/post-risk-score.md`
 - `evidence/flow-traces/onboarding-api/flow-tracing-report.md`
-- `evidence/flow-traces/onboarding-api/model-inventory.md`
 - `evidence/flow-traces/onboarding-api/sequence-diagrams/get-customer-customer-id.mmd`
 - `evidence/flow-traces/onboarding-api/sequence-diagrams/get-health.mmd`
 - `evidence/flow-traces/onboarding-api/sequence-diagrams/get-kyc-status-customer-id.mmd`
@@ -137,36 +142,71 @@
 - `evidence/flow-traces/onboarding-api/sequence-diagrams/post-kyc.mmd`
 - `evidence/flow-traces/onboarding-api/sequence-diagrams/post-pan-verify.mmd`
 - `evidence/flow-traces/onboarding-api/sequence-diagrams/post-risk-score.mmd`
-- `evidence/flow-traces/onboarding-api/service-inventory.md`
-- _… and 2 more_
+- `evidence/flow-traces/onboarding-api/uncertainty-report.md`
 
-### `evidence/observability-results/` (2 files)
+### `evidence/k8s-results/` (1 files)
 
+- `evidence/k8s-results/k8s-verify.txt`
+
+### `evidence/observability-results/` (4 files)
+
+- `evidence/observability-results/grafana-dashboard-url.txt`
+- `evidence/observability-results/grafana-import.txt`
 - `evidence/observability-results/metrics-snapshot.txt`
 - `evidence/observability-results/phase-10-observability.txt`
+
+### `evidence/performance/` (1 files)
+
+- `evidence/performance/load-test.txt`
+
+### `evidence/safe-change/` (1 files)
+
+- `evidence/safe-change/safe-change-check.txt`
 
 ### `evidence/screenshots/` (2 files)
 
 - `evidence/screenshots/.gitkeep`
 - `evidence/screenshots/kyc-platform-dashboard.svg`
 
-### `evidence/test-results/` (86 files)
+### `evidence/terraform-results/` (3 files)
+
+- `evidence/terraform-results/infra-registry.json`
+- `evidence/terraform-results/terraform-outputs.json`
+- `evidence/terraform-results/terraform-verify.txt`
+
+### `evidence/test-results/` (219 files)
 
 - `evidence/test-results/.gitkeep`
-- `evidence/test-results/intelligence-coverage-html/.gitignore`
-- `evidence/test-results/intelligence-coverage-html/status.json`
-- `evidence/test-results/intelligence-coverage.xml`
-- `evidence/test-results/onboarding-api-coverage-html/.gitignore`
-- `evidence/test-results/onboarding-api-coverage-html/status.json`
-- `evidence/test-results/onboarding-api-coverage.xml`
-- `evidence/test-results/phase-2-pytest.txt`
-- `evidence/test-results/phase-3-pytest.txt`
-- `evidence/test-results/phase-4-pytest.txt`
-- `evidence/test-results/phase-5-node-tests.txt`
-- `evidence/test-results/phase-6-rust-benchmark.txt`
-- `evidence/test-results/phase-7-summary.txt`
-- `evidence/test-results/phase-7-unified-testing.txt`
-- _… and 56 more_
+- `evidence/test-results/a1-run-2026-06-20-1115/verification.log`
+- `evidence/test-results/a1-run-2026-06-20-1115/worktree-list.txt`
+- `evidence/test-results/a2-run-2026-06-20T055505Z/README.md`
+- `evidence/test-results/a2-run-2026-06-20T055505Z/a2-execution.log`
+- `evidence/test-results/a2-run-2026-06-20T055505Z/final-verification.txt`
+- `evidence/test-results/a2-run-2026-06-20T055505Z/lane-a-test-intelligence.txt`
+- `evidence/test-results/a2-run-2026-06-20T055505Z/lane-b-metrics-snapshot.txt`
+- `evidence/test-results/a2-run-2026-06-20T055505Z/lane-b-observability-verify.txt`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/README.md`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/a3-live-integration.log`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/api.log`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/health.json`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/node-customer-create.txt`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/node-generate-report.txt`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/node-submit-kyc.txt`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/report-files.txt`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/rust-risk.json`
+- `evidence/test-results/a3-run-2026-06-20T060239Z/test-results.txt`
+- `evidence/test-results/a4-run-2026-06-20T060617Z/README.md`
+- `evidence/test-results/a4-run-2026-06-20T060617Z/a4-auth-verify.log`
+- `evidence/test-results/a4-run-2026-06-20T060617Z/api.log`
+- `evidence/test-results/a4-run-2026-06-20T060617Z/cli-with-key.txt`
+- `evidence/test-results/a4-run-2026-06-20T060617Z/verification-results.txt`
+- `evidence/test-results/a5-run-2026-06-20T061232Z/README.md`
+- `evidence/test-results/a5-run-2026-06-20T061232Z/a5-verification.log`
+- `evidence/test-results/a6-run-2026-06-20T061500Z/README.md`
+- `evidence/test-results/a6-run-2026-06-20T061500Z/after-rust-scan.txt`
+- `evidence/test-results/a6-run-2026-06-20T061500Z/baseline-rust-scan.txt`
+- `evidence/test-results/b3-run-2026-06-20-1015/execution.log`
+- _… and 189 more_
 
 ### `evidence/verification/` (1 files)
 

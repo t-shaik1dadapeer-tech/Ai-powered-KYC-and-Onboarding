@@ -1,8 +1,8 @@
-Load Test — 2026-06-19T07:26:23Z
+Load Test — 2026-06-20T08:07:38Z
 ======================
 requests=200 concurrency=20
-duration_s=0.377 rps=531.2
-p50_ms=31.40 p95_ms=56.15 errors=0
+duration_s=0.368 rps=544.0
+p50_ms=27.50 p95_ms=52.41 errors=0
 PASS
 
 ✅ Load test complete
