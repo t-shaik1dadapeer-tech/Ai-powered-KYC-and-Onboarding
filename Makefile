@@ -2,7 +2,7 @@
         docker-build docker-up docker-down docker-verify ci-local observability-verify \
         worktree-demo verify-phases evidence-index final-review export-openapi \
         terraform-verify k8s-verify load-test safe-change-check grafana-import-dashboard \
-        full-24-audit
+        full-24-audit bootstrap setup-github push push-first
 
 ROOT := $(CURDIR)/
 EVIDENCE := $(ROOT)evidence/test-results
@@ -77,3 +77,15 @@ grafana-import-dashboard:
 
 full-24-audit:
 	bash "$(ROOT)scripts/full-24-audit.sh"
+
+bootstrap:
+	bash "$(ROOT)scripts/bootstrap.sh"
+
+setup-github:
+	bash "$(ROOT)scripts/setup-github-auth.sh"
+
+push:
+	bash "$(ROOT)scripts/git-push.sh"
+
+push-first:
+	bash "$(ROOT)scripts/git-push.sh" main

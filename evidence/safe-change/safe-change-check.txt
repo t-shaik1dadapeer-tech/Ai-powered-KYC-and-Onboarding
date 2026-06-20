@@ -1,8 +1,8 @@
-Safe Change Check — 2026-06-20T05:30:29Z
+Safe Change Check — 2026-06-20T07:40:32Z
 ==============================
 ▶ 1/5 ci-local (lint + tests + build)
 bash "/Users/shaikdadapeer/agent development/scripts/ci-local.sh"
-Local CI Run — 2026-06-20T05:30:29Z
+Local CI Run — 2026-06-20T07:40:32Z
 =========================
 
 ▶ ruff onboarding-api
@@ -50,7 +50,7 @@ TOTAL: 13 passed, 0 failed
 ✅ Local CI complete — evidence: /Users/shaikdadapeer/agent development/evidence/ci-results/phase-9-ci-local.txt
   ✅ ci-local passed
 ▶ 2/5 terraform validate
-Terraform Verification — 2026-06-20T05:30:58Z
+Terraform Verification — 2026-06-20T07:40:55Z
 =====================================
 ▶ terraform init
   ✅ init OK
@@ -65,11 +65,13 @@ Terraform Verification — 2026-06-20T05:30:58Z
 Evidence: /Users/shaikdadapeer/agent development/evidence/terraform-results/terraform-verify.txt
   ✅ terraform passed
 ▶ 3/5 kubernetes dry-run
-Kubernetes Verification — 2026-06-20T05:30:59Z
+Kubernetes Verification — 2026-06-20T07:40:56Z
 ======================================
 ▶ found: kyc-platform.yaml
 ▶ found: onboarding-api-deployment.yaml
-▶ manifest structure check (fallback — no kubectl/kubeconform)
+▶ kubectl dry-run (client)
+  ⚠ kubectl dry-run unavailable (no cluster?) — using structure fallback
+▶ manifest structure check (fallback — no kubectl cluster/kubeconform)
   ✅ YAML structure valid
 
 Manifest count: 2
@@ -79,11 +81,11 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify
 ▶ 4/5 docker compose config
   ✅ docker compose config valid
 ▶ 5/5 load test (in-process)
-Load Test — 2026-06-20T05:30:59Z
+Load Test — 2026-06-20T07:40:57Z
 ======================
 requests=200 concurrency=20
-duration_s=0.432 rps=462.5
-p50_ms=31.83 p95_ms=66.49 errors=0
+duration_s=0.779 rps=256.6
+p50_ms=38.19 p95_ms=331.01 errors=0
 PASS
 
 ✅ Load test complete

@@ -1,4 +1,4 @@
-Local CI Run — 2026-06-20T06:40:17Z
+Local CI Run — 2026-06-20T07:42:31Z
 =========================
 
 ▶ ruff onboarding-api
@@ -81,8 +81,7 @@ Diff in /Users/shaikdadapeer/agent development/engines/rust-analyzer/src/main.rs
  struct Cli {
      #[command(subcommand)]
      command: Commands,
-    Checking rust-analyzer v0.1.0 (/Users/shaikdadapeer/agent development/engines/rust-analyzer)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.06s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s
   ✅ PASS: rust fmt + clippy
 
 ▶ onboarding-api pytest
@@ -95,7 +94,7 @@ Name                                              Stmts   Miss  Cover   Missing
 app/__init__.py                                       0      0   100%
 app/core/auth.py                                     16      0   100%
 app/core/config.py                                   15      0   100%
-app/core/database.py                                 13      0   100%
+app/core/database.py                                 13      4    69%   17-21
 app/core/exceptions.py                               22      1    95%   25
 app/core/logging.py                                  10      0   100%
 app/core/metrics.py                                  10      0   100%
@@ -126,43 +125,43 @@ app/services/pan_verification_service.py             16      0   100%
 app/services/risk_score_service.py                   49      1    98%   24
 app/services/standalone_verification_service.py      21      0   100%
 -------------------------------------------------------------------------------
-TOTAL                                               660     15    98%
-28 passed in 1.35s
+TOTAL                                               660     19    97%
+28 passed in 0.84s
   ✅ PASS: onboarding-api pytest
 
 ▶ intelligence pytest
 ..................                                                       [100%]
-18 passed in 4.63s
+18 passed in 2.22s
   ✅ PASS: intelligence pytest
 
 ▶ node-cli tests
 ▶ ApiClient
-  ✔ creates customer via POST /customers (3.07675ms)
-  ✔ throws ApiError on HTTP error response (1.218417ms)
-  ✔ throws ApiError on network failure (0.547375ms)
-  ✔ sends X-API-Key header when apiKey is configured (0.29925ms)
-✔ ApiClient (8.443125ms)
+  ✔ creates customer via POST /customers (1.318417ms)
+  ✔ throws ApiError on HTTP error response (0.865708ms)
+  ✔ throws ApiError on network failure (0.402ms)
+  ✔ sends X-API-Key header when apiKey is configured (0.2195ms)
+✔ ApiClient (4.121ms)
 ▶ commands
-  ✔ customer-create validates before API call (4.504958ms)
-  ✔ customer-create calls API with validated payload (1.212583ms)
-  ✔ customer-create passes api key to ApiClient (4.057583ms)
-  ✔ submit-kyc validates PAN and IFSC (1.807833ms)
-  ✔ submit-kyc submits to API (0.751833ms)
-✔ commands (17.7125ms)
+  ✔ customer-create validates before API call (2.292209ms)
+  ✔ customer-create calls API with validated payload (0.753417ms)
+  ✔ customer-create passes api key to ApiClient (0.34ms)
+  ✔ submit-kyc validates PAN and IFSC (0.391417ms)
+  ✔ submit-kyc submits to API (0.494792ms)
+✔ commands (5.810458ms)
 ▶ generate-report command
-  ✔ runs intelligence analyzer on onboarding-api (792.582209ms)
-✔ generate-report command (795.030125ms)
+  ✔ runs intelligence analyzer on onboarding-api (573.941167ms)
+✔ generate-report command (575.168292ms)
 ▶ validators
-  ✔ validates PAN format (1.599709ms)
-  ✔ rejects invalid PAN (2.65175ms)
-  ✔ validates IFSC format (0.316291ms)
-  ✔ rejects invalid IFSC (2.045458ms)
-  ✔ validates account number (0.367917ms)
-  ✔ rejects non-numeric account (0.212917ms)
-  ✔ validates email and phone (0.257334ms)
-  ✔ validates full name length (0.423625ms)
-  ✔ validates customer UUID (0.629125ms)
-✔ validators (16.646542ms)
+  ✔ validates PAN format (1.265625ms)
+  ✔ rejects invalid PAN (0.436041ms)
+  ✔ validates IFSC format (0.132917ms)
+  ✔ rejects invalid IFSC (0.135583ms)
+  ✔ validates account number (0.440542ms)
+  ✔ rejects non-numeric account (0.131042ms)
+  ✔ validates email and phone (0.168375ms)
+  ✔ validates full name length (0.122541ms)
+  ✔ validates customer UUID (0.433417ms)
+✔ validators (5.109417ms)
 ℹ tests 19
 ℹ suites 4
 ℹ pass 19
@@ -170,14 +169,14 @@ TOTAL                                               660     15    98%
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 1182.857042
+ℹ duration_ms 771.887709
   ✅ PASS: node-cli tests
 
 ▶ rust-analyzer cargo test
 
 running 8 tests
 ........
-test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.58s
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
 
 
 running 0 tests
@@ -187,7 +186,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 running 2 tests
 ..
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.72s
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.88s
 
 
 running 0 tests
@@ -198,15 +197,15 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ▶ platform e2e
 ....                                                                     [100%]
-4 passed in 5.39s
+4 passed in 1.94s
   ✅ PASS: platform e2e
 
 ▶ load test
-Load Test — 2026-06-20T06:40:50Z
+Load Test — 2026-06-20T07:42:47Z
 ======================
 requests=200 concurrency=20
-duration_s=1.085 rps=184.4
-p50_ms=76.57 p95_ms=264.41 errors=0
+duration_s=0.319 rps=627.0
+p50_ms=25.67 p95_ms=51.23 errors=0
 PASS
 
 ✅ Load test complete
@@ -214,7 +213,7 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/performance/load-test.
   ✅ PASS: load test
 
 ▶ terraform validate
-Terraform Verification — 2026-06-20T06:40:55Z
+Terraform Verification — 2026-06-20T07:42:49Z
 =====================================
 ▶ terraform init
   ✅ init OK
@@ -230,11 +229,13 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/terraform-results/terr
   ✅ PASS: terraform validate
 
 ▶ kubernetes dry-run
-Kubernetes Verification — 2026-06-20T06:40:58Z
+Kubernetes Verification — 2026-06-20T07:42:51Z
 ======================================
 ▶ found: kyc-platform.yaml
 ▶ found: onboarding-api-deployment.yaml
-▶ manifest structure check (fallback — no kubectl/kubeconform)
+▶ kubectl dry-run (client)
+  ⚠ kubectl dry-run unavailable (no cluster?) — using structure fallback
+▶ manifest structure check (fallback — no kubectl cluster/kubeconform)
   ✅ YAML structure valid
 
 Manifest count: 2
@@ -246,33 +247,33 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify
 #0 building with "colima" instance using docker driver
 
 #1 [onboarding-api internal] load build definition from Dockerfile
-#1 transferring dockerfile: 557B 0.0s done
+#1 transferring dockerfile: 557B done
 #1 DONE 0.0s
 
 #2 [onboarding-api internal] load metadata for docker.io/library/python:3.12-slim
-#2 DONE 1.4s
+#2 DONE 0.0s
 
 #3 [onboarding-api internal] load .dockerignore
 #3 transferring context: 121B done
 #3 DONE 0.0s
 
-#4 [onboarding-api 1/6] FROM docker.io/library/python:3.12-slim@sha256:d764629ce0ddd8c71fd371e9901efb324a95789d2315a47db7e4d27e78f1b0e9
+#4 [onboarding-api 1/6] FROM docker.io/library/python:3.12-slim
 #4 DONE 0.0s
 
 #5 [onboarding-api internal] load build context
-#5 transferring context: 1.72kB done
+#5 transferring context: 1.72kB 0.0s done
 #5 DONE 0.0s
 
 #6 [onboarding-api 3/6] RUN apt-get update && apt-get install -y --no-install-recommends curl     && rm -rf /var/lib/apt/lists/*
 #6 CACHED
 
-#7 [onboarding-api 2/6] WORKDIR /app
+#7 [onboarding-api 5/6] RUN pip install -r requirements.txt
 #7 CACHED
 
-#8 [onboarding-api 4/6] COPY requirements.txt .
+#8 [onboarding-api 2/6] WORKDIR /app
 #8 CACHED
 
-#9 [onboarding-api 5/6] RUN pip install -r requirements.txt
+#9 [onboarding-api 4/6] COPY requirements.txt .
 #9 CACHED
 
 #10 [onboarding-api 6/6] COPY app ./app

@@ -10,7 +10,10 @@
 ## Setup
 
 ```bash
-# FastAPI service
+# Single command (fresh clone)
+make bootstrap
+
+# Or step-by-step:
 cd services/onboarding-api
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt pytest pytest-cov httpx
@@ -39,6 +42,7 @@ Routers must not import repositories directly.
 
 | Command | Purpose |
 |---------|---------|
+| `make bootstrap` | One-shot dev env setup (venv + npm + cargo) |
 | `make test` | All 70 tests + coverage |
 | `make ci-local` | Simulate GitHub Actions |
 | `make lint` | _(use ci-local lint stage)_ |

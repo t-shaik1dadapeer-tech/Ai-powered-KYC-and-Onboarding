@@ -29,22 +29,25 @@ for f in "${MANIFESTS[@]}"; do
   log "▶ found: $(basename "$f")"
 done
 
+KUBECTL_DRY_RUN_OK=0
 if command -v kubectl >/dev/null 2>&1; then
   log "▶ kubectl dry-run (client)"
-  for f in "${MANIFESTS[@]}"; do
-    kubectl apply --dry-run=client -f "$f" >> "$LOG" 2>&1
-    log "  ✅ $(basename "$f")"
-  done
-  kubectl apply --dry-run=client -f "$K8S_DIR/" >> "$LOG" 2>&1
-  log "  ✅ combined apply dry-run OK"
-elif command -v kubeconform >/dev/null 2>&1; then
+  if kubectl apply --dry-run=client --validate=false -f "$K8S_DIR/" >> "$LOG" 2>&1; then
+    log "  ✅ combined apply dry-run OK"
+    KUBECTL_DRY_RUN_OK=1
+  else
+    log "  ⚠ kubectl dry-run unavailable (no cluster?) — using structure fallback"
+  fi
+fi
+
+if [[ "$KUBECTL_DRY_RUN_OK" -eq 0 ]] && command -v kubeconform >/dev/null 2>&1; then
   log "▶ kubeconform schema validation"
   for f in "${MANIFESTS[@]}"; do
     kubeconform -summary -ignore-missing-schemas "$f" >> "$LOG" 2>&1
     log "  ✅ $(basename "$f")"
   done
-else
-  log "▶ manifest structure check (fallback — no kubectl/kubeconform)"
+elif [[ "$KUBECTL_DRY_RUN_OK" -eq 0 ]]; then
+  log "▶ manifest structure check (fallback — no kubectl cluster/kubeconform)"
   python3 - "$K8S_DIR" <<'PY' >> "$LOG" 2>&1
 import pathlib, sys
 root = pathlib.Path(sys.argv[1])

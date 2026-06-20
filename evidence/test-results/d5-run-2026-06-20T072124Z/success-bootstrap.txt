@@ -1,0 +1,20 @@
+# D5 — bootstrap steps (CONTRIBUTING.md + pip upgrade for intelligence)
+# Date: 2026-06-20T072124Z
+
+cd services/onboarding-api
+python3 -m venv .venv
+.venv/bin/pip install --upgrade pip
+.venv/bin/pip install -r requirements.txt pytest pytest-cov pytest-asyncio httpx ruff
+# → Python 3.9.6 venv OK
+
+cd engines/intelligence
+python3 -m venv .venv
+.venv/bin/pip install --upgrade pip
+.venv/bin/pip install -e ".[dev]" pytest-cov
+# Note: pip 21.x fails editable install without upgrade (hatchling backend)
+
+cd clients/node-cli && npm install
+# → Node v26.3.0 OK
+
+cd engines/rust-analyzer && cargo build --release
+# → OK (requires ~/.cargo toolchain)

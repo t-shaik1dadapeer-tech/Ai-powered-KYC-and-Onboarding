@@ -1,0 +1,18 @@
+# D5 — make test after bootstrap on fresh clone
+# Date: 2026-06-20T07:27:17Z
+# Clone: git clone file://... /tmp/d5-fresh-final
+
+TOTAL: 4 passed, 1 failed
+exit code: 1
+
+  ✅ intelligence pytest + coverage
+  ✅ node-cli tests (19 tests)
+  ✅ rust-analyzer cargo test
+  ✅ platform e2e tests (4/4)
+  ❌ onboarding-api pytest + coverage — 27 passed, 1 failed
+
+Failure:
+  tests/test_auth.py::test_protected_route_requires_key
+  sqlite3.OperationalError: no such table: customers
+
+# Same suite on developer machine (pre-existing venv): 5/5 PASS

@@ -1,8 +1,8 @@
-Platform Test Run — 2026-06-19T07:41:34Z
+Platform Test Run — 2026-06-20T07:42:54Z
 ========================================
 
 ▶ onboarding-api pytest + coverage
-........................                                                 [100%]
+............................                                             [100%]
 ================================ tests coverage ================================
 _______________ coverage: platform darwin, python 3.9.6-final-0 ________________
 
@@ -11,7 +11,7 @@ Name                                              Stmts   Miss  Cover   Missing
 app/__init__.py                                       0      0   100%
 app/core/auth.py                                     16      0   100%
 app/core/config.py                                   15      0   100%
-app/core/database.py                                 13      0   100%
+app/core/database.py                                 13      4    69%   17-21
 app/core/exceptions.py                               22      1    95%   25
 app/core/logging.py                                  10      0   100%
 app/core/metrics.py                                  10      0   100%
@@ -30,7 +30,7 @@ app/routers/health.py                                11      0   100%
 app/routers/kyc.py                                   13      0   100%
 app/routers/risk.py                                   9      0   100%
 app/routers/verification.py                          12      0   100%
-app/schemas/customer.py                              23      0   100%
+app/schemas/customer.py                              27      0   100%
 app/schemas/kyc.py                                   43      3    93%   24, 32, 40
 app/schemas/risk.py                                  13      0   100%
 app/schemas/validators.py                             3      0   100%
@@ -42,10 +42,10 @@ app/services/pan_verification_service.py             16      0   100%
 app/services/risk_score_service.py                   49      1    98%   24
 app/services/standalone_verification_service.py      21      0   100%
 -------------------------------------------------------------------------------
-TOTAL                                               656     15    98%
+TOTAL                                               660     19    97%
 Coverage HTML written to dir /Users/shaikdadapeer/agent development/evidence/test-results/onboarding-api-coverage-html
 Coverage XML written to file /Users/shaikdadapeer/agent development/evidence/test-results/onboarding-api-coverage.xml
-24 passed in 1.13s
+28 passed in 3.21s
   ✅ PASS: onboarding-api pytest + coverage
 
 ▶ intelligence pytest + coverage
@@ -85,50 +85,52 @@ src/intelligence/walker.py                      43     10    77%   30-33, 46, 55
 TOTAL                                         1072    126    88%
 Coverage HTML written to dir /Users/shaikdadapeer/agent development/evidence/test-results/intelligence-coverage-html
 Coverage XML written to file /Users/shaikdadapeer/agent development/evidence/test-results/intelligence-coverage.xml
-18 passed in 2.41s
+18 passed in 2.56s
   ✅ PASS: intelligence pytest + coverage
 
 ▶ node-cli tests
 ▶ ApiClient
-  ✔ creates customer via POST /customers (0.925667ms)
-  ✔ throws ApiError on HTTP error response (0.4415ms)
-  ✔ throws ApiError on network failure (0.743625ms)
-✔ ApiClient (3.177958ms)
+  ✔ creates customer via POST /customers (2.129333ms)
+  ✔ throws ApiError on HTTP error response (0.770625ms)
+  ✔ throws ApiError on network failure (0.361208ms)
+  ✔ sends X-API-Key header when apiKey is configured (0.209209ms)
+✔ ApiClient (6.908166ms)
 ▶ commands
-  ✔ customer-create validates before API call (1.706375ms)
-  ✔ customer-create calls API with validated payload (0.488125ms)
-  ✔ submit-kyc validates PAN and IFSC (0.194708ms)
-  ✔ submit-kyc submits to API (0.344042ms)
-✔ commands (4.309125ms)
+  ✔ customer-create validates before API call (2.519416ms)
+  ✔ customer-create calls API with validated payload (0.725458ms)
+  ✔ customer-create passes api key to ApiClient (0.347458ms)
+  ✔ submit-kyc validates PAN and IFSC (0.329708ms)
+  ✔ submit-kyc submits to API (0.918458ms)
+✔ commands (7.118583ms)
 ▶ generate-report command
-  ✔ runs intelligence analyzer on onboarding-api (491.032125ms)
-✔ generate-report command (491.86975ms)
+  ✔ runs intelligence analyzer on onboarding-api (860.278917ms)
+✔ generate-report command (861.614542ms)
 ▶ validators
-  ✔ validates PAN format (0.674375ms)
-  ✔ rejects invalid PAN (0.499417ms)
-  ✔ validates IFSC format (0.109333ms)
-  ✔ rejects invalid IFSC (0.103458ms)
-  ✔ validates account number (0.126583ms)
-  ✔ rejects non-numeric account (0.085542ms)
-  ✔ validates email and phone (0.106458ms)
-  ✔ validates full name length (0.070375ms)
-  ✔ validates customer UUID (0.965041ms)
-✔ validators (3.779542ms)
-ℹ tests 17
+  ✔ validates PAN format (2.08525ms)
+  ✔ rejects invalid PAN (0.495042ms)
+  ✔ validates IFSC format (0.171083ms)
+  ✔ rejects invalid IFSC (0.155084ms)
+  ✔ validates account number (0.181625ms)
+  ✔ rejects non-numeric account (0.128ms)
+  ✔ validates email and phone (0.178125ms)
+  ✔ validates full name length (0.127167ms)
+  ✔ validates customer UUID (0.265209ms)
+✔ validators (5.985166ms)
+ℹ tests 19
 ℹ suites 4
-ℹ pass 17
+ℹ pass 19
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 728.85075
+ℹ duration_ms 1109.46025
   ✅ PASS: node-cli tests
 
 ▶ rust-analyzer cargo test
 
 running 8 tests
 ........
-test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
 
 
 running 0 tests
@@ -138,7 +140,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 running 2 tests
 ..
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.18s
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.50s
 
 
 running 0 tests
@@ -149,7 +151,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ▶ platform e2e tests
 ....                                                                     [100%]
-4 passed in 1.71s
+4 passed in 1.50s
   ✅ PASS: platform e2e tests
 
 ========================================

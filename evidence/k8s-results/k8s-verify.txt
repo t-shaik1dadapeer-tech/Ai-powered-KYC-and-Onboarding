@@ -1,8 +1,26 @@
-Kubernetes Verification — 2026-06-19T07:26:29Z
+Kubernetes Verification — 2026-06-20T07:42:53Z
 ======================================
 ▶ found: kyc-platform.yaml
 ▶ found: onboarding-api-deployment.yaml
-▶ manifest structure check (fallback — no kubectl/kubeconform)
+▶ kubectl dry-run (client)
+E0620 13:12:53.711542   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:12:53.775532   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:12:53.833836   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:12:53.892192   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:12:53.949760   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:12:54.003404   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:12:54.051599   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+E0620 13:12:54.102598   68395 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: the server could not find the requested resource"
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/kyc-platform.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/onboarding-api-deployment.yaml": the server could not find the requested resource
+unable to recognize "/Users/shaikdadapeer/agent development/infra/kubernetes/onboarding-api-deployment.yaml": the server could not find the requested resource
+  ⚠ kubectl dry-run unavailable (no cluster?) — using structure fallback
+▶ manifest structure check (fallback — no kubectl cluster/kubeconform)
 OK kyc-platform.yaml (6 doc(s))
 OK onboarding-api-deployment.yaml (2 doc(s))
   ✅ YAML structure valid

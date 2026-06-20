@@ -1,0 +1,81 @@
+D5 Reproducible Environment Verification — 2026-06-20T072124Z
+=================================================
+
+=== 1. Bootstrap asset discovery ===
+MISSING: .devcontainer/devcontainer.json
+MISSING: mise.toml
+MISSING: .mise.toml
+MISSING: .tool-versions
+MISSING: flake.nix
+MISSING: shell.nix
+MISSING: scripts/bootstrap.sh
+FOUND: Makefile
+FOUND: CONTRIBUTING.md
+FOUND: scripts/run-all-tests.sh
+FOUND: scripts/ci-local.sh
+FOUND: infra/docker/.env.example
+
+=== 2. Runtime versions (host) ===
+Python 3.9.6
+v26.3.0
+rustc 1.96.0 (ac68faa20 2026-05-25)
+cargo 1.96.0 (30a34c682 2026-05-25)
+Docker version 27.5.1, build 9f9e405
+
+=== 3. Fresh clone simulation (git worktree) ===
+Preparing worktree (checking out 'main')
+fatal: 'main' is already used by worktree at '/Users/shaikdadapeer/agent development'
+D5 Reproducible Environment Verification — 2026-06-20T072124Z (continued)
+==========================================================
+
+=== 3. Fresh clone simulation (git clone) ===
+Cloning into '/tmp/d5-fresh-clone-30349'...
+Clone: /tmp/d5-fresh-clone-30349
+
+=== 4. make test WITHOUT bootstrap (expect fail) ===
+  ❌ FAIL: intelligence pytest + coverage
+
+▶ node-cli tests
+  ❌ FAIL: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e tests
+  ❌ FAIL: platform e2e tests
+
+========================================
+TOTAL: 1 passed, 4 failed
+
+make: *** [test-coverage] Error 1
+
+=== 5. Bootstrap (fixed — upgrade pip + CONTRIBUTING steps) ===
+  onboarding-api venv OK (Python 3.9.6)
+  intelligence venv OK
+  node-cli deps OK (v26.3.0)
+  rust-analyzer build OK
+
+=== 6. make test AFTER bootstrap ===
+bash "/private/tmp/d5-fresh-clone-verify2/scripts/run-all-tests.sh"
+Platform Test Run — 2026-06-20T07:24:49Z
+========================================
+
+▶ onboarding-api pytest + coverage
+  ❌ FAIL: onboarding-api pytest + coverage
+
+▶ intelligence pytest + coverage
+  ✅ PASS: intelligence pytest + coverage
+
+▶ node-cli tests
+  ✅ PASS: node-cli tests
+
+▶ rust-analyzer cargo test
+  ✅ PASS: rust-analyzer cargo test
+
+▶ platform e2e tests
+  ✅ PASS: platform e2e tests
+
+========================================
+TOTAL: 4 passed, 1 failed
+
+make: *** [test-coverage] Error 1

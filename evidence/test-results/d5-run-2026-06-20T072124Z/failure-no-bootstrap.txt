@@ -1,0 +1,15 @@
+# D5 — fresh clone without bootstrap
+# Date: 2026-06-20T072124Z
+# Command: make test (immediately after git clone)
+
+TOTAL: 1 passed, 4 failed
+exit code: 1
+
+Failed suites (missing .venv / node_modules):
+  - onboarding-api pytest + coverage  (.venv/bin/pytest not found)
+  - intelligence pytest + coverage
+  - node-cli tests
+  - platform e2e tests
+
+Passed:
+  - rust-analyzer cargo test  (cargo fetches deps automatically)
