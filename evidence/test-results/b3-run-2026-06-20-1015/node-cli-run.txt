@@ -1,0 +1,39 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> kyc-cli@0.1.0 test
+> node --test tests/*.test.js
+
+▶ ApiClient
+  ✔ creates customer via POST /customers (3.770417ms)
+  ✔ throws ApiError on HTTP error response (1.039375ms)
+  ✔ throws ApiError on network failure (0.291875ms)
+✔ ApiClient (9.353459ms)
+▶ commands
+  ✔ customer-create validates before API call (2.279792ms)
+  ✔ customer-create calls API with validated payload (1.0015ms)
+  ✔ submit-kyc validates PAN and IFSC (0.243833ms)
+  ✔ submit-kyc submits to API (1.76425ms)
+✔ commands (7.855375ms)
+▶ generate-report command
+  ✔ runs intelligence analyzer on onboarding-api (478.428792ms)
+✔ generate-report command (480.023292ms)
+▶ validators
+  ✔ validates PAN format (2.809166ms)
+  ✔ rejects invalid PAN (0.456375ms)
+  ✔ validates IFSC format (0.244208ms)
+  ✔ rejects invalid IFSC (0.124458ms)
+  ✔ validates account number (0.126334ms)
+  ✔ rejects non-numeric account (0.08825ms)
+  ✔ validates email and phone (0.134417ms)
+  ✔ validates full name length (0.122708ms)
+  ✔ validates customer UUID (0.208209ms)
+✔ validators (6.034375ms)
+ℹ tests 17
+ℹ suites 4
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 686.1355
+EXIT:0 DURATION:1s

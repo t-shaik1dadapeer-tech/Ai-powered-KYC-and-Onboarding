@@ -1,0 +1,76 @@
+suite,test_type,test_file,test_name,framework,language,confidence,in_platform_runner
+onboarding-api,unit,tests/test_auth.py,test_health_public_without_key,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_auth.py,test_protected_route_requires_key,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_customers.py,test_create_customer,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_customers.py,test_create_customer_duplicate_email,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_customers.py,test_create_customer_invalid_email,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_customers.py,test_get_customer,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_customers.py,test_get_customer_not_found,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_health.py,test_health,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_health.py,test_metrics,pytest,Python,Confirmed,yes
+onboarding-api,integration,tests/test_integration.py,test_full_kyc_onboarding_flow,pytest,Python,Confirmed,yes
+onboarding-api,integration,tests/test_integration.py,test_health_and_metrics_available,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_kyc.py,test_submit_kyc_success,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_kyc.py,test_submit_kyc_invalid_pan,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_kyc.py,test_submit_kyc_rejected_pan,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_kyc.py,test_get_kyc_status,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_kyc.py,test_get_kyc_status_not_found,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_metrics.py,test_kyc_flow_exposes_domain_metrics,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_risk.py,test_risk_score_without_kyc,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_risk.py,test_risk_score_after_kyc,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_risk.py,test_risk_score_customer_not_found,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_verification.py,test_pan_verify_success,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_verification.py,test_pan_verify_invalid_format,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_verification.py,test_bank_verify_success,pytest,Python,Confirmed,yes
+onboarding-api,unit,tests/test_verification.py,test_bank_verify_invalid_account,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_analyzer.py,test_analyze_onboarding_api,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_analyzer.py,test_analyze_writes_reports,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_analyzer.py,test_spring_extraction,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_analyzer.py,test_node_extraction,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_detectors.py,test_detect_fastapi_onboarding,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_detectors.py,test_detect_spring_fixture,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_detectors.py,test_detect_node_fixture,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_detectors.py,test_walk_skips_node_modules,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_flow_tracing.py,test_code_index_builds_service_repo_map,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_flow_tracing.py,test_trace_post_customers_full_chain,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_flow_tracing.py,test_trace_post_kyc_multi_repository,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_flow_tracing.py,test_sequence_diagram_generation,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_flow_tracing.py,test_flow_reports_include_sequence_and_docs,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_flow_tracing.py,test_spring_flow_tracer,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_generators.py,test_er_diagram,pytest,Python,Confirmed,yes
+intelligence,unit,tests/test_generators.py,test_api_map,pytest,Python,Confirmed,yes
+intelligence,integration,tests/test_rust_bridge.py,test_rust_scan_onboarding_api,pytest,Python,Confirmed,yes
+intelligence,integration,tests/test_rust_bridge.py,test_analyzer_enriched_with_rust_scan,pytest,Python,Confirmed,yes
+node-cli,unit,tests/api-client.test.js,creates customer via POST /customers,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/api-client.test.js,throws ApiError on HTTP error response,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/api-client.test.js,throws ApiError on network failure,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/commands.test.js,customer-create validates before API call,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/commands.test.js,customer-create calls API with validated payload,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/commands.test.js,submit-kyc validates PAN and IFSC,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/commands.test.js,submit-kyc submits to API,node:test,JavaScript,Confirmed,yes
+node-cli,integration,tests/generate-report.test.js,runs intelligence analyzer on onboarding-api,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,validates PAN format,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,rejects invalid PAN,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,validates IFSC format,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,rejects invalid IFSC,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,validates account number,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,rejects non-numeric account,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,validates email and phone,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,validates full name length,node:test,JavaScript,Confirmed,yes
+node-cli,unit,tests/validators.test.js,validates customer UUID,node:test,JavaScript,Confirmed,yes
+rust-analyzer,unit,src/file_walker.rs,rejects_missing_path,cargo test,Rust,Confirmed,yes
+rust-analyzer,unit,src/file_walker.rs,skips_node_modules,cargo test,Rust,Confirmed,yes
+rust-analyzer,unit,src/graph/mod.rs,builds_edges_between_files,cargo test,Rust,Confirmed,yes
+rust-analyzer,unit,src/parser/python.rs,extracts_python_imports_and_classes,cargo test,Rust,Confirmed,yes
+rust-analyzer,unit,src/parser/universal.rs,parses_javascript_requires,cargo test,Rust,Confirmed,yes
+rust-analyzer,unit,src/risk/mod.rs,band_mapping,cargo test,Rust,Confirmed,yes
+rust-analyzer,unit,src/risk/mod.rs,low_test_ratio_increases_score,cargo test,Rust,Confirmed,yes
+rust-analyzer,unit,src/scan.rs,scans_temp_repo,cargo test,Rust,Confirmed,yes
+rust-analyzer,integration,tests/integration_test.rs,cli_rejects_invalid_path,cargo test,Rust,Confirmed,yes
+rust-analyzer,integration,tests/integration_test.rs,cli_scan_onboarding_api,cargo test,Rust,Confirmed,yes
+platform-e2e,e2e,tests/e2e/test_platform_e2e.py,test_e2e_api_kyc_pipeline,pytest,Python,Confirmed,yes
+platform-e2e,e2e,tests/e2e/test_platform_e2e.py,test_e2e_intelligence_analyzes_onboarding_api,pytest,Python,Confirmed,yes
+platform-e2e,e2e,tests/e2e/test_platform_e2e.py,test_e2e_rust_scan_onboarding_api,pytest,Python,Confirmed,yes
+platform-e2e,e2e,tests/e2e/test_platform_e2e.py,test_e2e_node_cli_validators,pytest,Python,Confirmed,yes
+fixture-only,unit,engines/intelligence/tests/fixtures/node/tests/users.test.js,lists users,node:test,JavaScript,Confirmed,no
+performance,load,scripts/load-test.sh,health_endpoint_load_200_requests,custom httpx,Python,Confirmed,separate_make_target

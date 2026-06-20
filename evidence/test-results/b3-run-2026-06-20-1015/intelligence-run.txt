@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/shaikdadapeer/agent development/engines/intelligence/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/shaikdadapeer/agent development/engines/intelligence
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-7.1.0
+collecting ... collected 18 items
+
+tests/test_analyzer.py::test_analyze_onboarding_api PASSED               [  5%]
+tests/test_analyzer.py::test_analyze_writes_reports PASSED               [ 11%]
+tests/test_analyzer.py::test_spring_extraction PASSED                    [ 16%]
+tests/test_analyzer.py::test_node_extraction PASSED                      [ 22%]
+tests/test_detectors.py::test_detect_fastapi_onboarding PASSED           [ 27%]
+tests/test_detectors.py::test_detect_spring_fixture PASSED               [ 33%]
+tests/test_detectors.py::test_detect_node_fixture PASSED                 [ 38%]
+tests/test_detectors.py::test_walk_skips_node_modules PASSED             [ 44%]
+tests/test_flow_tracing.py::test_code_index_builds_service_repo_map PASSED [ 50%]
+tests/test_flow_tracing.py::test_trace_post_customers_full_chain PASSED  [ 55%]
+tests/test_flow_tracing.py::test_trace_post_kyc_multi_repository PASSED  [ 61%]
+tests/test_flow_tracing.py::test_sequence_diagram_generation PASSED      [ 66%]
+tests/test_flow_tracing.py::test_flow_reports_include_sequence_and_docs PASSED [ 72%]
+tests/test_flow_tracing.py::test_spring_flow_tracer PASSED               [ 77%]
+tests/test_generators.py::test_er_diagram PASSED                         [ 83%]
+tests/test_generators.py::test_api_map PASSED                            [ 88%]
+tests/test_rust_bridge.py::test_rust_scan_onboarding_api PASSED          [ 94%]
+tests/test_rust_bridge.py::test_analyzer_enriched_with_rust_scan PASSED  [100%]
+
+============================== 18 passed in 1.21s ==============================
+EXIT:0 DURATION:2s

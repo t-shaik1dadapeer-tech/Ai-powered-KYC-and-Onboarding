@@ -1,0 +1,1 @@
+node --test tests/*.test.js (17 tests per package.json)

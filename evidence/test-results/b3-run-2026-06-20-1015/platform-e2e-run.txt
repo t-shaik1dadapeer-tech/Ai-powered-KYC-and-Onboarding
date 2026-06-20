@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/shaikdadapeer/agent development/services/onboarding-api/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/shaikdadapeer/agent development
+configfile: pyproject.toml
+plugins: anyio-4.12.1, asyncio-1.2.0, cov-7.1.0
+asyncio: mode=strict, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 4 items
+
+../../tests/e2e/test_platform_e2e.py::test_e2e_api_kyc_pipeline PASSED   [ 25%]
+../../tests/e2e/test_platform_e2e.py::test_e2e_intelligence_analyzes_onboarding_api PASSED [ 50%]
+../../tests/e2e/test_platform_e2e.py::test_e2e_rust_scan_onboarding_api PASSED [ 75%]
+../../tests/e2e/test_platform_e2e.py::test_e2e_node_cli_validators PASSED [100%]
+
+============================== 4 passed in 1.38s ===============================
+EXIT:0 DURATION:2s

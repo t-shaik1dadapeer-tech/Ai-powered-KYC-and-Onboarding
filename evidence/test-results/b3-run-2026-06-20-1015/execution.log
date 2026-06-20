@@ -1,0 +1,26 @@
+B3 Test Execution — 2026-06-20T04:45:37Z
+=== onboarding-api ===
+COLLECT: cd '/Users/shaikdadapeer/agent development/services/onboarding-api' && PYTHONPATH=. .venv/bin/pytest --collect-only -q
+RUN: cd '/Users/shaikdadapeer/agent development/services/onboarding-api' && PYTHONPATH=. .venv/bin/pytest -v --tb=short --cov=app --cov-report=term-missing
+RESULT: PASS (0) DURATION: 2s
+
+=== intelligence ===
+COLLECT: cd '/Users/shaikdadapeer/agent development/engines/intelligence' && PYTHONPATH=src .venv/bin/pytest --collect-only -q
+RUN: cd '/Users/shaikdadapeer/agent development/engines/intelligence' && PYTHONPATH=src .venv/bin/pytest -v --tb=short
+RESULT: PASS (0) DURATION: 2s
+
+=== node-cli ===
+COLLECT: echo 'node --test tests/*.test.js (17 tests per package.json)'
+RUN: cd '/Users/shaikdadapeer/agent development/clients/node-cli' && npm test
+RESULT: PASS (0) DURATION: 1s
+
+=== rust-analyzer ===
+COLLECT: cd '/Users/shaikdadapeer/agent development/engines/rust-analyzer' && cargo test -- --list 2>/dev/null | grep -c ': test$' || cargo test -q -- --list
+RUN: cd '/Users/shaikdadapeer/agent development/engines/rust-analyzer' && source "$HOME/.cargo/env" 2>/dev/null; cargo test -- --nocapture
+RESULT: PASS (0) DURATION: 2s
+
+=== platform-e2e ===
+COLLECT: cd '/Users/shaikdadapeer/agent development/services/onboarding-api' && PYTHONPATH=. .venv/bin/pytest --collect-only -q '/Users/shaikdadapeer/agent development/tests/e2e/'
+RUN: cd '/Users/shaikdadapeer/agent development/services/onboarding-api' && PYTHONPATH=. .venv/bin/pytest -v --tb=short '/Users/shaikdadapeer/agent development/tests/e2e/test_platform_e2e.py'
+RESULT: PASS (0) DURATION: 2s
+
