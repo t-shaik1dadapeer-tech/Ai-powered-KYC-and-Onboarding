@@ -1,0 +1,6 @@
+=== host curl health :8101 ===
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+=== host curl prometheus :9191 ===
+prometheus HTTP 200
+=== docker images ===
+=== docker inspect health onboarding-api ===

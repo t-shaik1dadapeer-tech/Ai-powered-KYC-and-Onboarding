@@ -1,0 +1,46 @@
+bash "/Users/shaikdadapeer/agent development/scripts/docker-verify.sh"
+Docker Verification — 2026-06-20T05:37:33Z
+==================================
+API (host)        : 8101
+Prometheus (host) : 9191
+Grafana bundled   : http://127.0.0.1:3003  (admin/admin)
+Grafana external  : http://127.0.0.1:3002  (optional import)
+
+▶ docker compose down (clean stale stack)
+
+▶ docker compose build
+  ✅ BUILD SUCCESS
+
+▶ docker compose up -d (full stack + bundled Grafana)
+▶ Waiting for services (max 180s)
+  ✅ All services ready (3x5s)
+
+▶ API health (inside container — authoritative)
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+▶ API metrics sample
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 462.0
+python_gc_objects_collected_total{generation="1"} 50.0
+python_gc_objects_collected_total{generation="2"} 10.0
+
+▶ Create customer via KYC API
+{"id":"e0e21a93-9b2b-4a14-ba5f-1bfc786def2c","full_name":"Docker User","email":"docker-verify-1781933901@example.com","phone":"9876543210","status":"pending","created_at":"2026-06-20T05:38:22.216853Z","updated_at":"2026-06-20T05:38:22.216853Z"}
+
+▶ Bundled Grafana dashboard
+  ✅ Open: http://127.0.0.1:3003/dashboards
+  Login: admin / admin
+  Folder: AI-Powered KYC Platform → AI-Powered KYC Platform API
+▶ External Grafana :3002 skipped (set GRAFANA_API_TOKEN in infra/docker/.env to import)
+
+▶ docker compose ps
+NAME                      IMAGE                     COMMAND                  SERVICE          CREATED          STATUS                             PORTS
+docker-grafana-1          grafana/grafana:11.2.0    "/run.sh"                grafana          45 seconds ago   Up 12 seconds (health: starting)   0.0.0.0:3003->3000/tcp, [::]:3003->3000/tcp
+docker-onboarding-api-1   docker-onboarding-api     "uvicorn app.main:ap…"   onboarding-api   45 seconds ago   Up 34 seconds (healthy)            0.0.0.0:8101->8000/tcp, [::]:8101->8000/tcp
+docker-postgres-1         postgres:16-alpine        "docker-entrypoint.s…"   postgres         45 seconds ago   Up 44 seconds (healthy)            5432/tcp
+docker-prometheus-1       prom/prometheus:v2.54.1   "/bin/prometheus --c…"   prometheus       45 seconds ago   Up 28 seconds (healthy)            0.0.0.0:9191->9090/tcp, [::]:9191->9090/tcp
+
+==================================
+✅ Docker verification complete
+Dashboard: http://127.0.0.1:3003/dashboards
+Evidence: /Users/shaikdadapeer/agent development/evidence/docker-results/phase-8-docker-verify.txt

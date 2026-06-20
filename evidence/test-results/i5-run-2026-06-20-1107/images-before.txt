@@ -1,0 +1,3 @@
+docker-onboarding-api:latest 246MB
+d2-docker-compose-worker:latest 137MB
+d2-docker-compose-api:latest 231MB

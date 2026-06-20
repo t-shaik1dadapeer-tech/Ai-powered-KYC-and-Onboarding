@@ -1,0 +1,11 @@
+asset_type,path,purpose,profile
+Dockerfile,services/onboarding-api/Dockerfile,FastAPI production image,default stack
+Dockerfile,clients/node-cli/Dockerfile,Node CLI client image,tools
+Dockerfile,engines/rust-analyzer/Dockerfile,Rust analyzer multi-stage image,tools
+docker-compose,infra/docker/docker-compose.yml,Full KYC stack orchestration,default
+dockerignore,services/onboarding-api/.dockerignore,Exclude venv tests db from API build,
+dockerignore,clients/node-cli/.dockerignore,Exclude node_modules from CLI build,
+dockerignore,engines/rust-analyzer/.dockerignore,Exclude target from Rust build,
+env,infra/docker/.env,Host port overrides API_HOST_PORT=8101,
+script,scripts/docker-verify.sh,Build up health smoke test evidence,
+makefile,Makefile docker-build/up/down/verify,Convenience targets,

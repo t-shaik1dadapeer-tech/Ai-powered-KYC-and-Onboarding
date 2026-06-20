@@ -1,0 +1,2 @@
+docker-onboarding-api:latest 246MB
+postgres:16-alpine 288MB

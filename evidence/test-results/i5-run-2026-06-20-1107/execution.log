@@ -1,0 +1,8 @@
+=== I5 Docker verification 2026-06-20T05:37:33Z ===
+
+=== docker compose config ===
+config: OK
+
+=== docker images before ===
+
+=== make docker-verify ===
