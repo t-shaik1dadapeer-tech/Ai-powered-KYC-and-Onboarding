@@ -1,0 +1,16 @@
+INFO:     Started server process [70400]
+INFO:     Waiting for application startup.
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T04:49:38.885987Z"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     127.0.0.1:61139 - "GET /health HTTP/1.1" 200 OK
+{"customer_id": "13919af7-490a-4d77-ab70-1fddba03bc8e", "email": "b4-verify@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T04:49:40.175487Z"}
+INFO:     127.0.0.1:61140 - "POST /customers HTTP/1.1" 201 Created
+INFO:     127.0.0.1:61141 - "POST /customers HTTP/1.1" 409 Conflict
+INFO:     127.0.0.1:61142 - "POST /customers HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:61143 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+{"event": "application_shutdown", "level": "info", "timestamp": "2026-06-20T04:49:40.708379Z"}
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70400]

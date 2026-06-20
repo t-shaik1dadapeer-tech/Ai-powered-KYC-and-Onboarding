@@ -1,0 +1,13 @@
+http_method,route_path,handler,router_file,service,request_model,response_model,status_codes,validation,auth,confidence
+POST,/customers,create_customer,services/onboarding-api/app/routers/customers.py,CustomerService,CustomerCreate,CustomerResponse,"201,409,422","full_name 2-255; EmailStr; phone pattern",API_KEY optional,Confirmed
+GET,/customer/{customer_id},get_customer,services/onboarding-api/app/routers/customer_read.py,CustomerService,path:customer_id UUID,CustomerResponse,"200,404,422",UUID path param,API_KEY optional,Confirmed
+POST,/kyc,submit_kyc,services/onboarding-api/app/routers/kyc.py,KycService,KycSubmitRequest,KycStatusResponse,"201,404,422","PAN/IFSC/account validators",API_KEY optional,Confirmed
+GET,/kyc-status/{customer_id},get_kyc_status,services/onboarding-api/app/routers/kyc.py,KycService,path:customer_id UUID,KycStatusResponse,"200,404,422",UUID path param,API_KEY optional,Confirmed
+POST,/pan-verify,verify_pan,services/onboarding-api/app/routers/verification.py,StandaloneVerificationService,PanVerifyRequest,PanVerifyResponse,"200,404,422",PAN format validator,API_KEY optional,Confirmed
+POST,/bank-verify,verify_bank,services/onboarding-api/app/routers/verification.py,StandaloneVerificationService,BankVerifyRequest,BankVerifyResponse,"200,404,422",IFSC + account validators,API_KEY optional,Confirmed
+POST,/risk-score,calculate_risk_score,services/onboarding-api/app/routers/risk.py,RiskScoreService,RiskScoreRequest,RiskScoreResponse,"200,404,422",customer_id UUID,API_KEY optional,Confirmed
+GET,/health,health_check,services/onboarding-api/app/routers/health.py,none,none,JSON dict,200,none,Always public,Confirmed
+GET,/metrics,metrics,services/onboarding-api/app/routers/health.py,prometheus_client,none,Prometheus text,200,none,Always public,Confirmed
+GET,/docs,swagger_ui_html,FastAPI auto,none,none,HTML,200,none,Always public,Confirmed
+GET,/redoc,redoc_html,FastAPI auto,none,none,HTML,200,none,Always public,Confirmed
+GET,/openapi.json,openapi,FastAPI auto,none,none,OpenAPI 3.1 JSON,200,none,Always public,Confirmed

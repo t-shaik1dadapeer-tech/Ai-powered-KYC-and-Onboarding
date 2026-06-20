@@ -1,0 +1,11 @@
+POST /customers
+{"id":"13919af7-490a-4d77-ab70-1fddba03bc8e","full_name":"B4 User","email":"b4-verify@example.com","phone":"9876543210","status":"pending","created_at":"2026-06-20T04:49:40","updated_at":"2026-06-20T04:49:40"}
+HTTP:201
+
+POST /customers duplicate (expect 409)
+{"error":{"code":"conflict","message":"Customer with email b4-verify@example.com already exists"}}
+HTTP:409
+
+POST /customers invalid email (expect 422)
+{"detail":[{"type":"value_error","loc":["body","email"],"msg":"value is not a valid email address: An email address must have an @-sign.","input":"not-email","ctx":{"reason":"An email address must have an @-sign."}}]}
+HTTP:422

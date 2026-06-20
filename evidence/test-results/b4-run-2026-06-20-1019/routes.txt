@@ -1,0 +1,13 @@
+['POST'] /bank-verify verify_bank
+['GET'] /customer/{customer_id} get_customer
+['POST'] /customers create_customer
+['GET', 'HEAD'] /docs swagger_ui_html
+['GET', 'HEAD'] /docs/oauth2-redirect swagger_ui_redirect
+['GET'] /health health_check
+['POST'] /kyc submit_kyc
+['GET'] /kyc-status/{customer_id} get_kyc_status
+['GET'] /metrics metrics
+['GET', 'HEAD'] /openapi.json openapi
+['POST'] /pan-verify verify_pan
+['GET', 'HEAD'] /redoc redoc_html
+['POST'] /risk-score calculate_risk_score
