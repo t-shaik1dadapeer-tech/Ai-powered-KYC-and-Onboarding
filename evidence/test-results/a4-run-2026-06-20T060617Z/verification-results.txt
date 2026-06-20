@@ -1,0 +1,19 @@
+# A4 Verification Results
+
+**Date:** 2026-06-20T06:06:17Z
+
+## Lint
+- ruff onboarding-api: PASS
+- npm run lint (node-cli): PASS
+
+## Tests
+- npm test: 19 passed (+2 new api-key tests)
+- make test-api: 28 passed
+- make test-e2e: 4 passed
+
+## Live integration (API_KEY=a4-test-secret)
+- POST /customers without key: 401
+- CLI customer-create --api-key a4-test-secret: 201 ok
+
+## Rollback
+git revert <a4-commit> restores pre-M1 CLI behavior

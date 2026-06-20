@@ -20,6 +20,7 @@ program
   .requiredOption("--email <email>", "Customer email")
   .requiredOption("--phone <phone>", "Customer phone")
   .option("--api-url <url>", "Onboarding API base URL", process.env.API_BASE_URL || "http://localhost:8000")
+  .option("--api-key <key>", "API key (X-API-Key header)", process.env.API_KEY)
   .action(async (options) => {
     try {
       const result = await customerCreate(options);
@@ -37,6 +38,7 @@ program
   .requiredOption("--account <number>", "Bank account number")
   .requiredOption("--ifsc <ifsc>", "Bank IFSC code")
   .option("--api-url <url>", "Onboarding API base URL", process.env.API_BASE_URL || "http://localhost:8000")
+  .option("--api-key <key>", "API key (X-API-Key header)", process.env.API_KEY)
   .action(async (options) => {
     try {
       const result = await submitKyc(options);

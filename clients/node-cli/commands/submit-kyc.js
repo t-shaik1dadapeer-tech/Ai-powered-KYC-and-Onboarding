@@ -12,7 +12,7 @@ async function submitKyc(options) {
   const accountNumber = validateAccountNumber(options.account);
   const ifsc = validateIfsc(options.ifsc);
 
-  const client = new ApiClient(options.apiUrl);
+  const client = new ApiClient(options.apiUrl, global.fetch, options.apiKey);
   const result = await client.submitKyc({
     customerId,
     pan,

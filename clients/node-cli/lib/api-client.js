@@ -1,9 +1,10 @@
 const { ApiError } = require("./errors");
 
 class ApiClient {
-  constructor(baseUrl, fetchImpl = global.fetch) {
+  constructor(baseUrl, fetchImpl = global.fetch, apiKey = undefined) {
     this.baseUrl = baseUrl.replace(/\/$/, "");
     this.fetch = fetchImpl;
+    this.apiKey = apiKey || undefined;
   }
 
   async createCustomer({ fullName, email, phone }) {
@@ -33,6 +34,9 @@ class ApiClient {
       method,
       headers: { "Content-Type": "application/json", Accept: "application/json" },
     };
+    if (this.apiKey) {
+      options.headers["X-API-Key"] = this.apiKey;
+    }
     if (body !== undefined) {
       options.body = JSON.stringify(body);
     }

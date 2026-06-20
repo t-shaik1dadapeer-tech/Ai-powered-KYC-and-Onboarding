@@ -1,0 +1,8 @@
+INFO:     Started server process [41646]
+INFO:     Waiting for application startup.
+{"event": "application_started", "level": "info", "timestamp": "2026-06-20T06:06:18.375286Z"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8114 (Press CTRL+C to quit)
+INFO:     127.0.0.1:63776 - "POST /customers HTTP/1.1" 401 Unauthorized
+{"customer_id": "b0140030-5fed-455f-89ee-d39f341b468d", "email": "a4-1781935579@example.com", "event": "customer_created", "level": "info", "timestamp": "2026-06-20T06:06:19.461448Z"}
+INFO:     127.0.0.1:63777 - "POST /customers HTTP/1.1" 201 Created

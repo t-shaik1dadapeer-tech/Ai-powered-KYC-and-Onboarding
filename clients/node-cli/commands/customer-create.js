@@ -10,7 +10,7 @@ async function customerCreate(options) {
   const email = validateEmail(options.email);
   const phone = validatePhone(options.phone);
 
-  const client = new ApiClient(options.apiUrl);
+  const client = new ApiClient(options.apiUrl, global.fetch, options.apiKey);
   const result = await client.createCustomer({ fullName, email, phone });
 
   return {

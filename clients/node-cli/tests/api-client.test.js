@@ -67,4 +67,19 @@ describe("ApiClient", () => {
       (err) => err.code === "network_error"
     );
   });
+
+  it("sends X-API-Key header when apiKey is configured", async () => {
+    const fetchMock = mock.fn(async (_url, options) => {
+      assert.equal(options.headers["X-API-Key"], "secret-key");
+      return {
+        ok: true,
+        status: 200,
+        text: async () => JSON.stringify({ status: "healthy" }),
+      };
+    });
+
+    const client = new ApiClient("http://localhost:8000", fetchMock, "secret-key");
+    await client.getHealth();
+    assert.equal(fetchMock.mock.calls.length, 1);
+  });
 });

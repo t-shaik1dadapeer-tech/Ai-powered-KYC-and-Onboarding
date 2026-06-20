@@ -50,6 +50,9 @@ node bin/kyc-cli.js generate-report \
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `API_BASE_URL` | `http://localhost:8000` | Onboarding API base URL |
+| `API_KEY` | _(unset)_ | Sent as `X-API-Key` when API auth is enabled |
+
+Use `--api-key` on `customer-create` and `submit-kyc` to override `API_KEY`.
 
 ## Test
 

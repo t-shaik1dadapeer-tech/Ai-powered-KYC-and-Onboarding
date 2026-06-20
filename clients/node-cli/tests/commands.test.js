@@ -44,6 +44,35 @@ describe("commands", () => {
     }
   });
 
+  it("customer-create passes api key to ApiClient", async () => {
+    const originalFetch = global.fetch;
+    global.fetch = mock.fn(async (_url, options) => {
+      assert.equal(options.headers["X-API-Key"], "cli-secret");
+      return {
+        ok: true,
+        status: 201,
+        text: async () =>
+          JSON.stringify({
+            id: "550e8400-e29b-41d4-a716-446655440000",
+            status: "pending",
+            email: "jane@example.com",
+          }),
+      };
+    });
+
+    try {
+      await customerCreate({
+        name: "Jane Doe",
+        email: "jane@example.com",
+        phone: "9876543210",
+        apiUrl: "http://localhost:8000",
+        apiKey: "cli-secret",
+      });
+    } finally {
+      global.fetch = originalFetch;
+    }
+  });
+
   it("submit-kyc validates PAN and IFSC", async () => {
     await assert.rejects(
       () =>
