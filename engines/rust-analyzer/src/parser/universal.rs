@@ -8,17 +8,21 @@ use crate::error::Result;
 
 pub fn parse_file(relative: &str, path: &Path) -> Result<ParsedFile> {
     let content = fs::read_to_string(path)?;
+    Ok(parse_file_content(relative, path, &content))
+}
+
+pub fn parse_file_content(relative: &str, path: &Path, content: &str) -> ParsedFile {
     let ext = path
         .extension()
         .and_then(|e| e.to_str())
         .unwrap_or("")
         .to_lowercase();
 
-    Ok(match ext.as_str() {
-        "py" => parse_python(relative, &content),
-        "js" | "ts" | "jsx" | "tsx" => parse_javascript(relative, &content),
-        "java" | "kt" => parse_java(relative, &content),
-        "rs" => parse_rust(relative, &content),
+    match ext.as_str() {
+        "py" => parse_python(relative, content),
+        "js" | "ts" | "jsx" | "tsx" => parse_javascript(relative, content),
+        "java" | "kt" => parse_java(relative, content),
+        "rs" => parse_rust(relative, content),
         _ => ParsedFile {
             path: relative.to_string(),
             language: ext,
@@ -26,7 +30,7 @@ pub fn parse_file(relative: &str, path: &Path) -> Result<ParsedFile> {
             symbols: Vec::new(),
             test_file: relative.contains("test") || relative.contains("spec"),
         },
-    })
+    }
 }
 
 fn parse_javascript(relative: &str, content: &str) -> ParsedFile {

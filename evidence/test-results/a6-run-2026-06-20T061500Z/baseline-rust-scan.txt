@@ -1,0 +1,17 @@
+# A6 Baseline — rust-analyzer scan (pre-optimization)
+# Date: 2026-06-20T06:15:00Z
+# Method: 20x `rust-analyzer scan --path services/onboarding-api`, metric=scan_duration_ms JSON
+# Repo: onboarding-api, file_count=60
+
+runs=20
+file_count=60
+scan_duration_ms_min=128
+scan_duration_ms_max=504
+scan_duration_ms_mean=203.9
+scan_duration_ms_median=165.5
+scan_duration_ms_stdev=87.9
+
+# Root cause identified: triple disk read per file
+# 1. file_walker count_lines (read bytes)
+# 2. parse_file read_to_string
+# 3. count_secret_patterns read_to_string

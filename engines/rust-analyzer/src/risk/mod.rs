@@ -1,5 +1,6 @@
 use std::collections::BTreeMap;
 use std::path::Path;
+use std::sync::OnceLock;
 
 use regex::Regex;
 use serde::{Deserialize, Serialize};
@@ -14,7 +15,12 @@ pub struct RiskAssessment {
     pub factors: BTreeMap<String, serde_json::Value>,
 }
 
-pub fn calculate_risk(repo_path: &Path, files: &[RepoFile], parsed: &[ParsedFile]) -> RiskAssessment {
+pub fn calculate_risk(
+    repo_path: &Path,
+    files: &[RepoFile],
+    parsed: &[ParsedFile],
+    text_contents: &[String],
+) -> RiskAssessment {
     let total = files.len().max(1);
     let test_count = parsed.iter().filter(|p| p.test_file).count();
     let test_ratio = test_count as f64 / total as f64;
@@ -22,7 +28,7 @@ pub fn calculate_risk(repo_path: &Path, files: &[RepoFile], parsed: &[ParsedFile
     let total_lines: usize = files.iter().map(|f| f.line_count).sum();
     let avg_lines = total_lines as f64 / total as f64;
 
-    let secret_hits = count_secret_patterns(files);
+    let secret_hits = count_secret_patterns(text_contents);
     let dependency_count = count_dependencies(repo_path);
 
     let mut score: f64 = 50.0;
@@ -71,18 +77,20 @@ fn score_to_band(score: u32) -> String {
     }
 }
 
-fn count_secret_patterns(files: &[RepoFile]) -> usize {
-    let secret_re = Regex::new(
-        r#"(?i)(api[_-]?key|password|secret|token)\s*=\s*["'][^"']+["']"#,
-    )
-    .unwrap();
+fn count_secret_patterns(contents: &[String]) -> usize {
+    let secret_re = secret_pattern_regex();
     let mut hits = 0;
-    for file in files {
-        if let Ok(content) = std::fs::read_to_string(&file.path) {
-            hits += secret_re.find_iter(&content).count();
-        }
+    for content in contents {
+        hits += secret_re.find_iter(content).count();
     }
     hits
+}
+
+fn secret_pattern_regex() -> &'static Regex {
+    static RE: OnceLock<Regex> = OnceLock::new();
+    RE.get_or_init(|| {
+        Regex::new(r#"(?i)(api[_-]?key|password|secret|token)\s*=\s*["'][^"']+["']"#).unwrap()
+    })
 }
 
 fn count_dependencies(repo_path: &Path) -> usize {
@@ -131,7 +139,7 @@ mod tests {
             symbols: vec![],
             test_file: false,
         }];
-        let risk = calculate_risk(Path::new("."), &files, &parsed);
+        let risk = calculate_risk(Path::new("."), &files, &parsed, &["a.py".into()]);
         assert!(risk.score >= 50);
         assert!(risk.factors.contains_key("test_ratio"));
     }

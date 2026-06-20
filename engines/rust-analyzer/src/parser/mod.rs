@@ -2,7 +2,7 @@ mod python;
 mod universal;
 
 pub use python::parse_python;
-pub use universal::parse_file;
+pub use universal::{parse_file, parse_file_content};
 
 use serde::{Deserialize, Serialize};
 
