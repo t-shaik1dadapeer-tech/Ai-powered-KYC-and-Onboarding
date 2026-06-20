@@ -1,0 +1,252 @@
+=== D2 Docker Compose Verification ===
+Started: 2026-06-20T06:33:24Z
+
+=== Step 1: compose config validation ===
+config: OK
+
+=== Step 2: make docker-verify (build, up, smoke) ===
+Docker Verification — 2026-06-20T06:33:25Z
+==================================
+API (host)        : 8101
+Prometheus (host) : 9191
+Grafana bundled   : http://127.0.0.1:3003  (admin/admin)
+Grafana external  : http://127.0.0.1:3002  (optional import)
+
+▶ docker compose down (clean stale stack)
+
+▶ docker compose build
+  ✅ BUILD SUCCESS
+
+▶ docker compose up -d (full stack + bundled Grafana)
+▶ Waiting for services (max 180s)
+  ✅ All services ready (2x5s)
+
+▶ API health (inside container — authoritative)
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+▶ API metrics sample
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 462.0
+python_gc_objects_collected_total{generation="1"} 50.0
+python_gc_objects_collected_total{generation="2"} 10.0
+
+▶ Create customer via KYC API
+{"id":"55e2c3a0-a216-453e-b49d-1a229b79b5fd","full_name":"Docker User","email":"docker-verify-1781937252@example.com","phone":"9876543210","status":"pending","created_at":"2026-06-20T06:34:13.550410Z","updated_at":"2026-06-20T06:34:13.550410Z"}
+
+▶ Bundled Grafana dashboard
+  ✅ Open: http://127.0.0.1:3003/dashboards
+  Login: admin / admin
+  Folder: AI-Powered KYC Platform → AI-Powered KYC Platform API
+▶ External Grafana :3002 skipped (set GRAFANA_API_TOKEN in infra/docker/.env to import)
+
+▶ docker compose ps
+NAME                      IMAGE                     COMMAND                  SERVICE          CREATED          STATUS                            PORTS
+docker-grafana-1          grafana/grafana:11.2.0    "/run.sh"                grafana          40 seconds ago   Up 7 seconds (health: starting)   0.0.0.0:3003->3000/tcp, [::]:3003->3000/tcp
+docker-onboarding-api-1   docker-onboarding-api     "uvicorn app.main:ap…"   onboarding-api   40 seconds ago   Up 29 seconds (healthy)           0.0.0.0:8101->8000/tcp, [::]:8101->8000/tcp
+docker-postgres-1         postgres:16-alpine        "docker-entrypoint.s…"   postgres         40 seconds ago   Up 40 seconds (healthy)           5432/tcp
+docker-prometheus-1       prom/prometheus:v2.54.1   "/bin/prometheus --c…"   prometheus       40 seconds ago   Up 23 seconds (healthy)           0.0.0.0:9191->9090/tcp, [::]:9191->9090/tcp
+
+==================================
+✅ Docker verification complete
+Dashboard: http://127.0.0.1:3003/dashboards
+Evidence: /Users/shaikdadapeer/agent development/evidence/docker-results/phase-8-docker-verify.txt
+
+=== Step 3: DB initialization proof ===
+/var/run/postgresql:5432 - accepting connections
+ db_ok 
+-------
+     1
+(1 row)
+
+
+=== Step 4: Service communication — full KYC via API container ===
+Customer: 34020d6d-d04a-4fa0-96e2-32de6d2c57a1
+{"customer_id":"34020d6d-d04a-4fa0-96e2-32de6d2c57a1","kyc_submission_id":"bce4781b-9ddd-4fea-a125-7813c3a30e1b","status":"verified","rejection_reason":null,"pan_verification_status":"verified","bank_verification_status":"verified","submitted_at":"2026-06-20T06:34:15.368502Z","verified_at":"2026-06-20T06:34:15.405014Z"}
+=== Step 5: node-cli container (tools profile) communication ===
+#0 building with "colima" instance using docker driver
+
+#1 [node-cli internal] load build definition from Dockerfile
+#1 transferring dockerfile: 281B done
+#1 DONE 0.0s
+
+#2 [node-cli internal] load metadata for docker.io/library/node:20-alpine
+#2 DONE 3.0s
+
+#3 [node-cli internal] load .dockerignore
+#3 transferring context: 77B done
+#3 DONE 0.0s
+
+#4 [node-cli 1/7] FROM docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
+#4 DONE 0.0s
+
+#5 [node-cli 2/7] WORKDIR /app
+#5 CACHED
+
+#6 [node-cli internal] load build context
+#6 transferring context: 13.54kB done
+#6 DONE 0.0s
+
+#7 [node-cli 3/7] COPY package.json package-lock.json* ./
+#7 DONE 0.0s
+
+#8 [node-cli 4/7] RUN npm install --omit=dev
+#8 2.100 
+#8 2.100 added 1 package, and audited 2 packages in 2s
+#8 2.101 
+#8 2.101 found 0 vulnerabilities
+#8 2.103 npm notice
+#8 2.103 npm notice New major version of npm available! 10.8.2 -> 11.17.0
+#8 2.103 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0
+#8 2.103 npm notice To update run: npm install -g npm@11.17.0
+#8 2.103 npm notice
+#8 DONE 2.1s
+
+#9 [node-cli 5/7] COPY bin ./bin
+#9 DONE 0.0s
+
+#10 [node-cli 6/7] COPY lib ./lib
+#10 DONE 0.0s
+
+#11 [node-cli 7/7] COPY commands ./commands
+#11 DONE 0.0s
+
+#12 [node-cli] exporting to image
+#12 exporting layers 0.0s done
+#12 writing image sha256:5ae3dd36d6c61a8e97f8d3fada0dc7c1a1a131fe1fbc197f711591ed786dd9b0 done
+#12 naming to docker.io/library/docker-node-cli done
+#12 DONE 0.1s
+
+#13 [node-cli] resolving provenance for metadata file
+#13 DONE 0.0s
+tail: unrecognized option: name
+BusyBox v1.37.0 (2025-12-16 14:19:28 UTC) multi-call binary.
+
+Usage: tail [OPTIONS] [FILE]...
+
+Print last 10 lines of FILEs (or stdin) to.
+With more than one FILE, precede each with a filename header.
+
+	-c [+]N[bkm]	Print last N bytes
+	-n N[bkm]	Print last N lines
+	-n +N[bkm]	Start on Nth line and print the rest
+			(b:*512 k:*1024 m:*1024^2)
+	-q		Never print headers
+	-v		Always print headers
+	-f		Print data as file grows
+	-F		Same as -f, but keep retrying
+	-s SECONDS	Wait SECONDS between reads with -f
+
+=== Step 5 (retry): node-cli via compose run with entrypoint override ===
+{
+  "ok": true,
+  "customerId": "ff8abf8f-52e3-4a1c-a23a-69d476d3bce6",
+  "status": "pending",
+  "email": "d2-cli-1781937274@example.com",
+  "raw": {
+    "id": "ff8abf8f-52e3-4a1c-a23a-69d476d3bce6",
+    "full_name": "CLI Docker",
+    "email": "d2-cli-1781937274@example.com",
+    "phone": "9876543210",
+    "status": "pending",
+    "created_at": "2026-06-20T06:34:35.008736Z",
+    "updated_at": "2026-06-20T06:34:35.008736Z"
+  }
+}
+
+=== Step 6: Host port health ===
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+Prometheus Server is Healthy.
+
+{
+  "database": "ok",
+  "version": "11.2.0",
+  "commit": "2a88694fd3ced0335bf3726cc5d0adc2d1858855"
+}
+
+=== Step 7: make test-e2e ===
+cd "/Users/shaikdadapeer/agent development/services/onboarding-api" && PYTHONPATH=. .venv/bin/pytest -v "/Users/shaikdadapeer/agent development/tests/e2e/"
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/shaikdadapeer/agent development/services/onboarding-api/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/shaikdadapeer/agent development
+configfile: pyproject.toml
+plugins: anyio-4.12.1, asyncio-1.2.0, cov-7.1.0
+asyncio: mode=strict, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 4 items
+
+../../tests/e2e/test_platform_e2e.py::test_e2e_api_kyc_pipeline PASSED   [ 25%]
+../../tests/e2e/test_platform_e2e.py::test_e2e_intelligence_analyzes_onboarding_api PASSED [ 50%]
+../../tests/e2e/test_platform_e2e.py::test_e2e_rust_scan_onboarding_api PASSED [ 75%]
+../../tests/e2e/test_platform_e2e.py::test_e2e_node_cli_validators PASSED [100%]
+
+============================== 4 passed in 2.39s ===============================
+
+=== Step 8: Teardown ===
+ Container docker-grafana-1  Stopping
+ Container docker-grafana-1  Stopped
+ Container docker-grafana-1  Removing
+ Container docker-grafana-1  Removed
+ Container docker-prometheus-1  Stopping
+ Container docker-prometheus-1  Stopped
+ Container docker-prometheus-1  Removing
+ Container docker-prometheus-1  Removed
+ Container docker-onboarding-api-1  Stopping
+ Container docker-onboarding-api-1  Stopped
+ Container docker-onboarding-api-1  Removing
+ Container docker-onboarding-api-1  Removed
+ Container docker-postgres-1  Stopping
+ Container docker-postgres-1  Stopped
+ Container docker-postgres-1  Removing
+ Container docker-postgres-1  Removed
+ Network docker_kyc-net  Removing
+ Network docker_kyc-net  Removed
+ps after down:
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+
+=== Step 9: Clean restart ===
+ Network docker_kyc-net  Creating
+ Network docker_kyc-net  Created
+ Container docker-postgres-1  Creating
+ Container docker-postgres-1  Created
+ Container docker-onboarding-api-1  Creating
+ Container docker-onboarding-api-1  Created
+ Container docker-prometheus-1  Creating
+ Container docker-prometheus-1  Created
+ Container docker-grafana-1  Creating
+ Container docker-grafana-1  Created
+ Container docker-postgres-1  Starting
+ Container docker-postgres-1  Started
+ Container docker-postgres-1  Waiting
+ Container docker-postgres-1  Healthy
+ Container docker-onboarding-api-1  Starting
+ Container docker-onboarding-api-1  Started
+ Container docker-onboarding-api-1  Waiting
+ Container docker-onboarding-api-1  Healthy
+ Container docker-prometheus-1  Starting
+ Container docker-prometheus-1  Started
+ Container docker-prometheus-1  Waiting
+ Container docker-prometheus-1  Healthy
+ Container docker-grafana-1  Starting
+ Container docker-grafana-1  Started
+Restart healthy after 1x5s
+{"status":"healthy","service":"onboarding-api","version":"0.1.0"}
+
+=== Step 10: Final teardown ===
+ Container docker-grafana-1  Stopping
+ Container docker-grafana-1  Stopped
+ Container docker-grafana-1  Removing
+ Container docker-grafana-1  Removed
+ Container docker-prometheus-1  Stopping
+ Container docker-prometheus-1  Stopped
+ Container docker-prometheus-1  Removing
+ Container docker-prometheus-1  Removed
+ Container docker-onboarding-api-1  Stopping
+ Container docker-onboarding-api-1  Stopped
+ Container docker-onboarding-api-1  Removing
+ Container docker-onboarding-api-1  Removed
+ Container docker-postgres-1  Stopping
+ Container docker-postgres-1  Stopped
+ Container docker-postgres-1  Removing
+ Container docker-postgres-1  Removed
+ Network docker_kyc-net  Removing
+ Network docker_kyc-net  Removed

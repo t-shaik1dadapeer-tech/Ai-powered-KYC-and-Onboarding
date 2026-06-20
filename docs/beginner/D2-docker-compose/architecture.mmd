@@ -1,0 +1,26 @@
+```mermaid
+flowchart TB
+    subgraph host["Host ports"]
+        H8101[":8101 API"]
+        H9191[":9191 Prometheus"]
+        H3003[":3003 Grafana"]
+    end
+
+    subgraph kyc_net["network: kyc-net"]
+        PG[(postgres:5432)]
+        API[onboarding-api:8000]
+        PROM[prometheus:9090]
+        GRAF[grafana:3000]
+        CLI[node-cli profile:tools]
+        RUST[rust-analyzer profile:tools]
+    end
+
+    H8101 --> API
+    H9191 --> PROM
+    H3003 --> GRAF
+    API -->|DATABASE_URL| PG
+    PROM -->|scrape /metrics| API
+    GRAF --> PROM
+    CLI -->|HTTP JSON| API
+    RUST -.->|read-only /workspace| API
+```
