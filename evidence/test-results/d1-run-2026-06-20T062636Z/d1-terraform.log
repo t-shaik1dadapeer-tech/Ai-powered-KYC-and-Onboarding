@@ -1,0 +1,75 @@
+D1 Terraform Verification — 2026-06-20T06:26:47Z
+Terraform: Terraform v1.9.8
+on darwin_arm64
++ provider registry.terraform.io/hashicorp/local v2.9.0
+
+Your version of Terraform is out of date! The latest version
+is 1.15.6. You can update by downloading from https://www.terraform.io/downloads.html
+
+========== terraform init ==========
+[0m[1mInitializing the backend...[0m
+[0m[1mInitializing provider plugins...[0m
+- Reusing previous version of hashicorp/local from the dependency lock file
+- Using previously-installed hashicorp/local v2.9.0
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+
+========== terraform validate ==========
+[32m[1mSuccess![0m The configuration is valid.
+[0m
+
+========== terraform plan ==========
+local_file.infra_registry: Refreshing state... [id=314fc0dbfb84cbf8075acf3cb24fd4d4fe5e5475]
+local_file.compose_copy: Refreshing state... [id=cfd868d8331840c3d3603dc54301ac616b11e4ee]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # local_file.infra_registry must be replaced
+-/+ resource "local_file" "infra_registry" {
+      ~ content              = jsonencode(
+            {
+              - artifacts    = {
+                  - docker_compose = "bb199ab745f1789d2fd03885e7a4147d5eda38f8a7f5296d69301f3994e75274"
+                  - k8s_deployment = "56454cf27454790441f50853e99d172a61bbc9c2bbc405b9ed111dfb07490b75"
+                  - prometheus     = "8a2d4fb7e52ba8ae8610cfbef97e7163c03abfe1a27ab1030188f6f0afb795bb"
+                }
+              - environment  = "dev"
+              - generated_at = "2026-06-20T05:30:59Z"
+              - managed_by   = "terraform"
+              - project      = "kyc-platform"
+              - services     = [
+                  - "onboarding-api",
+                  - "postgres",
+                  - "prometheus",
+                  - "grafana",
+                ]
+            }
+        ) -> (known after apply) # forces replacement
+      ~ content_base64sha256 = "kUUsHZqLYcTJ+Dyl8Mtz4msy6qVoNG+jJzjZFzGDFAw=" -> (known after apply)
+      ~ content_base64sha512 = "f/+VqgD87tNjckAoFyK1pPqU3fcKdln4FTftUihLLydKvj8PjbJiYiOMtePXCs4mUJ8lznhpiklb/Sf+PxtI8w==" -> (known after apply)
+      ~ content_md5          = "188bbdf32c5e6b93f8977b5832cc4e6b" -> (known after apply)
+      ~ content_sha1         = "314fc0dbfb84cbf8075acf3cb24fd4d4fe5e5475" -> (known after apply)
+      ~ content_sha256       = "91452c1d9a8b61c4c9f83ca5f0cb73e26b32eaa568346fa32738d9173183140c" -> (known after apply)
+      ~ content_sha512       = "7fff95aa00fceed3637240281722b5a4fa94ddf70a7659f81537ed52284b2f274abe3f0f8db26262238cb5e3d70ace26509f25ce78698a495bfd27fe3f1b48f3" -> (known after apply)
+      ~ id                   = "314fc0dbfb84cbf8075acf3cb24fd4d4fe5e5475" -> (known after apply)
+        # (3 unchanged attributes hidden)
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
