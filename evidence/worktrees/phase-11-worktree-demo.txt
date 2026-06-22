@@ -1,8 +1,8 @@
-Worktree Demo — 2026-06-20T07:48:30Z
+Worktree Demo — 2026-06-22T11:58:23Z
 ==========================
 
 ▶ git repo exists
-  ✅ HEAD exists: df07bfe
+  ✅ HEAD exists: a9387ec
 
 ▶ Create branches (if missing)
   ✅ Branches: analysis-worktree, observability-worktree
@@ -19,11 +19,12 @@ Worktree Demo — 2026-06-20T07:48:30Z
 
 ▶ Merge analysis-worktree → main
 Already on 'main'
-M	.gitignore
-M	README.md
 M	evidence/ci-results/phase-9-ci-local.txt
 M	evidence/docker-results/phase-8-docker-verify.txt
+M	evidence/evaluation-results/full-24-audit-latest.txt
 M	evidence/k8s-results/k8s-verify.txt
+M	evidence/observability-results/metrics-snapshot.txt
+M	evidence/observability-results/phase-10-observability.txt
 M	evidence/performance/load-test.txt
 M	evidence/safe-change/safe-change-check.txt
 M	evidence/terraform-results/infra-registry.json
@@ -32,6 +33,8 @@ M	evidence/test-results/intelligence-coverage.xml
 M	evidence/test-results/onboarding-api-coverage.xml
 M	evidence/test-results/phase-7-summary.txt
 M	evidence/worktrees/phase-11-worktree-demo.txt
+M	scripts/ci-local.sh
+M	scripts/docker-verify.sh
 Your branch is up to date with 'origin/main'.
   ⏭ analysis-worktree already merged
 
@@ -39,21 +42,21 @@ Your branch is up to date with 'origin/main'.
   ⏭ observability-worktree already merged
 
 ▶ Worktree list
-/Users/shaikdadapeer/agent development                              df07bfe [main]
+/Users/shaikdadapeer/agent development                              a9387ec [main]
 /Users/shaikdadapeer/agent development/.worktrees/a2-analysis       7595a83 [a2-lane-analysis]
 /Users/shaikdadapeer/agent development/.worktrees/a2-observability  5667872 [a2-lane-observability]
 /Users/shaikdadapeer/agent development/.worktrees/analysis          71fdac1 [analysis-worktree]
 /Users/shaikdadapeer/agent development/.worktrees/observability     3f1395e [observability-worktree]
 
 ▶ Recent merge history
+* a9387ec chore: consolidate repo structure and remove duplicate evidence
+* 195ced2 fix: GitHub Actions CI lint, node-cli, and load test
 * df07bfe D6: observability bolt-on verification
 * e6c0d58 D5: reproducible environment verification
 * 4e91ff2 D4: kubernetes manifest verification
 * 8a1de8e D3: ci pipeline verification
 * 119b5ce D2: docker compose stack verification
 * b7edc3b D1: terraform infrastructure verification
-* cce1879 A6: performance profiling
-* c1dede3 A5: agent code review
 
 ==========================
 ✅ Worktree demo complete

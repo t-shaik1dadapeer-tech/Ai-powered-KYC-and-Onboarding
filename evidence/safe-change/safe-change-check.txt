@@ -1,8 +1,8 @@
-Safe Change Check — 2026-06-20T07:47:13Z
+Safe Change Check — 2026-06-22T11:58:06Z
 ==============================
 ▶ 1/5 ci-local (lint + tests + build)
 bash "/Users/shaikdadapeer/agent development/scripts/ci-local.sh"
-Local CI Run — 2026-06-20T07:47:13Z
+Local CI Run — 2026-06-22T11:58:06Z
 =========================
 
 ▶ ruff onboarding-api
@@ -42,7 +42,8 @@ Local CI Run — 2026-06-20T07:47:13Z
   ✅ PASS: kubernetes dry-run
 
 ▶ docker compose build
-  ✅ PASS: docker compose build
+  ⏭ SKIP: docker daemon not running — static validation only
+  ✅ PASS: docker static validation (offline fallback)
 
 =========================
 TOTAL: 13 passed, 0 failed
@@ -50,7 +51,7 @@ TOTAL: 13 passed, 0 failed
 ✅ Local CI complete — evidence: /Users/shaikdadapeer/agent development/evidence/ci-results/phase-9-ci-local.txt
   ✅ ci-local passed
 ▶ 2/5 terraform validate
-Terraform Verification — 2026-06-20T07:47:40Z
+Terraform Verification — 2026-06-22T11:58:19Z
 =====================================
 ▶ terraform init
   ✅ init OK
@@ -65,7 +66,7 @@ Terraform Verification — 2026-06-20T07:47:40Z
 Evidence: /Users/shaikdadapeer/agent development/evidence/terraform-results/terraform-verify.txt
   ✅ terraform passed
 ▶ 3/5 kubernetes dry-run
-Kubernetes Verification — 2026-06-20T07:47:41Z
+Kubernetes Verification — 2026-06-22T11:58:20Z
 ======================================
 ▶ found: kyc-platform.yaml
 ▶ found: onboarding-api-deployment.yaml
@@ -81,11 +82,11 @@ Evidence: /Users/shaikdadapeer/agent development/evidence/k8s-results/k8s-verify
 ▶ 4/5 docker compose config
   ✅ docker compose config valid
 ▶ 5/5 load test (in-process)
-Load Test — 2026-06-20T07:47:42Z
+Load Test — 2026-06-22T11:58:20Z
 ======================
 requests=200 concurrency=20
-duration_s=0.459 rps=435.6
-p50_ms=42.05 p95_ms=58.41 errors=0
+duration_s=0.187 rps=1067.5
+p50_ms=14.88 p95_ms=30.03 errors=0
 PASS
 
 ✅ Load test complete

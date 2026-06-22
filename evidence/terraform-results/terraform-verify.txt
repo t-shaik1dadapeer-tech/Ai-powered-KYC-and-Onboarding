@@ -1,4 +1,4 @@
-Terraform Verification — 2026-06-20T08:07:40Z
+Terraform Verification — 2026-06-22T11:58:59Z
 =====================================
 ▶ terraform init
 [0m[1mInitializing the backend...[0m
@@ -21,7 +21,7 @@ commands will detect it and remind you to do so if necessary.[0m
 [0m
   ✅ validate OK
 ▶ terraform apply (local_file resources)
-[0m[1mlocal_file.infra_registry: Refreshing state... [id=0cc5005ebfe84399290021ae91a975ee0e84e3a8][0m
+[0m[1mlocal_file.infra_registry: Refreshing state... [id=fe9c37beb5bfb82383967251cd5857f9fc353534][0m
 [0m[1mlocal_file.compose_copy: Refreshing state... [id=cfd868d8331840c3d3603dc54301ac616b11e4ee][0m
 
 Terraform used the selected providers to generate the following execution
@@ -40,7 +40,7 @@ Terraform will perform the following actions:
                   [31m-[0m[0m prometheus     = "8a2d4fb7e52ba8ae8610cfbef97e7163c03abfe1a27ab1030188f6f0afb795bb"
                 }
               [31m-[0m[0m environment  = "dev"
-              [31m-[0m[0m generated_at = "2026-06-20T07:49:32Z"
+              [31m-[0m[0m generated_at = "2026-06-22T11:58:48Z"
               [31m-[0m[0m managed_by   = "terraform"
               [31m-[0m[0m project      = "kyc-platform"
               [31m-[0m[0m services     = [
@@ -51,21 +51,21 @@ Terraform will perform the following actions:
                 ]
             }
         ) -> (known after apply) [31m# forces replacement[0m[0m
-      [33m~[0m[0m content_base64sha256 = "UIHGC9QrMz2tbJaaa2wHbEBateMNN5mB/ZRW50Sz3X8=" -> (known after apply)
-      [33m~[0m[0m content_base64sha512 = "iAhAT57N/avJ/YRbrh2hlLsM744CdJ8kpXjvIwEfJjBdPKsaGfZPx0DZb1PYP8iAHYufQukC4htYRAiwTFsIwQ==" -> (known after apply)
-      [33m~[0m[0m content_md5          = "8f58f1758ce6d0869e6a70599eb5db7a" -> (known after apply)
-      [33m~[0m[0m content_sha1         = "0cc5005ebfe84399290021ae91a975ee0e84e3a8" -> (known after apply)
-      [33m~[0m[0m content_sha256       = "5081c60bd42b333dad6c969a6b6c076c405ab5e30d379981fd9456e744b3dd7f" -> (known after apply)
-      [33m~[0m[0m content_sha512       = "8808404f9ecdfdabc9fd845bae1da194bb0cef8e02749f24a578ef23011f26305d3cab1a19f64fc740d96f53d83fc8801d8b9f42e902e21b584408b04c5b08c1" -> (known after apply)
-      [33m~[0m[0m id                   = "0cc5005ebfe84399290021ae91a975ee0e84e3a8" -> (known after apply)
+      [33m~[0m[0m content_base64sha256 = "AoZ9YsFVlUoM8dDJix2m8Ndo5SWDV/3hmswsq8J8AP8=" -> (known after apply)
+      [33m~[0m[0m content_base64sha512 = "UUPQt+Pqq0ZX1GSKq4rpI7bSdq3Ii8jYH+sCPuHlyuvJUm7zVThOnwAVBzVGL705PPcVZ+jsY1+xSbEkhOcifg==" -> (known after apply)
+      [33m~[0m[0m content_md5          = "d59183620d4099aa75e4e45096397f31" -> (known after apply)
+      [33m~[0m[0m content_sha1         = "fe9c37beb5bfb82383967251cd5857f9fc353534" -> (known after apply)
+      [33m~[0m[0m content_sha256       = "02867d62c155954a0cf1d0c98b1da6f0d768e5258357fde19acc2cabc27c00ff" -> (known after apply)
+      [33m~[0m[0m content_sha512       = "5143d0b7e3eaab4657d4648aab8ae923b6d276adc88bc8d81feb023ee1e5caebc9526ef355384e9f00150735462fbd393cf71567e8ec635fb149b12484e7227e" -> (known after apply)
+      [33m~[0m[0m id                   = "fe9c37beb5bfb82383967251cd5857f9fc353534" -> (known after apply)
         [90m# (3 unchanged attributes hidden)[0m[0m
     }
 
 [1mPlan:[0m 1 to add, 0 to change, 1 to destroy.
-[0m[0m[1mlocal_file.infra_registry: Destroying... [id=0cc5005ebfe84399290021ae91a975ee0e84e3a8][0m[0m
+[0m[0m[1mlocal_file.infra_registry: Destroying... [id=fe9c37beb5bfb82383967251cd5857f9fc353534][0m[0m
 [0m[1mlocal_file.infra_registry: Destruction complete after 0s[0m
 [0m[1mlocal_file.infra_registry: Creating...[0m[0m
-[0m[1mlocal_file.infra_registry: Creation complete after 0s [id=71ab4035d5552724c927700f26b092cc3c0f85a7][0m
+[0m[1mlocal_file.infra_registry: Creation complete after 0s [id=34bea2b38bd2b7e5d400474904dc1a9ca04320da][0m
 [0m[1m[32m
 Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
 [0m[0m[1m[32m

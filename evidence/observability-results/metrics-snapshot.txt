@@ -23,9 +23,9 @@ http_requests_total{method="POST",path="/kyc",status="201"} 3.0
 http_requests_total{method="POST",path="/risk-score",status="200"} 3.0
 # HELP http_requests_created Total HTTP requests
 # TYPE http_requests_created gauge
-http_requests_created{method="POST",path="/customers",status="201"} 1.7819417920159738e+09
-http_requests_created{method="POST",path="/kyc",status="201"} 1.781941792036021e+09
-http_requests_created{method="POST",path="/risk-score",status="200"} 1.7819417920469692e+09
+http_requests_created{method="POST",path="/customers",status="201"} 1.7821295521834729e+09
+http_requests_created{method="POST",path="/kyc",status="201"} 1.7821295522011788e+09
+http_requests_created{method="POST",path="/risk-score",status="200"} 1.7821295522115252e+09
 # HELP http_request_duration_seconds HTTP request latency in seconds
 # TYPE http_request_duration_seconds histogram
 http_request_duration_seconds_bucket{le="0.01",method="POST",path="/customers"} 2.0
@@ -39,7 +39,7 @@ http_request_duration_seconds_bucket{le="2.5",method="POST",path="/customers"} 3
 http_request_duration_seconds_bucket{le="5.0",method="POST",path="/customers"} 3.0
 http_request_duration_seconds_bucket{le="+Inf",method="POST",path="/customers"} 3.0
 http_request_duration_seconds_count{method="POST",path="/customers"} 3.0
-http_request_duration_seconds_sum{method="POST",path="/customers"} 0.029764957999999897
+http_request_duration_seconds_sum{method="POST",path="/customers"} 0.023155000999999897
 http_request_duration_seconds_bucket{le="0.01",method="POST",path="/kyc"} 2.0
 http_request_duration_seconds_bucket{le="0.025",method="POST",path="/kyc"} 3.0
 http_request_duration_seconds_bucket{le="0.05",method="POST",path="/kyc"} 3.0
@@ -51,7 +51,7 @@ http_request_duration_seconds_bucket{le="2.5",method="POST",path="/kyc"} 3.0
 http_request_duration_seconds_bucket{le="5.0",method="POST",path="/kyc"} 3.0
 http_request_duration_seconds_bucket{le="+Inf",method="POST",path="/kyc"} 3.0
 http_request_duration_seconds_count{method="POST",path="/kyc"} 3.0
-http_request_duration_seconds_sum{method="POST",path="/kyc"} 0.035929291999999835
+http_request_duration_seconds_sum{method="POST",path="/kyc"} 0.02835208300000014
 http_request_duration_seconds_bucket{le="0.01",method="POST",path="/risk-score"} 3.0
 http_request_duration_seconds_bucket{le="0.025",method="POST",path="/risk-score"} 3.0
 http_request_duration_seconds_bucket{le="0.05",method="POST",path="/risk-score"} 3.0
@@ -63,42 +63,42 @@ http_request_duration_seconds_bucket{le="2.5",method="POST",path="/risk-score"} 
 http_request_duration_seconds_bucket{le="5.0",method="POST",path="/risk-score"} 3.0
 http_request_duration_seconds_bucket{le="+Inf",method="POST",path="/risk-score"} 3.0
 http_request_duration_seconds_count{method="POST",path="/risk-score"} 3.0
-http_request_duration_seconds_sum{method="POST",path="/risk-score"} 0.01945191699999982
+http_request_duration_seconds_sum{method="POST",path="/risk-score"} 0.017897832000000058
 # HELP http_request_duration_seconds_created HTTP request latency in seconds
 # TYPE http_request_duration_seconds_created gauge
-http_request_duration_seconds_created{method="POST",path="/customers"} 1.781941792016e+09
-http_request_duration_seconds_created{method="POST",path="/kyc"} 1.781941792036045e+09
-http_request_duration_seconds_created{method="POST",path="/risk-score"} 1.7819417920469902e+09
+http_request_duration_seconds_created{method="POST",path="/customers"} 1.782129552183491e+09
+http_request_duration_seconds_created{method="POST",path="/kyc"} 1.782129552201198e+09
+http_request_duration_seconds_created{method="POST",path="/risk-score"} 1.782129552211539e+09
 # HELP customers_created_total Total customers created
 # TYPE customers_created_total counter
 customers_created_total{status="pending"} 3.0
 # HELP customers_created_created Total customers created
 # TYPE customers_created_created gauge
-customers_created_created{status="pending"} 1.7819417920150988e+09
+customers_created_created{status="pending"} 1.782129552182658e+09
 # HELP kyc_submissions_total Total KYC submissions
 # TYPE kyc_submissions_total counter
 kyc_submissions_total{status="verified"} 3.0
 # HELP kyc_submissions_created Total KYC submissions
 # TYPE kyc_submissions_created gauge
-kyc_submissions_created{status="verified"} 1.7819417920325482e+09
+kyc_submissions_created{status="verified"} 1.7821295521981592e+09
 # HELP pan_verifications_total Total PAN verification attempts
 # TYPE pan_verifications_total counter
 pan_verifications_total{status="verified"} 3.0
 # HELP pan_verifications_created Total PAN verification attempts
 # TYPE pan_verifications_created gauge
-pan_verifications_created{status="verified"} 1.781941792023776e+09
+pan_verifications_created{status="verified"} 1.7821295521902988e+09
 # HELP bank_verifications_total Total bank verification attempts
 # TYPE bank_verifications_total counter
 bank_verifications_total{status="verified"} 3.0
 # HELP bank_verifications_created Total bank verification attempts
 # TYPE bank_verifications_created gauge
-bank_verifications_created{status="verified"} 1.781941792025944e+09
+bank_verifications_created{status="verified"} 1.7821295521921291e+09
 # HELP risk_assessments_total Total risk score calculations
 # TYPE risk_assessments_total counter
 risk_assessments_total{band="low"} 3.0
 # HELP risk_assessments_created Total risk score calculations
 # TYPE risk_assessments_created gauge
-risk_assessments_created{band="low"} 1.781941792046274e+09
+risk_assessments_created{band="low"} 1.782129552210604e+09
 # HELP risk_score_histogram Observed risk scores
 # TYPE risk_score_histogram histogram
 risk_score_histogram_bucket{band="low",le="10.0"} 0.0
@@ -116,7 +116,7 @@ risk_score_histogram_count{band="low"} 3.0
 risk_score_histogram_sum{band="low"} 45.0
 # HELP risk_score_histogram_created Observed risk scores
 # TYPE risk_score_histogram_created gauge
-risk_score_histogram_created{band="low"} 1.7819417920462239e+09
+risk_score_histogram_created{band="low"} 1.7821295522105632e+09
 # HELP kyc_submissions_active KYC submissions currently in verified status (cumulative successful count proxy)
 # TYPE kyc_submissions_active gauge
 kyc_submissions_active 3.0

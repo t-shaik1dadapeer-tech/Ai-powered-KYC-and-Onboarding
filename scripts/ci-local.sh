@@ -90,15 +90,24 @@ run_step "terraform validate" bash "$ROOT/scripts/terraform-verify.sh"
 
 run_step "kubernetes dry-run" bash "$ROOT/scripts/k8s-verify.sh"
 
-# --- Docker (optional) ---
-if command -v docker >/dev/null 2>&1; then
+# --- Docker (optional when daemon unavailable) ---
+# shellcheck source=docker-lib.sh
+source "$ROOT/scripts/docker-lib.sh"
+if docker_daemon_ready; then
   run_step "docker compose build" bash -c "
     cd '$ROOT/infra/docker'
     docker compose build
   "
 else
   log "▶ docker compose build"
-  log "  ⏭ SKIP: docker not installed"
+  log "  ⏭ SKIP: docker daemon not running — static validation only"
+  if docker_static_verify "$ROOT" "$ROOT/infra/docker/docker-compose.yml" "$LOG"; then
+    log "  ✅ PASS: docker static validation (offline fallback)"
+    PASS=$((PASS + 1))
+  else
+    log "  ❌ FAIL: docker static validation"
+    FAIL=$((FAIL + 1))
+  fi
   log ""
 fi
 

@@ -13,6 +13,9 @@ mkdir -p "$EVIDENCE"
 
 log() { echo "$1" | tee -a "$LOG"; }
 
+# shellcheck source=docker-lib.sh
+source "$ROOT/scripts/docker-lib.sh"
+
 cd "$COMPOSE_DIR"
 
 if [[ -f .env ]]; then
@@ -34,6 +37,21 @@ log "Prometheus (host) : $PROM_PORT"
 log "Grafana bundled   : $GRAFANA_BUNDLED  (admin/admin)"
 log "Grafana external  : $GRAFANA_EXTERNAL  (optional import)"
 log ""
+
+if ! docker_daemon_ready; then
+  log "▶ docker daemon unavailable — static validation fallback"
+  if docker_static_verify "$ROOT" "$COMPOSE_DIR/docker-compose.yml" "$LOG"; then
+    docker compose config > "$EVIDENCE/docker-compose-resolved.yml" 2>>"$LOG" || true
+    log ""
+    log "=================================="
+    log "✅ Docker static verification complete (offline fallback)"
+    log "Evidence: $LOG"
+    log "Note: start Colima/Docker Desktop and re-run for full stack smoke test"
+    exit 0
+  fi
+  log "  ❌ static validation failed"
+  exit 1
+fi
 
 api_curl() {
   docker compose exec -T onboarding-api curl -fsS "$@"
